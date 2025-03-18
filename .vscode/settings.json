@@ -1,0 +1,8 @@
+{
+    "window.zoomLevel": 0.4,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true
+}
