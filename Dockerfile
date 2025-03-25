@@ -10,13 +10,13 @@ LABEL org.opencontainers.image.title="ShiroInk"
 LABEL org.opencontainers.image.url="https://github.com/esoso/shiroink"
 LABEL org.opencontainers.image.vendor="esoso"
 
-RUN addgroup -S shinoink && adduser -S shino -G shinoink -h /home/shino -s /bin/bash
+RUN addgroup -S shiroink && adduser -S shiro -G shiroink -h /home/shiro -s /bin/bash
 
-WORKDIR /home/shino
+WORKDIR /home/shiro
 
 COPY ./requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-USER shino
+USER shiro
 
 COPY ./src ./
 
