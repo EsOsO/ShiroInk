@@ -1,5 +1,4 @@
 from PIL import Image, ImageFilter, ImageOps
-import numpy as np
 
 
 def sharpen(img: Image) -> Image:
