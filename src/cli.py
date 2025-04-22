@@ -16,7 +16,7 @@ def parse_arguments():
         "-r",
         "--resolution",
         type=str,
-        default="1072x1448",
+        default="1404x1872",
         help="Resolution to resize the images (e.g., 800x600)",
     )
     parser.add_argument(
