@@ -23,12 +23,12 @@ def process(
         rtl: Flag to switch the order of two-page images.
         quality: The quality level for optimization (1-100).
     """
-    # Open the image
-    with Image.open(image_path) as image:
-        image = contrast(image)
+    # Open the image""
+    with Image.open(image_path).convert("RGB") as image:
         resized_images = resize(image, resolution, rtl)
 
         for i, img in enumerate(resized_images):
+            img = contrast(img)
             img = sharpen(img)
             img = quantize(img)
 
