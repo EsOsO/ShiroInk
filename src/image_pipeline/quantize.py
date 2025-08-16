@@ -1,15 +1,7 @@
 from PIL import Image
 
-
-def quantize(img: Image):
-    """
-    Quantize the image to 16 colors.
-    Args:
-        img: The image to be quantized.
-    Returns:
-        The quantized image.
-    """
-    Palette16 = [
+Palette16 = bytes(
+    [
         0x00,
         0x00,
         0x00,
@@ -59,14 +51,23 @@ def quantize(img: Image):
         0xFF,
         0xFF,
     ]
+)
 
-    colors = len(Palette16) // 3
+
+def quantize(img: Image, palette: bytes = Palette16) -> Image:
+    """
+    Quantize the image to 16 colors.
+    Args:
+        img: The image to be quantized.
+    Returns:
+        The quantized image.
+    """
+
+    colors = len(palette) // 3
     if colors < 256:
-        Palette16 += Palette16[:3] * (256 - colors)
-    palImg = Image.new("P", (1, 1))
-    palImg.putpalette(Palette16)
-    img = img.convert("L")
-    img = img.convert("RGB")
-    img = img.quantize(palette=palImg)
-    img = img.convert("P")
+        palette += palette[:3] * (256 - colors)
+    palette_img = Image.new("P", (1, 1))
+    palette_img.putpalette(palette)
+
+    img = img.quantize(colors=colors, palette=palette_img)
     return img

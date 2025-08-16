@@ -1,14 +1,11 @@
-from PIL import Image, ImageFilter, ImageOps
+from PIL import Image, ImageEnhance
 
 
-def sharpen(img: Image) -> Image:
+def sharpen(img: Image, factor: float = 1.2) -> Image:
     """
     Sharpen the image to improve the quality for Kindle devices."
     """
 
-    img.convert("L")
-    unsharpFilter = ImageFilter.UnsharpMask(radius=1, percent=100)
-    img = img.filter(unsharpFilter)
-    img = img.filter(ImageFilter.BoxBlur(0.5))
-    img = img.filter(unsharpFilter)
-    return img
+    # Apply sharpening filter
+    enhancer = ImageEnhance.Sharpness(img)
+    return enhancer.enhance(factor)
