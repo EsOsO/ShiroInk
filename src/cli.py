@@ -3,7 +3,9 @@ from pathlib import Path
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description="Process files in a directory.")
+    parser = argparse.ArgumentParser(
+        description="Resize and optimize images in a directory or CBZ files."
+    )
     parser.add_argument(
         "src_dir", type=Path, help="Source directory containing files to process"
     )
