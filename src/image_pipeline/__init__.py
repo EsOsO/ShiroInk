@@ -1,3 +1,4 @@
+from pathlib import Path
 from .contrast import contrast
 from .resize import resize
 from .sharpen import sharpen
@@ -7,8 +8,8 @@ from PIL import Image
 
 
 def process(
-    image_path: str,
-    output_path: str,
+    image_path: Path,
+    output_path: Path,
     resolution: tuple[int, int],
     rtl: bool = False,
     quality: int = 85,

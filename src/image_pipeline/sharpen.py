@@ -1,7 +1,7 @@
 from PIL import Image, ImageEnhance
 
 
-def sharpen(img: Image, factor: float = 1.2) -> Image:
+def sharpen(img: Image.Image, factor: float = 1.2) -> Image.Image:
     """
     Sharpen the image to improve the quality for Kindle devices."
     """

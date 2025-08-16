@@ -1,7 +1,8 @@
+from pathlib import Path
 from PIL import Image
 
 
-def save(image: Image, path: str, quality=3) -> None:
+def save(image: Image.Image, path: Path, quality=3) -> None:
     """
     Save the image for Kindle devices by reducing file size while maintaining quality.
 

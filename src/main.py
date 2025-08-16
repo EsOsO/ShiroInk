@@ -7,7 +7,7 @@ from config import create_progress, console
 def main(
     src_dir: Path,
     dest_dir: Path,
-    resolution: str,
+    resolution: tuple[int, int],
     rtl: bool = False,
     quality: int = 6,
     debug: bool = False,
@@ -63,15 +63,6 @@ def main(
 
 if __name__ == "__main__":
     args = parse_arguments()
-
-    # Validate resolution format
-    try:
-        width, height = map(int, args.resolution.split("x"))
-    except ValueError:
-        console.print(
-            "[bold red]Error:[/bold red] Invalid resolution format. Use WIDTHxHEIGHT."
-        )
-        exit(1)
 
     main(
         args.src_dir,

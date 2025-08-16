@@ -3,6 +3,28 @@ from pathlib import Path
 
 
 def parse_arguments():
+    def parse_resolution(value: str) -> tuple[int, int]:
+        """Accept forms like '800x600', '800X600', '800 600', '800,600' or '800' -> (800,800)."""
+        if not isinstance(value, str):
+            raise argparse.ArgumentTypeError("Resolution must be a string")
+        s = value.strip().replace("X", "x").replace("x", " ").replace(",", " ")
+        parts = s.split()
+        if not parts:
+            raise argparse.ArgumentTypeError(
+                "Resolution must be like '800x600', '800 600', '800,600' or '800'"
+            )
+        try:
+            nums = [int(p) for p in parts]
+        except ValueError:
+            raise argparse.ArgumentTypeError("Resolution values must be integers")
+        if len(nums) == 1:
+            w = h = nums[0]
+        else:
+            w, h = nums[0], nums[1]
+        if w <= 0 or h <= 0:
+            raise argparse.ArgumentTypeError("Resolution values must be positive")
+        return (w, h)
+
     parser = argparse.ArgumentParser(
         description="Resize and optimize images in a directory or CBZ files."
     )
@@ -15,9 +37,9 @@ def parse_arguments():
     parser.add_argument(
         "-r",
         "--resolution",
-        type=str,
-        default="1404x1872",
-        help="Resolution to resize the images (e.g., 800x600)",
+        type=parse_resolution,
+        default=parse_resolution("1404x1872"),
+        help="Resolution to resize the images (e.g., 800x600, '800 600', '800,600' or '800')",
     )
     parser.add_argument(
         "--rtl", action="store_true", help="Switch the order of two-page images"

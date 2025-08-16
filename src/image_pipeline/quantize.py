@@ -54,7 +54,7 @@ Palette16 = bytes(
 )
 
 
-def quantize(img: Image, palette: bytes = Palette16) -> Image:
+def quantize(img: Image.Image, palette: bytes = Palette16) -> Image.Image:
     """
     Quantize the image to 16 colors.
     Args:

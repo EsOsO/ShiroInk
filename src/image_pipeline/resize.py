@@ -1,7 +1,9 @@
 from PIL import Image, ImageOps
 
 
-def resize(image: Image, resolution: tuple[int, int], rtl: bool = False) -> list[Image]:
+def resize(
+    image: Image.Image, resolution: tuple[int, int], rtl: bool = False
+) -> list[Image.Image]:
     """
     Resize the image to the given resolution. If the image is detected as a 2-page manga,
     split it into two single-page images and resize both.

@@ -3,11 +3,10 @@ import zipfile
 
 from image_pipeline import process
 from pathlib import Path
-from queue import Queue
 from rich.progress import Progress
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif"]
+IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"]
 
 
 def __create_cbz_archive(
@@ -25,8 +24,10 @@ def __create_cbz_archive(
         dest_dir (Path): Path to the destination directory.
         debug (bool): Flag to enable debug output.
     """
+
+    cbz_path = dest_dir / f"{directory.name}.cbz"
+
     try:
-        cbz_path = dest_dir / f"{dest_dir.name}_{directory.name}.cbz"
         if debug or dry_run:
             progress.console.log(
                 f"[bold green]Creating CBZ archive:[/bold green] {cbz_path}"
@@ -60,7 +61,7 @@ def extract_and_process_cbz(
     cbz_path: Path,
     src_dir: Path,
     dest_dir: Path,
-    resolution: str,
+    resolution: tuple[int, int],
     progress: Progress,
     rtl: bool = False,
     quality: int = 6,
@@ -126,7 +127,7 @@ def __process_file(
     file_path: Path,
     src_dir: Path,
     dest_dir: Path,
-    resolution: str,
+    resolution: tuple[int, int],
     rtl: bool = False,
     quality: int = 6,
     debug: bool = False,
@@ -157,7 +158,7 @@ def __process_file(
             process(
                 file_path,
                 dest_path,
-                tuple(map(int, resolution.split("x"))),
+                resolution,
                 rtl,
                 quality,
             )
@@ -171,7 +172,7 @@ def process_images_in_directory(
     directory: Path,
     src_dir: Path,
     dest_dir: Path,
-    resolution: str,
+    resolution: tuple[int, int],
     progress: Progress,
     rtl: bool = False,
     quality: int = 6,
