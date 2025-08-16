@@ -1,6 +1,5 @@
 from pathlib import Path
-from queue import Queue
-from file_processor import worker
+from file_processor import process_images_in_directory, extract_and_process_cbz
 from cli import parse_arguments
 from config import create_progress, console
 
@@ -23,27 +22,43 @@ def main(
         return
 
     items = [
-        item for item in src_dir.iterdir() if item.is_dir() or item.suffix == ".cbz"
+        Path(item)
+        for item in src_dir.iterdir()
+        if item.is_dir() or item.suffix in (".cbz")
     ]
-    queue = Queue()
-    for item in items:
-        queue.put(item)
 
     with progress:
         task_id = progress.add_task("Processing chapter/volumes...", total=len(items))
-        for _ in range(workers):
-            worker(
-                queue,
-                src_dir,
-                dest_dir,
-                resolution,
-                progress,
-                task_id,
-                rtl,
-                quality,
-                debug,
-                dry_run,
-            )
+
+        for item in items:
+            if item.is_dir():
+                process_images_in_directory(
+                    item,
+                    src_dir,
+                    dest_dir,
+                    resolution,
+                    progress,
+                    rtl,
+                    quality,
+                    debug,
+                    dry_run,
+                    workers,
+                )
+            elif item.suffix == ".cbz":
+                extract_and_process_cbz(
+                    item,
+                    src_dir,
+                    dest_dir,
+                    resolution,
+                    progress,
+                    rtl,
+                    quality,
+                    debug,
+                    dry_run,
+                    workers,
+                )
+
+            progress.advance(task_id)
 
 
 if __name__ == "__main__":
