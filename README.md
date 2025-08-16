@@ -61,14 +61,12 @@ python main.py /path/to/source /path/to/destination -r 800x600 --rtl -q 3 --debu
 
 You can also run ShiroInk using Docker:
 
-1. Build the Docker image:
+- Run the Docker container:
     ```sh
-    docker build -t shiroink .
-    ```
-
-2. Run the Docker container:
-    ```sh
-    docker run -v /path/to/source:/home/shino/src -v /path/to/destination:/home/shino/dest shiroink
+    docker run --rm -it \
+        -v /path/to/source:/home/shino/src \
+        -v /path/to/destination:/home/shino/dest \
+        ghcr.io/esoso/shiroink /manga/src /manga/dest
     ```
 
 ## License
