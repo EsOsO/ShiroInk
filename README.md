@@ -44,8 +44,8 @@ python main.py <src_dir> <dest_dir> [options]
 
 ### Options
 
-- `-r, --resolution`: Resolution to resize the images (default: `1072x1448`)
-- `--rtl`: Switch the order of two-page images
+- `-r, --resolution`: Resolution to resize the images (default: `1404x1872`)
+- `--rtl`: Switch to right to left page
 - `-q, --quality`: Quality level for optimization (1-9, default: `6`)
 - `-d, --debug`: Enable debug output
 - `-w, --workers`: Number of threads to use (default: `4`)
@@ -54,7 +54,7 @@ python main.py <src_dir> <dest_dir> [options]
 ### Example
 
 ```sh
-python main.py /path/to/source /path/to/destination -r 800x600 --rtl -q 3 --debug
+python main.py /path/to/source /path/to/destination -r 1404x1872 --rtl -q 3 --debug
 ```
 
 ## Docker
@@ -64,9 +64,9 @@ You can also run ShiroInk using Docker:
 - Run the Docker container:
     ```sh
     docker run --rm -it \
-        -v /path/to/source:/home/shiro/src \
-        -v /path/to/destination:/home/shiro/dest \
-        ghcr.io/esoso/shiroink /manga/src /manga/dest
+        -v /path/to/source:/manga/src \
+        -v /path/to/destination:/manga/dest \
+        ghcr.io/esoso/shiroink --rtl /manga/src/MangaName /manga/dest/MangaName
     ```
 
 ## License
