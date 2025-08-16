@@ -64,8 +64,8 @@ You can also run ShiroInk using Docker:
 - Run the Docker container:
     ```sh
     docker run --rm -it \
-        -v /path/to/source:/home/shino/src \
-        -v /path/to/destination:/home/shino/dest \
+        -v /path/to/source:/home/shiro/src \
+        -v /path/to/destination:/home/shiro/dest \
         ghcr.io/esoso/shiroink /manga/src /manga/dest
     ```
 
