@@ -1,7 +1,7 @@
 import shutil
 import zipfile
 
-from manga_image_pipeline import process
+from image_pipeline import process
 from pathlib import Path
 from queue import Queue
 from rich.progress import Progress
@@ -109,6 +109,8 @@ def __extract_and_process_cbz(
                         debug,
                         dry_run,
                     )
+                    shutil.rmtree(extract_path)
+
     except Exception as e:
         progress.console.log(
             f"[bold red]Error extracting CBZ file {cbz_path}: {e}[/bold red]"
