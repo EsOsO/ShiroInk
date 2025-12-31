@@ -1,15 +1,53 @@
+# Version control
 **/.git
 **/.gitignore
+.github/
+
+# IDE and editors
 **/.vscode
-**/coverage
+**/.idea
+**/.DS_Store
+
+# Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache
+**/.coverage
+**/htmlcov
+**/.mypy_cache
+**/.tox
+**/dist
+**/build
+**/*.egg-info
+
+# Virtual environments
+**/venv
+**/env
+**/.venv
+
+# Documentation (keep minimal docs in image)
+*.md
+!README.md
+
+# Testing
+test_*.py
+**/tests/
+**/coverage/
+
+# CI/CD
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Secrets and credentials
 **/.env
 **/.aws
 **/.ssh
+**/credentials*
+**/*secret*
 
-Dockerfile
-README.md
-docker-compose.yml
-
-**/.DS_Store
-**/venv
-**/env
+# Other
+**/.coverage
+htmlcov/

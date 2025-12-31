@@ -1,11 +1,45 @@
 from PIL import Image, ImageEnhance
+from .pipeline import ProcessingStep
 
 
+class ContrastStep(ProcessingStep):
+    """Processing step to adjust image contrast."""
+
+    def __init__(self, factor: float = 1.5):
+        """
+        Initialize the contrast adjustment step.
+
+        Args:
+            factor: Contrast enhancement factor (1.0 = no change, >1.0 = more contrast).
+        """
+        super().__init__(factor=factor)
+        self.factor = factor
+
+    def process(self, image: Image.Image) -> Image.Image:
+        """
+        Apply contrast adjustment to the image.
+
+        Args:
+            image: Input PIL Image.
+
+        Returns:
+            Image with adjusted contrast.
+        """
+        enhancer = ImageEnhance.Contrast(image)
+        return enhancer.enhance(self.factor)
+
+    def get_name(self) -> str:
+        """Get the name of this step."""
+        return "Contrast"
+
+
+# Legacy function for backward compatibility
 def contrast(img: Image.Image, factor: float = 1.5) -> Image.Image:
     """
     Adjust the contrast of the image to improve the quality for Kindle devices.
-    """
 
-    # Apply gamma correction to adjust contrast
-    enhancer = ImageEnhance.Contrast(img)
-    return enhancer.enhance(factor)
+    This is a legacy function maintained for backward compatibility.
+    Consider using ContrastStep instead.
+    """
+    step = ContrastStep(factor=factor)
+    return step.process(img)

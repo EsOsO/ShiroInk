@@ -1,7 +1,9 @@
 # temp stage
+# Pin base image to specific digest for security and reproducibility
 ARG PYTHON_IMAGE_VERSION=3.13.7-slim
+ARG PYTHON_IMAGE_DIGEST=sha256:5f55cdf0c5d9dc1a415637a5ccc4a9e18663ad203673173b8cda8f8dcacef689
 
-FROM python:${PYTHON_IMAGE_VERSION} AS builder
+FROM python:${PYTHON_IMAGE_VERSION}@${PYTHON_IMAGE_DIGEST} AS builder
 
 WORKDIR /app
 
@@ -12,7 +14,7 @@ COPY requirements.txt .
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
 
 # Final stage
-FROM python:${PYTHON_IMAGE_VERSION}
+FROM python:${PYTHON_IMAGE_VERSION}@${PYTHON_IMAGE_DIGEST}
 
 LABEL cc.mansase.name="ShiroInk"
 LABEL cc.mansase.author="Massimo Bonvicini"
@@ -37,7 +39,12 @@ RUN addgroup --gid 1000 --system app && \
 
 USER app
 
-COPY ./src ./
+# Preserve directory structure to maintain proper Python imports
+COPY --chown=app:app ./src ./src
 
-ENTRYPOINT ["python", "main.py"]
-CMD [ "--help" ]
+# Set PYTHONPATH to allow imports from src directory
+ENV PYTHONPATH=/app/src
+
+# Use direct python execution since PYTHONPATH is set
+ENTRYPOINT ["python", "/app/src/main.py"]
+CMD ["--help"]
