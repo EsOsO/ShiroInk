@@ -1,3 +1,32 @@
+[project]
+name = "shiroink"
+version = "2.0.0"
+description = "Manga and comic book image optimization tool"
+authors = [
+    {name = "Massimo Bonvicini", email = "esoso@users.noreply.github.com"}
+]
+license = {text = "ISC"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pillow>=11.3.0",
+    "rich>=14.1.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/EsOsO/ShiroInk"
+Documentation = "https://esoso.github.io/ShiroInk"
+Repository = "https://github.com/EsOsO/ShiroInk"
+Issues = "https://github.com/EsOsO/ShiroInk/issues"
+Changelog = "https://github.com/EsOsO/ShiroInk/blob/main/CHANGELOG.md"
+
+[project.scripts]
+shiroink = "main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [tool.black]
 line-length = 88
 target-version = ['py38', 'py39', 'py310']
