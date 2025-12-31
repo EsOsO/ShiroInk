@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.10](https://github.com/EsOsO/ShiroInk/compare/v2.0.9...v2.0.10) (2025-12-31)
+
+
+### Documentation
+
+* Update CI/CD documentation with current automated workflows ([9780d4c](https://github.com/EsOsO/ShiroInk/commit/9780d4cbf306e3344dcb42a6c96d0d0ca055dba6))
+
 ## [2.0.9](https://github.com/EsOsO/ShiroInk/compare/v2.0.8...v2.0.9) (2025-12-31)
 
 
