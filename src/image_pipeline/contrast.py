@@ -37,7 +37,7 @@ class ContrastStep(ProcessingStep):
 def contrast(img: Image.Image, factor: float = 1.5) -> Image.Image:
     """
     Adjust the contrast of the image to improve the quality for Kindle devices.
-    
+
     This is a legacy function maintained for backward compatibility.
     Consider using ContrastStep instead.
     """

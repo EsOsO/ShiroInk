@@ -37,7 +37,7 @@ class SharpenStep(ProcessingStep):
 def sharpen(img: Image.Image, factor: float = 1.2) -> Image.Image:
     """
     Sharpen the image to improve the quality for Kindle devices.
-    
+
     This is a legacy function maintained for backward compatibility.
     Consider using SharpenStep instead.
     """

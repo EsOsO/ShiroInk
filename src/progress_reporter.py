@@ -168,7 +168,11 @@ class SilentProgressReporter(ProgressReporter):
         """Add a task (returns a simple integer ID)."""
         task_id = self._task_counter
         self._task_counter += 1
-        self._tasks[task_id] = {"description": description, "total": total, "completed": 0}
+        self._tasks[task_id] = {
+            "description": description,
+            "total": total,
+            "completed": 0,
+        }
         return task_id
 
     def update_task(self, task_id: int, completed: Optional[int] = None) -> None:
@@ -220,7 +224,11 @@ class FileProgressReporter(ProgressReporter):
         """Add a task and log it."""
         task_id = self._task_counter
         self._task_counter += 1
-        self._tasks[task_id] = {"description": description, "total": total, "completed": 0}
+        self._tasks[task_id] = {
+            "description": description,
+            "total": total,
+            "completed": 0,
+        }
         self.log(f"Task started: {description} (total: {total})", "info")
         return task_id
 

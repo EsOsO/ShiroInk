@@ -87,9 +87,7 @@ class ErrorTracker:
         if step:
             self._step_errors[step] = self._step_errors.get(step, 0) + 1
 
-    def get_errors(
-        self, severity: Optional[ErrorSeverity] = None
-    ) -> List[ErrorRecord]:
+    def get_errors(self, severity: Optional[ErrorSeverity] = None) -> List[ErrorRecord]:
         """
         Get all errors, optionally filtered by severity.
 
@@ -216,9 +214,7 @@ def safe_execute(
         return func()
     except Exception as e:
         if error_tracker:
-            error_tracker.add_error(
-                error=e, path=path, severity=severity, step=step
-            )
+            error_tracker.add_error(error=e, path=path, severity=severity, step=step)
         if reraise:
             raise
         return default

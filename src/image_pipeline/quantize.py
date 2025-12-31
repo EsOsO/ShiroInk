@@ -96,10 +96,10 @@ class QuantizeStep(ProcessingStep):
 def quantize(img: Image.Image, palette: bytes = Palette16) -> Image.Image:
     """
     Quantize the image to 16 colors.
-    
+
     This is a legacy function maintained for backward compatibility.
     Consider using QuantizeStep instead.
-    
+
     Args:
         img: The image to be quantized.
         palette: Color palette to use.

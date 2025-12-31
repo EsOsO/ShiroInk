@@ -59,9 +59,7 @@ def __create_cbz_archive(
     try:
         _create_archive()
     except Exception as e:
-        error = CBZCreationError(
-            f"Failed to create CBZ archive", path=cbz_path
-        )
+        error = CBZCreationError(f"Failed to create CBZ archive", path=cbz_path)
         error_tracker.add_error(
             error=error,
             path=cbz_path,
@@ -151,7 +149,7 @@ def __process_file(
         if not config.dry_run:
             dest_path.parent.mkdir(parents=True, exist_ok=True)
             pipeline = config.get_pipeline()
-            
+
             # Retry logic for processing
             for attempt in range(config.max_retries + 1):
                 try:
@@ -169,12 +167,12 @@ def __process_file(
                         if config.debug:
                             reporter.log(
                                 f"Retry {attempt + 1}/{config.max_retries} for {file_path}",
-                                level="warning"
+                                level="warning",
                             )
                         continue
                     else:
                         raise  # Max retries reached, propagate exception
-                        
+
     except Exception as e:
         error = ImageProcessingError(
             f"Failed to process image",

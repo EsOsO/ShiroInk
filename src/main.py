@@ -20,7 +20,9 @@ def main(config: ProcessingConfig, reporter: ProgressReporter) -> int:
     error_tracker = ErrorTracker()
 
     if not config.src_dir.is_dir():
-        reporter.log(f"Error: {config.src_dir} is not a valid directory.", level="error")
+        reporter.log(
+            f"Error: {config.src_dir} is not a valid directory.", level="error"
+        )
         return 2
 
     items = [
@@ -61,15 +63,19 @@ def main(config: ProcessingConfig, reporter: ProgressReporter) -> int:
         reporter.log(f"  Warnings: {summary['warnings']}", level="warning")
         reporter.log(f"  Errors: {summary['errors']}", level="error")
         reporter.log(f"  Critical: {summary['critical']}", level="error")
-        reporter.log(f"Files with errors: {summary['files_with_errors']}", level="warning")
+        reporter.log(
+            f"Files with errors: {summary['files_with_errors']}", level="warning"
+        )
 
-        if summary['most_problematic_file']:
-            file_path, count = summary['most_problematic_file']
-            reporter.log(f"Most problematic file: {file_path} ({count} errors)", level="warning")
+        if summary["most_problematic_file"]:
+            file_path, count = summary["most_problematic_file"]
+            reporter.log(
+                f"Most problematic file: {file_path} ({count} errors)", level="warning"
+            )
 
-        if summary['errors_by_step']:
+        if summary["errors_by_step"]:
             reporter.log("\nErrors by step:", level="warning")
-            for step, count in summary['errors_by_step'].items():
+            for step, count in summary["errors_by_step"].items():
                 reporter.log(f"  {step}: {count}", level="warning")
 
         # Show first few errors in detail
@@ -86,7 +92,9 @@ def main(config: ProcessingConfig, reporter: ProgressReporter) -> int:
         else:
             return 1
     else:
-        reporter.log("\nProcessing completed successfully with no errors!", level="info")
+        reporter.log(
+            "\nProcessing completed successfully with no errors!", level="info"
+        )
         return 0
 
 
@@ -103,9 +111,9 @@ if __name__ == "__main__":
         workers=args.workers,
         pipeline_preset=args.pipeline,
     )
-    
+
     # Create the appropriate reporter
     reporter = ConsoleProgressReporter()
-    
+
     exit_code = main(config, reporter)
     exit(exit_code)

@@ -15,12 +15,12 @@ class PipelinePresets:
     def kindle() -> ImagePipeline:
         """
         Create a pipeline optimized for Kindle e-readers.
-        
+
         Features:
         - High contrast for e-ink displays
         - Moderate sharpening
         - 16-color quantization for file size reduction
-        
+
         Returns:
             ImagePipeline configured for Kindle devices.
         """
@@ -34,12 +34,12 @@ class PipelinePresets:
     def tablet() -> ImagePipeline:
         """
         Create a pipeline optimized for color tablets.
-        
+
         Features:
         - Moderate contrast
         - Light sharpening
         - No quantization (preserves color)
-        
+
         Returns:
             ImagePipeline configured for tablet devices.
         """
@@ -52,11 +52,11 @@ class PipelinePresets:
     def print() -> ImagePipeline:
         """
         Create a pipeline optimized for printing.
-        
+
         Features:
         - Minimal processing
         - Light sharpening only
-        
+
         Returns:
             ImagePipeline configured for print output.
         """
@@ -68,12 +68,12 @@ class PipelinePresets:
     def high_quality() -> ImagePipeline:
         """
         Create a pipeline for high-quality displays.
-        
+
         Features:
         - Light contrast adjustment
         - Enhanced sharpening
         - No quantization
-        
+
         Returns:
             ImagePipeline configured for high-quality displays.
         """
@@ -86,51 +86,53 @@ class PipelinePresets:
     def minimal() -> ImagePipeline:
         """
         Create a minimal pipeline with no processing steps.
-        
+
         Returns:
             Empty ImagePipeline.
         """
         return ImagePipeline()
 
     @staticmethod
-    def custom(contrast: float | None = None, 
-               sharpen: float | None = None, 
-               quantize: bool = False) -> ImagePipeline:
+    def custom(
+        contrast: float | None = None,
+        sharpen: float | None = None,
+        quantize: bool = False,
+    ) -> ImagePipeline:
         """
         Create a custom pipeline with specified parameters.
-        
+
         Args:
             contrast: Contrast factor (None to skip).
             sharpen: Sharpening factor (None to skip).
             quantize: Whether to apply 16-color quantization.
-        
+
         Returns:
             ImagePipeline with custom configuration.
         """
         pipeline = ImagePipeline()
-        
+
         if contrast is not None:
             pipeline.add_step(ContrastStep(factor=contrast))
-        
+
         if sharpen is not None:
             pipeline.add_step(SharpenStep(factor=sharpen))
-        
+
         if quantize:
             pipeline.add_step(QuantizeStep(palette=Palette16))
-        
+
         return pipeline
 
     @staticmethod
     def get_preset(name: str) -> ImagePipeline:
         """
         Get a preset pipeline by name.
-        
+
         Args:
             name: Name of the preset (kindle, tablet, print, high_quality, minimal).
-        
+
         Returns:
             ImagePipeline for the specified preset.
-        
+
         Raises:
             ValueError: If preset name is not recognized.
         """
@@ -141,20 +143,18 @@ class PipelinePresets:
             "high_quality": PipelinePresets.high_quality,
             "minimal": PipelinePresets.minimal,
         }
-        
+
         if name.lower() not in presets:
             available = ", ".join(presets.keys())
-            raise ValueError(
-                f"Unknown preset '{name}'. Available presets: {available}"
-            )
-        
+            raise ValueError(f"Unknown preset '{name}'. Available presets: {available}")
+
         return presets[name.lower()]()
 
     @staticmethod
     def list_presets() -> list[str]:
         """
         Get a list of available preset names.
-        
+
         Returns:
             List of preset names.
         """
