@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.6](https://github.com/EsOsO/ShiroInk/compare/v2.0.5...v2.0.6) (2025-12-31)
+
+
+### Bug Fixes
+
+* Copy pyproject.toml to Docker image for version detection ([cabd8ec](https://github.com/EsOsO/ShiroInk/commit/cabd8ec66789de5f54cd5717a0b3f25c6a8a0e79))
+
 ## [2.0.5](https://github.com/EsOsO/ShiroInk/compare/v2.0.4...v2.0.5) (2025-12-31)
 
 
