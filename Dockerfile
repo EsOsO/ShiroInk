@@ -41,6 +41,7 @@ USER app
 
 # Preserve directory structure to maintain proper Python imports
 COPY --chown=app:app ./src ./src
+COPY --chown=app:app ./pyproject.toml .
 
 # Set PYTHONPATH to allow imports from src directory
 ENV PYTHONPATH=/app/src
