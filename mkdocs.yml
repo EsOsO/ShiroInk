@@ -77,10 +77,6 @@ nav:
   - Contributing:
     - Conventional Commits: contributing/conventional-commits.md
     - Development Setup: contributing/development.md
-  - API Reference:
-    - Configuration: api/configuration.md
-    - Pipeline Steps: api/pipeline.md
-    - Error Types: api/errors.md
 
 extra:
   social:
