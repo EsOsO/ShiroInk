@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.4](https://github.com/EsOsO/ShiroInk/compare/v2.0.3...v2.0.4) (2025-12-31)
+
+
+### Bug Fixes
+
+* Pass tag name to Docker build workflow and remove deprecated parameter ([18e29a1](https://github.com/EsOsO/ShiroInk/commit/18e29a1d66dd3413bcbfb3992078d1fed27177df))
+
 ## [2.0.3](https://github.com/EsOsO/ShiroInk/compare/v2.0.2...v2.0.3) (2025-12-31)
 
 
