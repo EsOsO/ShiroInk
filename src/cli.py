@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+from __version__ import __version__
 
 
 def parse_arguments():
@@ -26,7 +27,14 @@ def parse_arguments():
         return (w, h)
 
     parser = argparse.ArgumentParser(
-        description="Resize and optimize images in a directory or CBZ files."
+        description="Resize and optimize images in a directory or CBZ files.",
+        prog="ShiroInk",
+    )
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     parser.add_argument(
         "src_dir", type=Path, help="Source directory containing files to process"

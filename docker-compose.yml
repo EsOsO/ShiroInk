@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  shiroink:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shiroink:local
+    volumes:
+      # Mount input directory as read-only
+      - ./input:/input:ro
+      # Mount output directory for processed files
+      - ./output:/output
+    # Default command - override with docker-compose run
+    command: /input /output --pipeline kindle --dry-run
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: "no"
+    
+  # Example: Kindle preset
+  shiroink-kindle:
+    extends: shiroink
+    command: /input /output --pipeline kindle --workers 4
+    
+  # Example: Tablet preset
+  shiroink-tablet:
+    extends: shiroink
+    command: /input /output --pipeline tablet --quality 8
+    
+  # Example: Print quality
+  shiroink-print:
+    extends: shiroink
+    command: /input /output --pipeline print --quality 9
+    
+  # Example: Debug mode
+  shiroink-debug:
+    extends: shiroink
+    command: /input /output --pipeline high_quality --debug --dry-run
+
+# Usage examples:
+# 
+# Build the image:
+#   docker-compose build
+#
+# Run with default settings (dry-run):
+#   docker-compose run --rm shiroink
+#
+# Run with Kindle preset:
+#   docker-compose run --rm shiroink-kindle
+#
+# Run with custom command:
+#   docker-compose run --rm shiroink /input /output --pipeline tablet --rtl
+#
+# Run in debug mode:
+#   docker-compose run --rm shiroink-debug
+#
+# Process specific directory:
+#   docker-compose run --rm -v /path/to/manga:/input:ro shiroink
