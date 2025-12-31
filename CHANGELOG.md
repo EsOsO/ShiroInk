@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.9](https://github.com/EsOsO/ShiroInk/compare/v2.0.8...v2.0.9) (2025-12-31)
+
+
+### Bug Fixes
+
+* Use lowercase registry path for Trivy scanner ([efd9c63](https://github.com/EsOsO/ShiroInk/commit/efd9c6322c5036a82e543800e8d129092219efc8))
+
 ## [2.0.8](https://github.com/EsOsO/ShiroInk/compare/v2.0.7...v2.0.8) (2025-12-31)
 
 
