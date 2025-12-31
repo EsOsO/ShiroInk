@@ -23,6 +23,4 @@ jobs:
         with:
           release-type: python
           package-name: shiroink
-          # Version is managed in src/__version__.py
-          extra-files: |
-            src/__version__.py
+          # Version is now managed in pyproject.toml via PEP 621
