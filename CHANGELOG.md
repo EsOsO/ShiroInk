@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.8](https://github.com/EsOsO/ShiroInk/compare/v2.0.7...v2.0.8) (2025-12-31)
+
+
+### Bug Fixes
+
+* Add authentication to Trivy scanner for GHCR access ([4bd1d9d](https://github.com/EsOsO/ShiroInk/commit/4bd1d9d0940f5024629df2a7b8c24a1c6ea66c6f))
+
 ## [2.0.7](https://github.com/EsOsO/ShiroInk/compare/v2.0.6...v2.0.7) (2025-12-31)
 
 
