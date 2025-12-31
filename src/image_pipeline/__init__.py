@@ -1,9 +1,11 @@
 from pathlib import Path
-from .contrast import contrast
+from .contrast import contrast, ContrastStep
 from .resize import resize
-from .sharpen import sharpen
-from .quantize import quantize
+from .sharpen import sharpen, SharpenStep
+from .quantize import quantize, QuantizeStep
 from .save import save
+from .pipeline import ProcessingStep, ImagePipeline
+from .presets import PipelinePresets
 from PIL import Image
 
 
@@ -13,9 +15,10 @@ def process(
     resolution: tuple[int, int],
     rtl: bool = False,
     quality: int = 85,
+    pipeline: ImagePipeline | None = None,
 ) -> None:
     """
-    Process the image by resizing, sharpening, and saving it.
+    Process the image by resizing, applying pipeline steps, and saving it.
 
     Args:
         image_path: The path to the image to be processed.
@@ -23,15 +26,19 @@ def process(
         resolution: The target resolution as a tuple (width, height).
         rtl: Flag to switch the order of two-page images.
         quality: The quality level for optimization (1-100).
+        pipeline: Custom ImagePipeline to use. If None, uses default Kindle pipeline.
     """
-    # Open the image""
+    # Use default Kindle pipeline if none provided
+    if pipeline is None:
+        pipeline = PipelinePresets.kindle()
+
+    # Open the image
     with Image.open(image_path).convert("RGB") as image:
         resized_images = resize(image, resolution, rtl)
 
         for i, img in enumerate(resized_images):
-            img = contrast(img)
-            img = sharpen(img)
-            img = quantize(img)
+            # Process through the pipeline
+            processed_img = pipeline.process(img)
 
             # Save the image
             if len(resized_images) > 1:
@@ -39,9 +46,23 @@ def process(
                 output_path_with_suffix = output_path.with_stem(
                     output_path.stem + page_suffix
                 )
-                save(img, output_path_with_suffix, quality)
+                save(processed_img, output_path_with_suffix, quality)
             else:
-                save(img, output_path, quality)
+                save(processed_img, output_path, quality)
 
 
-__all__ = ["process"]
+__all__ = [
+    "process",
+    "ProcessingStep",
+    "ImagePipeline",
+    "PipelinePresets",
+    "ContrastStep",
+    "SharpenStep",
+    "QuantizeStep",
+    # Legacy functions
+    "contrast",
+    "sharpen",
+    "quantize",
+    "resize",
+    "save",
+]

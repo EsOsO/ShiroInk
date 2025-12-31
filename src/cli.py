@@ -62,4 +62,12 @@ def parse_arguments():
         action="store_true",
         help="Show what would be done without actually doing it",
     )
+    parser.add_argument(
+        "-p",
+        "--pipeline",
+        type=str,
+        default="kindle",
+        choices=["kindle", "tablet", "print", "high_quality", "minimal"],
+        help="Processing pipeline preset to use (default: kindle)",
+    )
     return parser.parse_args()
