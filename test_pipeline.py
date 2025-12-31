@@ -5,14 +5,12 @@ Unit tests for configurable image processing pipeline.
 import unittest
 from pathlib import Path
 from PIL import Image
-import sys
-sys.path.insert(0, '/home/esoso/ShiroInk/src')
 
-from image_pipeline.pipeline import ImagePipeline, ProcessingStep
-from image_pipeline.presets import PipelinePresets
-from image_pipeline.contrast import ContrastStep
-from image_pipeline.sharpen import SharpenStep
-from image_pipeline.quantize import QuantizeStep
+from src.image_pipeline.pipeline import ImagePipeline, ProcessingStep
+from src.image_pipeline.presets import PipelinePresets
+from src.image_pipeline.contrast import ContrastStep
+from src.image_pipeline.sharpen import SharpenStep
+from src.image_pipeline.quantize import QuantizeStep
 
 
 class TestProcessingSteps(unittest.TestCase):
