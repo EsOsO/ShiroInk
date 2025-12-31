@@ -23,7 +23,7 @@ jobs:
       security-events: write  # Required for uploading SARIF results
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       
       # Set up QEMU for multi-platform builds
       - name: Set up QEMU
