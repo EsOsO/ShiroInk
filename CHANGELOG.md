@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1](https://github.com/EsOsO/ShiroInk/compare/v2.0.0...v2.0.1) (2025-12-31)
+
+
+### Bug Fixes
+
+* Adopt PEP 621 project metadata in pyproject.toml for version management ([a40c7b2](https://github.com/EsOsO/ShiroInk/commit/a40c7b26f889ff1224992a059bdff236775662fe))
+* Configure release-please to update src/__version__.py with explicit path ([058fb8a](https://github.com/EsOsO/ShiroInk/commit/058fb8a077902868ce3260a4b3febdd0818a47de))
+* Remove non-existent API reference pages from mkdocs navigation ([2365328](https://github.com/EsOsO/ShiroInk/commit/2365328ae5d71e7dd4919fe5671b0535043b1ccf))
+* Update to googleapis/release-please-action (google-github-actions is deprecated) ([321c75e](https://github.com/EsOsO/ShiroInk/commit/321c75e3aba88ef71e9fe8c4fa5198269e1d7755))
+
+
+### Dependencies
+
+* bump actions/attest-build-provenance from 2 to 3 ([048ba6f](https://github.com/EsOsO/ShiroInk/commit/048ba6fbd1edacc6449c59818bc1c1d261ee0b0b))
+* bump actions/checkout from 4 to 6 ([2008d43](https://github.com/EsOsO/ShiroInk/commit/2008d431bf0288dfef70db5602bc231b7a7d0ab7))
+* bump actions/setup-python from 5 to 6 ([e48c706](https://github.com/EsOsO/ShiroInk/commit/e48c70611f62222a42994f996c654949af2bf5d2))
+* bump codecov/codecov-action from 4 to 5 ([0b84dd4](https://github.com/EsOsO/ShiroInk/commit/0b84dd4537b3bbd83154e458bd2d6da5775debf8))
+* bump hadolint/hadolint-action from 3.1.0 to 3.3.0 ([d75f59f](https://github.com/EsOsO/ShiroInk/commit/d75f59fbd7a816eaa24be6dd796bc17aa4709759))
+* bump pillow from 11.3.0 to 12.0.0 ([497e0fc](https://github.com/EsOsO/ShiroInk/commit/497e0fc103742e12590c5681184534b3339d9d72))
+* bump rich from 14.1.0 to 14.2.0 ([96616ad](https://github.com/EsOsO/ShiroInk/commit/96616ad426d9007d65614d728fe0dcb99ed9b263))
+
 ## [2.0.0](https://github.com/EsOsO/ShiroInk/compare/v1.2.0...v2.0.0) (2025-12-31)
 
 ### Features
