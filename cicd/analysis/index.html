@@ -1,0 +1,3454 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Manga and comic book image optimization tool">
+      
+      
+        <meta name="author" content="Massimo Bonvicini">
+      
+      
+        <link rel="canonical" href="https://esoso.github.io/ShiroInk/cicd/analysis/">
+      
+      
+        <link rel="prev" href="../../architecture/error-handling/">
+      
+      
+        <link rel="next" href="../implementation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Analysis - ShiroInk Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cicd-and-docker-container-analysis-shiroink" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ShiroInk Documentation" class="md-header__button md-logo" aria-label="ShiroInk Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ShiroInk Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EsOsO/ShiroInk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EsOsO/ShiroInk
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/installation/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contributing/conventional-commits/" class="md-tabs__link">
+          
+  
+  
+  Contributing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ShiroInk Documentation" class="md-nav__button md-logo" aria-label="ShiroInk Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ShiroInk Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EsOsO/ShiroInk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EsOsO/ShiroInk
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/pipeline-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/progress-reporter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress Reporter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CI/CD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cicd-pipeline-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. CI/CD Pipeline Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. CI/CD Pipeline Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-workflow-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Workflow Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Workflow Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-pipeline-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Pipeline Jobs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Pipeline Jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-build-and-push-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job: build-and-push-image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-steps-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Steps Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-missing-cicd-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Missing CI/CD Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dockerfile-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dockerfile Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dockerfile Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-multi-stage-build-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Multi-Stage Build Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Multi-Stage Build Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-builder-python3137-slim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1: Builder (python:3.13.7-slim)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-final-runtime-python3137-slim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2: Final Runtime (python:3.13.7-slim)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-image-size-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Image Size Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-security-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Security Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-dockerignore-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 .dockerignore Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-compatibility-with-new-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Compatibility with New Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Compatibility with New Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-build-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Build Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-runtime-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Runtime Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-issues-identified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Issues Identified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Issues Identified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-critical-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Critical Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-major-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Major Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-minor-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Minor Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Recommendations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-immediate-actions-high-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Immediate Actions (High Priority)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Immediate Actions (High Priority)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-pr-validation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Add PR Validation Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fix-dockerfile-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fix Dockerfile Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-vulnerability-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Add Vulnerability Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-medium-priority-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Medium Priority Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Medium Priority Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-add-multi-platform-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Add Multi-Platform Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-improve-dockerignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Improve .dockerignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-low-priority-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Low Priority Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Low Priority Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-add-docker-compose-for-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Add Docker Compose for Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-add-version-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Add Version Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-add-dependabot-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Add Dependabot Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Performance Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Performance Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-build-time-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Build Time Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-runtime-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Runtime Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-security-best-practices-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Security Best Practices Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-container-usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Container Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Container Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Advanced Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-docker-compose-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Docker Compose Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-monitoring-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Monitoring and Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Monitoring and Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-migration-path-for-existing-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Migration Path for Existing Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Migration Path for Existing Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-breaking-changes-in-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Breaking Changes in Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-backward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Backward Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-summary-and-action-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Summary and Action Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Summary and Action Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-path-do-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Path (Do First)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nice-to-have-do-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nice to Have (Do Later)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimated-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estimated Effort
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Commands Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-github-actions-workflow-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: GitHub Actions Workflow Templates
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contributing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/conventional-commits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conventional Commits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cicd-pipeline-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. CI/CD Pipeline Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. CI/CD Pipeline Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-workflow-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Workflow Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Workflow Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-pipeline-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Pipeline Jobs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Pipeline Jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-build-and-push-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job: build-and-push-image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-steps-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Steps Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-missing-cicd-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Missing CI/CD Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dockerfile-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dockerfile Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dockerfile Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-multi-stage-build-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Multi-Stage Build Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Multi-Stage Build Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-builder-python3137-slim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1: Builder (python:3.13.7-slim)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-final-runtime-python3137-slim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2: Final Runtime (python:3.13.7-slim)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-image-size-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Image Size Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-security-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Security Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-dockerignore-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 .dockerignore Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-compatibility-with-new-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Compatibility with New Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Compatibility with New Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-build-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Build Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-runtime-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Runtime Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-issues-identified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Issues Identified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Issues Identified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-critical-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Critical Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-major-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Major Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-minor-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Minor Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Recommendations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-immediate-actions-high-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Immediate Actions (High Priority)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Immediate Actions (High Priority)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-pr-validation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Add PR Validation Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fix-dockerfile-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fix Dockerfile Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-vulnerability-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Add Vulnerability Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-medium-priority-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Medium Priority Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Medium Priority Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-add-multi-platform-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Add Multi-Platform Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-improve-dockerignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Improve .dockerignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-low-priority-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Low Priority Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Low Priority Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-add-docker-compose-for-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Add Docker Compose for Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-add-version-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Add Version Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-add-dependabot-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Add Dependabot Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Performance Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Performance Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-build-time-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Build Time Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-runtime-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Runtime Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-security-best-practices-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Security Best Practices Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-container-usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Container Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Container Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Advanced Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-docker-compose-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Docker Compose Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-monitoring-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Monitoring and Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Monitoring and Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-migration-path-for-existing-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Migration Path for Existing Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Migration Path for Existing Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-breaking-changes-in-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Breaking Changes in Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-backward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Backward Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-summary-and-action-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Summary and Action Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Summary and Action Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-path-do-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Path (Do First)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nice-to-have-do-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nice to Have (Do Later)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimated-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estimated Effort
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Commands Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-github-actions-workflow-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: GitHub Actions Workflow Templates
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cicd-and-docker-container-analysis-shiroink">CI/CD and Docker Container Analysis - ShiroInk<a class="headerlink" href="#cicd-and-docker-container-analysis-shiroink" title="Permanent link">&para;</a></h1>
+<h2 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>This document provides a comprehensive analysis of ShiroInk's CI/CD pipeline and Docker containerization strategy, including identified issues, recommendations, and compatibility verification with the new architectural improvements.</p>
+<p><strong>Status</strong>: ✅ Docker build successful with new features (tested locally)<br />
+<strong>Image Size</strong>: 245MB<br />
+<strong>Python Version</strong>: 3.13.7-slim<br />
+<strong>CI/CD Platform</strong>: GitHub Actions<br />
+<strong>Container Registry</strong>: GitHub Container Registry (ghcr.io)</p>
+<hr />
+<h2 id="1-cicd-pipeline-analysis">1. CI/CD Pipeline Analysis<a class="headerlink" href="#1-cicd-pipeline-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="11-workflow-configuration">1.1 Workflow Configuration<a class="headerlink" href="#11-workflow-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>.github/workflows/build-and-push-image.yml</code></p>
+<h4 id="trigger-configuration">Trigger Configuration<a class="headerlink" href="#trigger-configuration" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;v*.*.*&#39;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p><strong>Analysis</strong>:
+- ✅ <strong>Good</strong>: Only triggers on semantic version tags (v1.0.0, v2.1.3, etc.)
+- ✅ <strong>Good</strong>: Prevents unnecessary builds on every commit
+- ⚠️ <strong>Issue</strong>: No CI validation on pull requests or feature branches
+- ⚠️ <strong>Issue</strong>: No automated testing before building the container</p>
+<p><strong>Recommendation</strong>: Add pre-build validation workflow for PRs</p>
+<h4 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">env</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">REGISTRY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">IMAGE_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.repository }}</span>
+</code></pre></div>
+<p><strong>Analysis</strong>:
+- ✅ <strong>Good</strong>: Uses GitHub Container Registry (free for public repos)
+- ✅ <strong>Good</strong>: Image name automatically matches repository name
+- ✅ <strong>Good</strong>: Centralized configuration</p>
+<h3 id="12-pipeline-jobs">1.2 Pipeline Jobs<a class="headerlink" href="#12-pipeline-jobs" title="Permanent link">&para;</a></h3>
+<h4 id="job-build-and-push-image">Job: build-and-push-image<a class="headerlink" href="#job-build-and-push-image" title="Permanent link">&para;</a></h4>
+<p><strong>Runner</strong>: <code>ubuntu-latest</code><br />
+<strong>Permissions</strong>:
+- <code>contents: read</code> - Read repository code
+- <code>packages: write</code> - Push to ghcr.io
+- <code>attestations: write</code> - Generate attestations
+- <code>id-token: write</code> - OIDC token for attestations</p>
+<p><strong>Analysis</strong>:
+- ✅ <strong>Good</strong>: Minimal required permissions (security best practice)
+- ✅ <strong>Good</strong>: Includes artifact attestation (supply chain security)
+- ✅ <strong>Good</strong>: Uses latest Ubuntu runner</p>
+<h4 id="pipeline-steps-analysis">Pipeline Steps Analysis<a class="headerlink" href="#pipeline-steps-analysis" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+<th>Version</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Checkout</td>
+<td><code>actions/checkout@v4</code></td>
+<td>v4</td>
+<td>✅ Good</td>
+<td>Latest version</td>
+</tr>
+<tr>
+<td>2. Login</td>
+<td><code>docker/login-action</code></td>
+<td>SHA-pinned</td>
+<td>✅ Good</td>
+<td>SHA: 65b78e6</td>
+</tr>
+<tr>
+<td>3. Metadata</td>
+<td><code>docker/metadata-action</code></td>
+<td>SHA-pinned</td>
+<td>✅ Good</td>
+<td>SHA: 9ec57ed</td>
+</tr>
+<tr>
+<td>4. Build/Push</td>
+<td><code>docker/build-push-action</code></td>
+<td>SHA-pinned</td>
+<td>✅ Good</td>
+<td>SHA: f2a1d5e</td>
+</tr>
+<tr>
+<td>5. Attestation</td>
+<td><code>actions/attest-build-provenance</code></td>
+<td>v2</td>
+<td>✅ Good</td>
+<td>Latest version</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Security Analysis</strong>:
+- ✅ <strong>Excellent</strong>: Actions are SHA-pinned (prevents supply chain attacks)
+- ✅ <strong>Excellent</strong>: Artifact attestation enabled (SLSA provenance)
+- ✅ <strong>Good</strong>: Uses GITHUB_TOKEN (no hardcoded credentials)</p>
+<h3 id="13-missing-cicd-components">1.3 Missing CI/CD Components<a class="headerlink" href="#13-missing-cicd-components" title="Permanent link">&para;</a></h3>
+<p>❌ <strong>No automated testing</strong>
+- No unit tests execution before build
+- No integration tests
+- No static code analysis (linting, type checking)</p>
+<p>❌ <strong>No PR validation</strong>
+- Feature branches not tested before merge
+- No code quality gates</p>
+<p>❌ <strong>No vulnerability scanning</strong>
+- No dependency vulnerability checks (Dependabot, Snyk)
+- No container image scanning (Trivy, Grype)</p>
+<p>❌ <strong>No build caching</strong>
+- Docker layers rebuilt every time (slower builds)
+- No GitHub Actions cache for pip dependencies</p>
+<p>❌ <strong>No multi-platform builds</strong>
+- Only builds for linux/amd64
+- Missing linux/arm64 (M1/M2 Macs, ARM servers)</p>
+<hr />
+<h2 id="2-dockerfile-analysis">2. Dockerfile Analysis<a class="headerlink" href="#2-dockerfile-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="21-multi-stage-build-strategy">2.1 Multi-Stage Build Strategy<a class="headerlink" href="#21-multi-stage-build-strategy" title="Permanent link">&para;</a></h3>
+<h4 id="stage-1-builder-python3137-slim">Stage 1: Builder (python:3.13.7-slim)<a class="headerlink" href="#stage-1-builder-python3137-slim" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.13.7-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PYTHONDONTWRITEBYTECODE</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PYTHONUNBUFFERED</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>wheel<span class="w"> </span>--no-cache-dir<span class="w"> </span>--no-deps<span class="w"> </span>--wheel-dir<span class="w"> </span>/app/wheels<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<p><strong>Analysis</strong>:
+- ✅ <strong>Excellent</strong>: Multi-stage build reduces final image size
+- ✅ <strong>Good</strong>: Uses slim variant (smaller than full Python image)
+- ✅ <strong>Good</strong>: <code>PYTHONDONTWRITEBYTECODE=1</code> prevents .pyc files
+- ✅ <strong>Good</strong>: <code>PYTHONUNBUFFERED=1</code> ensures real-time logs
+- ✅ <strong>Good</strong>: Pre-builds wheels for faster installation
+- ⚠️ <strong>Minor</strong>: Could use <code>--platform</code> for multi-arch support</p>
+<h4 id="stage-2-final-runtime-python3137-slim">Stage 2: Final Runtime (python:3.13.7-slim)<a class="headerlink" href="#stage-2-final-runtime-python3137-slim" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.13.7-slim</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c"># ... labels ...</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/app/wheels<span class="w"> </span>/wheels
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/app/requirements.txt<span class="w"> </span>.
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>/wheels/*
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">RUN</span><span class="w"> </span>addgroup<span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--system<span class="w"> </span>app<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span>adduser<span class="w"> </span>--no-create-home<span class="w"> </span>--shell<span class="w"> </span>/bin/false<span class="w"> </span>--disabled-password<span class="w"> </span>--uid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--system<span class="w"> </span>--group<span class="w"> </span>app
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">USER</span><span class="w"> </span><span class="s">app</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">COPY</span><span class="w"> </span>./src<span class="w"> </span>./
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;main.py&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--help&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Analysis</strong>:
+- ✅ <strong>Excellent</strong>: Runs as non-root user (security best practice)
+- ✅ <strong>Excellent</strong>: Only copies necessary files from builder stage
+- ✅ <strong>Good</strong>: Rich metadata labels (OCI standard)
+- ✅ <strong>Good</strong>: Default CMD shows help (user-friendly)
+- ⚠️ <strong>Issue</strong>: Copies <code>./src</code> to <code>/app</code> (flattens directory structure)
+- ⚠️ <strong>Issue</strong>: UID 1000 may conflict with host user permissions
+- ⚠️ <strong>Minor</strong>: No health check defined</p>
+<h3 id="22-image-size-analysis">2.2 Image Size Analysis<a class="headerlink" href="#22-image-size-analysis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Size Estimate</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base (python:3.13.7-slim)</td>
+<td>~130MB</td>
+<td>Debian-based</td>
+</tr>
+<tr>
+<td>Pillow + dependencies</td>
+<td>~80MB</td>
+<td>Image processing libs</td>
+</tr>
+<tr>
+<td>Rich + dependencies</td>
+<td>~5MB</td>
+<td>Terminal UI</td>
+</tr>
+<tr>
+<td>Source code</td>
+<td>&lt;1MB</td>
+<td>Python files</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~245MB</strong></td>
+<td>✅ Reasonable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparison</strong>:
+- <code>python:3.13.7-slim</code>: ~130MB (current)
+- <code>python:3.13.7-alpine</code>: ~50MB (but may have compatibility issues with Pillow)
+- Verdict: Slim is the right choice for this use case</p>
+<h3 id="23-security-analysis">2.3 Security Analysis<a class="headerlink" href="#23-security-analysis" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Strengths</strong>:
+- Non-root user execution
+- No hardcoded secrets
+- Minimal installed packages
+- No unnecessary build tools in final image</p>
+<p>⚠️ <strong>Weaknesses</strong>:
+- No explicit vulnerability scanning in CI/CD
+- No SBOM (Software Bill of Materials) generation
+- Base image not pinned to digest (subject to updates)</p>
+<p>❌ <strong>Critical</strong>: Base image should be digest-pinned
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c"># Current (vulnerable to base image updates)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.13.7-slim</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c"># Recommended</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.13.7-slim@sha256:&lt;digest&gt;</span>
+</code></pre></div></p>
+<h3 id="24-dockerignore-analysis">2.4 .dockerignore Analysis<a class="headerlink" href="#24-dockerignore-analysis" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>.dockerignore</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>**/.git
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>**/.gitignore
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>**/.vscode
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>**/coverage
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>**/.env
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>**/.aws
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>**/.ssh
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Dockerfile
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>README.md
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>docker-compose.yml
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>**/.DS_Store
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>**/venv
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>**/env
+</code></pre></div>
+<p><strong>Analysis</strong>:
+- ✅ <strong>Good</strong>: Excludes version control files
+- ✅ <strong>Good</strong>: Excludes credentials (.env, .aws, .ssh)
+- ✅ <strong>Good</strong>: Excludes IDE files (.vscode, .DS_Store)
+- ✅ <strong>Good</strong>: Excludes virtual environments
+- ⚠️ <strong>Missing</strong>: Should exclude test files (<code>test_*.py</code>)
+- ⚠️ <strong>Missing</strong>: Should exclude documentation (<code>*.md</code>, <code>REFACTORING_*.md</code>)
+- ⚠️ <strong>Missing</strong>: Should exclude <code>__pycache__</code>, <code>*.pyc</code></p>
+<p><strong>Recommended additions</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>test_*.py
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>**/*.md
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>**/__pycache__
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>**/*.pyc
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>**/*.pyo
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>**/*.pyd
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>.pytest_cache
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>.coverage
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>htmlcov/
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>dist/
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>build/
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>*.egg-info/
+</code></pre></div></p>
+<hr />
+<h2 id="3-compatibility-with-new-architecture">3. Compatibility with New Architecture<a class="headerlink" href="#3-compatibility-with-new-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="31-build-verification">3.1 Build Verification<a class="headerlink" href="#31-build-verification" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Docker build successful</strong> with all new features:
+- ProcessingConfig dataclass
+- ProgressReporter abstraction
+- Configurable pipeline system
+- Error handling system</p>
+<h3 id="32-runtime-verification">3.2 Runtime Verification<a class="headerlink" href="#32-runtime-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>shiroink:test<span class="w"> </span>--help
+</code></pre></div>
+<p><strong>Output</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>usage: main.py [-h] [-r RESOLUTION] [--rtl] [-q QUALITY] [-d] [-w WORKERS]
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>               [--dry-run] [-p {kindle,tablet,print,high_quality,minimal}]
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>               src_dir dest_dir
+</code></pre></div></p>
+<p>✅ <strong>All new features present</strong>:
+- <code>-p, --pipeline</code> option with 5 presets
+- All existing options preserved
+- Backward compatibility maintained</p>
+<h3 id="33-dependency-analysis">3.3 Dependency Analysis<a class="headerlink" href="#33-dependency-analysis" title="Permanent link">&para;</a></h3>
+<p><strong>Current dependencies</strong>:
+- <code>pillow==11.3.0</code> (image processing)
+- <code>rich==14.1.0</code> (terminal UI)</p>
+<p><strong>New feature dependencies</strong>: None (all features use standard library)</p>
+<p>✅ <strong>No additional dependencies required</strong>
+✅ <strong>Container size unchanged</strong> (still ~245MB)</p>
+<hr />
+<h2 id="4-issues-identified">4. Issues Identified<a class="headerlink" href="#4-issues-identified" title="Permanent link">&para;</a></h2>
+<h3 id="41-critical-issues">4.1 Critical Issues<a class="headerlink" href="#41-critical-issues" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Issue</th>
+<th>Severity</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>No automated testing in CI/CD</td>
+<td>🔴 High</td>
+<td>Bugs may reach production</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Base image not digest-pinned</td>
+<td>🔴 High</td>
+<td>Supply chain vulnerability</td>
+</tr>
+<tr>
+<td>3</td>
+<td>No vulnerability scanning</td>
+<td>🔴 High</td>
+<td>Unknown security issues</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-major-issues">4.2 Major Issues<a class="headerlink" href="#42-major-issues" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Issue</th>
+<th>Severity</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>No PR validation workflow</td>
+<td>🟠 Medium</td>
+<td>Poor code quality control</td>
+</tr>
+<tr>
+<td>5</td>
+<td>No multi-platform builds</td>
+<td>🟠 Medium</td>
+<td>Limited platform support</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Directory structure flattened in container</td>
+<td>🟠 Medium</td>
+<td>Breaks relative imports</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-minor-issues">4.3 Minor Issues<a class="headerlink" href="#43-minor-issues" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Issue</th>
+<th>Severity</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>.dockerignore incomplete</td>
+<td>🟡 Low</td>
+<td>Larger build context</td>
+</tr>
+<tr>
+<td>8</td>
+<td>No Docker healthcheck</td>
+<td>🟡 Low</td>
+<td>Poor orchestration support</td>
+</tr>
+<tr>
+<td>9</td>
+<td>No build caching</td>
+<td>🟡 Low</td>
+<td>Slower CI/CD builds</td>
+</tr>
+<tr>
+<td>10</td>
+<td>UID 1000 hardcoded</td>
+<td>🟡 Low</td>
+<td>Permission issues on some hosts</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-recommendations">5. Recommendations<a class="headerlink" href="#5-recommendations" title="Permanent link">&para;</a></h2>
+<h3 id="51-immediate-actions-high-priority">5.1 Immediate Actions (High Priority)<a class="headerlink" href="#51-immediate-actions-high-priority" title="Permanent link">&para;</a></h3>
+<h4 id="1-add-pr-validation-workflow">1. Add PR Validation Workflow<a class="headerlink" href="#1-add-pr-validation-workflow" title="Permanent link">&para;</a></h4>
+<p><strong>File</strong>: <code>.github/workflows/test.yml</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test and Lint</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.13&#39;</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">          </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pip&#39;</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">          </span><span class="no">pip install -r requirements.txt</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">          </span><span class="no">pip install pytest pytest-cov flake8 mypy black</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint with flake8</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flake8 src/ --count --max-line-length=88 --statistics</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check formatting with black</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">black --check src/</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type check with mypy</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypy src/ --ignore-missing-imports</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">          </span><span class="no">PYTHONPATH=src pytest test_*.py -v --cov=src --cov-report=term-missing</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload coverage</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov/codecov-action@v4</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+</code></pre></div>
+<h4 id="2-fix-dockerfile-directory-structure">2. Fix Dockerfile Directory Structure<a class="headerlink" href="#2-fix-dockerfile-directory-structure" title="Permanent link">&para;</a></h4>
+<p><strong>Current issue</strong>: <code>COPY ./src ./</code> copies to <code>/app</code> (breaks imports)</p>
+<p><strong>Fixed Dockerfile</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c"># ... builder stage ...</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c"># Final stage</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.13.7-slim@sha256:&lt;pin-digest-here&gt;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/app/wheels<span class="w"> </span>/wheels
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/app/requirements.txt<span class="w"> </span>.
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>/wheels/*
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="k">RUN</span><span class="w"> </span>addgroup<span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--system<span class="w"> </span>app<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span>adduser<span class="w"> </span>--no-create-home<span class="w"> </span>--shell<span class="w"> </span>/bin/false<span class="w"> </span>--disabled-password<span class="w"> </span>--uid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--system<span class="w"> </span>--group<span class="w"> </span>app
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="k">USER</span><span class="w"> </span><span class="s">app</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="c"># Fix: Preserve directory structure</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="k">COPY</span><span class="w"> </span>--chown<span class="o">=</span>app:app<span class="w"> </span>./src<span class="w"> </span>./src
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="c"># Fix: Update entrypoint to use proper path</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src.main&quot;</span><span class="p">]</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--help&quot;</span><span class="p">]</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="c"># Add healthcheck (if running as service)</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="c"># HEALTHCHECK --interval=30s --timeout=3s --retries=3 \</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="c">#   CMD python -c &quot;import sys; sys.exit(0)&quot;</span>
+</code></pre></div></p>
+<h4 id="3-add-vulnerability-scanning">3. Add Vulnerability Scanning<a class="headerlink" href="#3-add-vulnerability-scanning" title="Permanent link">&para;</a></h4>
+<p><strong>File</strong>: <code>.github/workflows/build-and-push-image.yml</code></p>
+<p>Add before the attestation step:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Trivy vulnerability scanner</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aquasecurity/trivy-action@master</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">          </span><span class="nt">image-ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;sarif&#39;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;trivy-results.sarif&#39;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload Trivy results to GitHub Security</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github/codeql-action/upload-sarif@v3</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">          </span><span class="nt">sarif_file</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;trivy-results.sarif&#39;</span>
+</code></pre></div>
+<h3 id="52-medium-priority-improvements">5.2 Medium Priority Improvements<a class="headerlink" href="#52-medium-priority-improvements" title="Permanent link">&para;</a></h3>
+<h4 id="4-add-multi-platform-support">4. Add Multi-Platform Support<a class="headerlink" href="#4-add-multi-platform-support" title="Permanent link">&para;</a></h4>
+<p>Update build step in <code>.github/workflows/build-and-push-image.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up QEMU</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker/setup-qemu-action@v3</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Docker Buildx</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker/setup-buildx-action@v3</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push Docker image</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">          </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">          </span><span class="nt">platforms</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux/amd64,linux/arm64</span><span class="w">  </span><span class="c1"># Add ARM support</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">          </span><span class="nt">push</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">          </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.meta.outputs.tags }}</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">          </span><span class="nt">labels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.meta.outputs.labels }}</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">          </span><span class="nt">cache-from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type=gha</span><span class="w">  </span><span class="c1"># Enable GitHub Actions cache</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">          </span><span class="nt">cache-to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type=gha,mode=max</span>
+</code></pre></div>
+<h4 id="5-improve-dockerignore">5. Improve .dockerignore<a class="headerlink" href="#5-improve-dockerignore" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a># Version control
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>**/.git
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>**/.gitignore
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a># IDE
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>**/.vscode
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>**/.idea
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>**/.DS_Store
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a># Python
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>**/__pycache__
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>**/*.pyc
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>**/*.pyo
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>**/*.pyd
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>**/.pytest_cache
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>**/.coverage
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>**/htmlcov
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>**/.mypy_cache
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>**/.tox
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>**/dist
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>**/build
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>**/*.egg-info
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a># Virtual environments
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>**/venv
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>**/env
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>**/.venv
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a># Documentation
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>**/*.md
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>!README.md  # Keep README for image documentation
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a># Testing
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>test_*.py
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>**/tests/
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>**/coverage/
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a># CI/CD
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>.github/
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>.dockerignore
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>Dockerfile
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>docker-compose.yml
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a># Secrets
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>**/.env
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>**/.aws
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>**/.ssh
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>**/credentials*
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>**/*secret*
+</code></pre></div>
+<h3 id="53-low-priority-enhancements">5.3 Low Priority Enhancements<a class="headerlink" href="#53-low-priority-enhancements" title="Permanent link">&para;</a></h3>
+<h4 id="6-add-docker-compose-for-local-development">6. Add Docker Compose for Local Development<a class="headerlink" href="#6-add-docker-compose-for-local-development" title="Permanent link">&para;</a></h4>
+<p><strong>File</strong>: <code>docker-compose.yml</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">shiroink</span><span class="p">:</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shiroink:local</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./input:/input:ro</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output:/output</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/input /output --pipeline kindle -d</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PYTHONUNBUFFERED=1</span>
+</code></pre></div>
+<h4 id="7-add-version-information">7. Add Version Information<a class="headerlink" href="#7-add-version-information" title="Permanent link">&para;</a></h4>
+<p><strong>File</strong>: <code>src/__version__.py</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
+</code></pre></div>
+<p>Update <code>src/cli.py</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">__version__</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;ShiroInk </span><span class="si">{</span><span class="n">__version__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></p>
+<h4 id="8-add-dependabot-configuration">8. Add Dependabot Configuration<a class="headerlink" href="#8-add-dependabot-configuration" title="Permanent link">&para;</a></h4>
+<p><strong>File</strong>: <code>.github/dependabot.yml</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nt">updates</span><span class="p">:</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pip&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="nt">open-pull-requests-limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;docker&quot;</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;github-actions&quot;</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="6-performance-optimization">6. Performance Optimization<a class="headerlink" href="#6-performance-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="61-build-time-optimization">6.1 Build Time Optimization<a class="headerlink" href="#61-build-time-optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Current</strong>: ~30-60 seconds per build (estimated)</p>
+<p><strong>Improvements</strong>:
+1. <strong>Enable BuildKit cache</strong>: Reduces rebuilds (saves ~40%)
+2. <strong>Cache pip wheels</strong>: Reuse across builds (saves ~20%)
+3. <strong>Parallel builds</strong>: Multi-platform (no time increase)</p>
+<p><strong>Expected</strong>: ~15-30 seconds per build</p>
+<h3 id="62-runtime-optimization">6.2 Runtime Optimization<a class="headerlink" href="#62-runtime-optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Current</strong>: Efficient (no issues detected)</p>
+<p><strong>Container resource limits</strong> (recommended for production):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nt">deploy</span><span class="p">:</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="nt">limits</span><span class="p">:</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">      </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.0&#39;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2G</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="nt">reservations</span><span class="p">:</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">      </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0.5&#39;</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512M</span>
+</code></pre></div></p>
+<hr />
+<h2 id="7-security-best-practices-checklist">7. Security Best Practices Checklist<a class="headerlink" href="#7-security-best-practices-checklist" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[x] Non-root user execution</li>
+<li>[x] Minimal base image (slim)</li>
+<li>[x] No hardcoded secrets</li>
+<li>[x] SHA-pinned GitHub Actions</li>
+<li>[x] Artifact attestation enabled</li>
+<li>[ ] Base image digest-pinned</li>
+<li>[ ] Vulnerability scanning enabled</li>
+<li>[ ] SBOM generation</li>
+<li>[ ] Secrets scanning (pre-commit hook)</li>
+<li>[ ] Supply chain verification (Sigstore)</li>
+</ul>
+<hr />
+<h2 id="8-container-usage-examples">8. Container Usage Examples<a class="headerlink" href="#8-container-usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="81-basic-usage">8.1 Basic Usage<a class="headerlink" href="#81-basic-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Pull image</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/esoso/shiroink:latest
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Process directory</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/input:/input:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/output:/output<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span>ghcr.io/esoso/shiroink:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span>/input<span class="w"> </span>/output<span class="w"> </span>--pipeline<span class="w"> </span>kindle
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="c1"># Process with custom settings</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/manga:/input:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/optimized:/output<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">  </span>ghcr.io/esoso/shiroink:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">  </span>/input<span class="w"> </span>/output<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">  </span>--pipeline<span class="w"> </span>tablet<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">  </span>--resolution<span class="w"> </span>1200x1600<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">  </span>--quality<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">  </span>--workers<span class="w"> </span><span class="m">4</span>
+</code></pre></div>
+<h3 id="82-advanced-usage">8.2 Advanced Usage<a class="headerlink" href="#82-advanced-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Debug mode with dry-run</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span>-v<span class="w"> </span>./input:/input:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span>-v<span class="w"> </span>./output:/output<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span>ghcr.io/esoso/shiroink:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span>/input<span class="w"> </span>/output<span class="w"> </span>--dry-run<span class="w"> </span>--debug<span class="w"> </span>--pipeline<span class="w"> </span>high_quality
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="c1"># RTL (right-to-left) manga</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">  </span>-v<span class="w"> </span>./manga:/input:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">  </span>-v<span class="w"> </span>./optimized:/output<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">  </span>ghcr.io/esoso/shiroink:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">  </span>/input<span class="w"> </span>/output<span class="w"> </span>--rtl<span class="w"> </span>--pipeline<span class="w"> </span>print
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="c1"># Use specific tag</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="w">  </span>-v<span class="w"> </span>./input:/input:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">  </span>-v<span class="w"> </span>./output:/output<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">  </span>ghcr.io/esoso/shiroink:v1.0.0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">  </span>/input<span class="w"> </span>/output<span class="w"> </span>--pipeline<span class="w"> </span>minimal
+</code></pre></div>
+<h3 id="83-docker-compose-usage">8.3 Docker Compose Usage<a class="headerlink" href="#83-docker-compose-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="nt">shiroink</span><span class="p">:</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/esoso/shiroink:latest</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./input:/input:ro</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output:/output</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">      </span><span class="no">/input /output</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">      </span><span class="no">--pipeline kindle</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">      </span><span class="no">--workers 8</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">      </span><span class="no">--quality 7</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;no&quot;</span>
+</code></pre></div>
+<p>Run: <code>docker-compose run --rm shiroink</code></p>
+<hr />
+<h2 id="9-monitoring-and-observability">9. Monitoring and Observability<a class="headerlink" href="#9-monitoring-and-observability" title="Permanent link">&para;</a></h2>
+<h3 id="91-logging">9.1 Logging<a class="headerlink" href="#91-logging" title="Permanent link">&para;</a></h3>
+<p><strong>Current</strong>: Stdout/stderr (captured by Docker)</p>
+<p><strong>Access logs</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>&lt;container-id&gt;
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>&lt;container-id&gt;<span class="w">  </span><span class="c1"># Follow</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">100</span><span class="w"> </span>&lt;container-id&gt;<span class="w">  </span><span class="c1"># Last 100 lines</span>
+</code></pre></div></p>
+<h3 id="92-metrics">9.2 Metrics<a class="headerlink" href="#92-metrics" title="Permanent link">&para;</a></h3>
+<p><strong>Container metrics</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>stats<span class="w"> </span>&lt;container-id&gt;
+</code></pre></div></p>
+<p><strong>Image scanning results</strong>: Check GitHub Security tab after enabling Trivy</p>
+<hr />
+<h2 id="10-migration-path-for-existing-users">10. Migration Path for Existing Users<a class="headerlink" href="#10-migration-path-for-existing-users" title="Permanent link">&para;</a></h2>
+<h3 id="101-breaking-changes-in-container">10.1 Breaking Changes in Container<a class="headerlink" href="#101-breaking-changes-in-container" title="Permanent link">&para;</a></h3>
+<p>❌ <strong>CRITICAL</strong>: Current Dockerfile has a path issue</p>
+<p><strong>Current behavior</strong> (broken):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">COPY</span><span class="w"> </span>./src<span class="w"> </span>./<span class="w">  </span>#<span class="w"> </span>Copies<span class="w"> </span>to<span class="w"> </span>/app,<span class="w"> </span>breaks<span class="w"> </span>imports
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;main.py&quot;</span><span class="p">]</span><span class="w">  </span>#<span class="w"> </span>Looks<span class="w"> </span><span class="k">for</span><span class="w"> </span>/app/main.py<span class="w"> </span><span class="o">(</span>wrong<span class="o">)</span>
+</code></pre></div></p>
+<p><strong>This will fail</strong> because:
+1. Files are at <code>/app/*.py</code> instead of <code>/app/src/*.py</code>
+2. Relative imports in <code>src/</code> will break
+3. Module imports like <code>from image_pipeline import ...</code> will fail</p>
+<p><strong>Fix required</strong> (see Section 5.1, Recommendation #2)</p>
+<h3 id="102-backward-compatibility">10.2 Backward Compatibility<a class="headerlink" href="#102-backward-compatibility" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>CLI interface</strong>: 100% backward compatible
+✅ <strong>Default behavior</strong>: Unchanged (Kindle preset)
+✅ <strong>Volume mounts</strong>: Same as before
+✅ <strong>Environment variables</strong>: None required</p>
+<hr />
+<h2 id="11-summary-and-action-plan">11. Summary and Action Plan<a class="headerlink" href="#11-summary-and-action-plan" title="Permanent link">&para;</a></h2>
+<h3 id="current-state">Current State<a class="headerlink" href="#current-state" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CI/CD Pipeline</td>
+<td>🟡 Partial</td>
+<td>Builds on tags, no testing</td>
+</tr>
+<tr>
+<td>Docker Build</td>
+<td>✅ Working</td>
+<td>Multi-stage, optimized</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>🟠 Basic</td>
+<td>Non-root, but missing scans</td>
+</tr>
+<tr>
+<td>Size Optimization</td>
+<td>✅ Good</td>
+<td>245MB (reasonable)</td>
+</tr>
+<tr>
+<td>New Features</td>
+<td>✅ Compatible</td>
+<td>All 4 improvements work</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>🟡 Partial</td>
+<td>Missing usage examples</td>
+</tr>
+</tbody>
+</table>
+<h3 id="critical-path-do-first">Critical Path (Do First)<a class="headerlink" href="#critical-path-do-first" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Fix Dockerfile path issue</strong> (prevents runtime errors)</li>
+<li><strong>Add PR validation workflow</strong> (catch bugs early)</li>
+<li><strong>Pin base image digest</strong> (security)</li>
+<li><strong>Add vulnerability scanning</strong> (security)</li>
+</ol>
+<h3 id="nice-to-have-do-later">Nice to Have (Do Later)<a class="headerlink" href="#nice-to-have-do-later" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Multi-platform builds (ARM support)</li>
+<li>Build caching (faster CI/CD)</li>
+<li>Dependabot (automated updates)</li>
+<li>Version tagging system</li>
+</ol>
+<h3 id="estimated-effort">Estimated Effort<a class="headerlink" href="#estimated-effort" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Critical fixes</strong>: 2-4 hours</li>
+<li><strong>Testing &amp; validation</strong>: 2 hours</li>
+<li><strong>Full implementation</strong>: 1-2 days</li>
+<li><strong>Documentation</strong>: 1-2 hours</li>
+</ul>
+<hr />
+<h2 id="appendix-a-commands-reference">Appendix A: Commands Reference<a class="headerlink" href="#appendix-a-commands-reference" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Local testing</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>shiroink:test<span class="w"> </span>.
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>shiroink:test<span class="w"> </span>--help
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>./test:/input:ro<span class="w"> </span>-v<span class="w"> </span>./out:/output<span class="w"> </span>shiroink:test<span class="w"> </span>/input<span class="w"> </span>/output<span class="w"> </span>--dry-run
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="c1"># Multi-platform build (local)</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>docker<span class="w"> </span>buildx<span class="w"> </span>create<span class="w"> </span>--use
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64,linux/arm64<span class="w"> </span>-t<span class="w"> </span>shiroink:multi<span class="w"> </span>.
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="c1"># Image inspection</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>docker<span class="w"> </span>inspect<span class="w"> </span>shiroink:test
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>shiroink:test
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>docker<span class="w"> </span>image<span class="w"> </span>ls<span class="w"> </span>shiroink:test
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="c1"># Security scanning (local)</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="w">  </span>aquasec/trivy<span class="w"> </span>image<span class="w"> </span>shiroink:test
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="c1"># Cleanup</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>docker<span class="w"> </span>rmi<span class="w"> </span>shiroink:test
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>docker<span class="w"> </span>system<span class="w"> </span>prune<span class="w"> </span>-a
+</code></pre></div>
+<hr />
+<h2 id="appendix-b-github-actions-workflow-templates">Appendix B: GitHub Actions Workflow Templates<a class="headerlink" href="#appendix-b-github-actions-workflow-templates" title="Permanent link">&para;</a></h2>
+<p>See Section 5 (Recommendations) for complete workflow YAML examples.</p>
+<hr />
+<p><strong>Document Version</strong>: 1.0<br />
+<strong>Last Updated</strong>: 2025-12-31<br />
+<strong>Author</strong>: OpenCode Analysis<br />
+<strong>Status</strong>: Ready for Implementation</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 31, 2025 10:16:55 UTC">December 31, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 31, 2025 10:16:55 UTC">December 31, 2025</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Massimo Bonvicini
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/EsOsO/ShiroInk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
