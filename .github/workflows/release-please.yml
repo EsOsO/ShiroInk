@@ -22,13 +22,14 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           release-type: python
-          package-name: shiroink
           # Version is now managed in pyproject.toml via PEP 621
 
   trigger-docker-build:
     needs: release-please
     if: ${{ needs.release-please.outputs.release_created }}
     uses: ./.github/workflows/build-and-push-image.yml
+    with:
+      tag_name: ${{ needs.release-please.outputs.tag_name }}
     permissions:
       contents: read
       packages: write

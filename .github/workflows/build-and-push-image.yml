@@ -6,6 +6,11 @@ on:
     tags: ['v*.*.*']
   workflow_dispatch:
   workflow_call:
+    inputs:
+      tag_name:
+        description: 'Tag name to build (e.g., v2.0.3)'
+        required: false
+        type: string
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
 env:
@@ -26,6 +31,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.tag_name || github.ref }}
       
       # Set up QEMU for multi-platform builds
       - name: Set up QEMU
