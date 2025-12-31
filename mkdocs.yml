@@ -72,8 +72,9 @@ nav:
     - Progress Reporter: architecture/progress-reporter.md
     - Error Handling: architecture/error-handling.md
   - CI/CD:
-    - Analysis: cicd/analysis.md
+    - Overview: cicd/overview.md
     - Implementation: cicd/implementation.md
+    - Analysis (Archived): cicd/analysis-archived-2025-12-31.md
   - Contributing:
     - Conventional Commits: contributing/conventional-commits.md
     - Development Setup: contributing/development.md
