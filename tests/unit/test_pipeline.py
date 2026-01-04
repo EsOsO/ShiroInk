@@ -20,6 +20,11 @@ from src.image_pipeline.color_profile import ColorProfileStep
 from src.image_pipeline.devices import DeviceSpecs, ColorGamut
 
 
+def has_step(steps, step_prefix):
+    """Helper to check if any step name starts with the given prefix."""
+    return any(step.startswith(step_prefix) for step in steps)
+
+
 class TestImagePipeline:
     """Test basic pipeline functionality."""
 
@@ -109,7 +114,7 @@ class TestPipelinePresets:
         assert len(pipeline) == 3
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps
+        assert has_step(steps, "Quantize")
 
     def test_tablet_preset(self):
         """Tablet preset should have contrast and sharpen, no quantize."""
@@ -119,7 +124,7 @@ class TestPipelinePresets:
         assert len(pipeline) == 2
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" not in steps
+        assert not has_step(steps, "Quantize")
 
     def test_print_preset(self):
         """Print preset should only sharpen."""
@@ -202,7 +207,7 @@ class TestDeviceSpecificPresets:
         assert len(pipeline) == 3
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps
+        assert has_step(steps, "Quantize")
 
     def test_tolino_preset(self):
         """Tolino preset should be optimized for Tolino e-readers."""
@@ -212,7 +217,7 @@ class TestDeviceSpecificPresets:
         assert len(pipeline) == 3
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps
+        assert has_step(steps, "Quantize")
 
     def test_pocketbook_preset(self):
         """PocketBook preset should be optimized for B&W PocketBook."""
@@ -222,7 +227,7 @@ class TestDeviceSpecificPresets:
         assert len(pipeline) == 3
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps
+        assert has_step(steps, "Quantize")
 
     def test_pocketbook_color_preset(self):
         """PocketBook color preset should preserve colors."""
@@ -232,7 +237,7 @@ class TestDeviceSpecificPresets:
         assert len(pipeline) == 2
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" not in steps
+        assert not has_step(steps, "Quantize")
 
     def test_ipad_preset(self):
         """iPad preset should be optimized for high-quality displays."""
@@ -242,7 +247,7 @@ class TestDeviceSpecificPresets:
         assert len(pipeline) == 2
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" not in steps
+        assert not has_step(steps, "Quantize")
 
     def test_eink_preset(self):
         """Generic e-ink preset for any e-reader."""
@@ -252,7 +257,7 @@ class TestDeviceSpecificPresets:
         assert len(pipeline) == 3
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps
+        assert has_step(steps, "Quantize")
 
 
 class TestFromDeviceSpec:
@@ -265,10 +270,10 @@ class TestFromDeviceSpec:
         steps = pipeline.get_steps()
         
         assert len(pipeline) == 4
-        assert "ColorProfile" in steps
+        assert has_step(steps, "ColorProfile")
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps
+        assert has_step(steps, "Quantize")
 
     def test_color_eink_device_pipeline(self):
         """Color e-ink devices should get ColorProfile, Contrast, Sharpen, Quantize."""
@@ -277,10 +282,10 @@ class TestFromDeviceSpec:
         steps = pipeline.get_steps()
         
         assert len(pipeline) == 4
-        assert "ColorProfile" in steps
+        assert has_step(steps, "ColorProfile")
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" in steps  # 12-bit needs quantization
+        assert has_step(steps, "Quantize")  # 12-bit needs quantization
 
     def test_ipad_device_pipeline(self):
         """iPad devices should get ColorProfile, Contrast, Sharpen (no quantize)."""
@@ -289,10 +294,10 @@ class TestFromDeviceSpec:
         steps = pipeline.get_steps()
         
         assert len(pipeline) == 3
-        assert "ColorProfile" in steps
+        assert has_step(steps, "ColorProfile")
         assert "Contrast" in steps
         assert "Sharpen" in steps
-        assert "Quantize" not in steps  # 24-bit doesn't need quantization
+        assert not has_step(steps, "Quantize")  # 24-bit doesn't need quantization
 
     def test_all_devices_have_color_profile_step(self):
         """All devices should have ColorProfileStep as first step."""
@@ -301,7 +306,7 @@ class TestFromDeviceSpec:
             pipeline = PipelinePresets.from_device_spec(device)
             
             assert len(pipeline) > 0
-            assert pipeline.get_steps()[0] == "ColorProfile"
+            assert pipeline.get_steps()[0].startswith("ColorProfile")
 
     def test_quantization_based_on_bit_depth(self):
         """Quantization should be added for devices with bit_depth < 16."""
@@ -311,9 +316,9 @@ class TestFromDeviceSpec:
             steps = pipeline.get_steps()
             
             if device.bit_depth < 16:
-                assert "Quantize" in steps
+                assert has_step(steps, "Quantize")
             else:
-                assert "Quantize" not in steps
+                assert not has_step(steps, "Quantize")
 
 
 class TestPipelineProcessing:
