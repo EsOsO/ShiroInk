@@ -55,19 +55,21 @@ Palette16 = bytes(
 )
 
 
-def create_palette_from_bit_depth(bit_depth: int, color_mode: bool = False) -> bytes | None:
+def create_palette_from_bit_depth(
+    bit_depth: int, color_mode: bool = False
+) -> bytes | None:
     """
     Create an optimized palette based on device bit depth.
-    
+
     Args:
         bit_depth: Target bit depth (4=16 colors, 8=256 colors, etc.)
         color_mode: True for color palette, False for grayscale
-    
+
     Returns:
         Palette as bytes, or None to use automatic quantization
     """
-    num_colors = min(2 ** bit_depth, 256)  # Cap at 256 for PIL
-    
+    num_colors = min(2**bit_depth, 256)  # Cap at 256 for PIL
+
     if not color_mode:
         # Grayscale palette - evenly distributed levels
         palette = []
@@ -75,11 +77,11 @@ def create_palette_from_bit_depth(bit_depth: int, color_mode: bool = False) -> b
             # Perceptually distributed grayscale
             val = int((i / (num_colors - 1)) * 255) if num_colors > 1 else 0
             palette.extend([val, val, val])
-        
+
         # Pad to 256 colors if needed
         while len(palette) < 768:  # 256 * 3
             palette.extend(palette[:3])
-        
+
         return bytes(palette[:768])
     else:
         # Color palette - use PIL's automatic quantization
@@ -91,12 +93,12 @@ class QuantizeStep(ProcessingStep):
     """Processing step to quantize images to a limited color palette."""
 
     def __init__(
-        self, 
+        self,
         palette: bytes | None = Palette16,
         colors: int | None = None,
         use_bit_depth: bool = False,
         bit_depth: int = 4,
-        color_mode: bool = False
+        color_mode: bool = False,
     ):
         """
         Initialize the quantization step.
@@ -114,14 +116,14 @@ class QuantizeStep(ProcessingStep):
             colors=colors,
             use_bit_depth=use_bit_depth,
             bit_depth=bit_depth,
-            color_mode=color_mode
+            color_mode=color_mode,
         )
-        
+
         # Determine final palette and color count
         if use_bit_depth:
             # Create palette from bit depth
             self.palette = create_palette_from_bit_depth(bit_depth, color_mode)
-            self.colors = min(2 ** bit_depth, 256)
+            self.colors = min(2**bit_depth, 256)
         elif colors is not None:
             # Use specified color count with automatic palette
             self.palette = None
@@ -149,11 +151,11 @@ class QuantizeStep(ProcessingStep):
             # Use custom palette
             colors = min(self.colors, 256)
             palette = self.palette
-            
+
             # Pad palette to 256 colors if needed
             if colors < 256:
                 palette = palette + palette[:3] * (256 - colors)
-            
+
             palette_img = Image.new("P", (1, 1))
             palette_img.putpalette(palette)
 
@@ -183,4 +185,3 @@ def quantize(img: Image.Image, palette: bytes = Palette16) -> Image.Image:
     """
     step = QuantizeStep(palette=palette)
     return step.process(img)
-

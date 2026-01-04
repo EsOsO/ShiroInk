@@ -11,6 +11,7 @@ from enum import Enum
 
 class DisplayType(Enum):
     """Type of display technology."""
+
     EINK = "e-ink"
     LCD = "lcd"
     OLED = "oled"
@@ -19,9 +20,10 @@ class DisplayType(Enum):
 
 class ColorGamut(Enum):
     """Color gamut standards for displays."""
-    NONE = None           # For B&W displays
-    SRGB = "sRGB"        # Standard RGB (most LCD displays)
-    DCI_P3 = "DCI-P3"    # Wide gamut (iPad Pro, high-end displays)
+
+    NONE = None  # For B&W displays
+    SRGB = "sRGB"  # Standard RGB (most LCD displays)
+    DCI_P3 = "DCI-P3"  # Wide gamut (iPad Pro, high-end displays)
     ADOBE_RGB = "Adobe RGB"  # Wide gamut (professional displays)
 
 
@@ -29,7 +31,7 @@ class ColorGamut(Enum):
 class DeviceSpec:
     """
     Complete specification for a device.
-    
+
     Attributes:
         name: Display name of the device
         resolution: Screen resolution as (width, height) tuple
@@ -43,6 +45,7 @@ class DeviceSpec:
         recommended_pipeline: Name of the recommended pipeline preset
         description: Human-readable description
     """
+
     name: str
     resolution: tuple[int, int]
     display_type: DisplayType
@@ -76,7 +79,7 @@ class DeviceSpecs:
         bit_depth=4,  # 16 grayscale levels
         max_colors=16,
         recommended_pipeline="kindle",
-        description="6.8\" e-ink display, 300 ppi"
+        description='6.8" e-ink display, 300 ppi',
     )
 
     KINDLE_PAPERWHITE = DeviceSpec(
@@ -90,7 +93,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kindle",
-        description="6\" e-ink display, 300 ppi"
+        description='6" e-ink display, 300 ppi',
     )
 
     KINDLE_SCRIBE = DeviceSpec(
@@ -104,7 +107,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kindle",
-        description="10.2\" e-ink display, 300 ppi"
+        description='10.2" e-ink display, 300 ppi',
     )
 
     KINDLE_OASIS = DeviceSpec(
@@ -118,7 +121,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kindle",
-        description="7\" e-ink display, 300 ppi"
+        description='7" e-ink display, 300 ppi',
     )
 
     # Kobo devices
@@ -133,7 +136,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kobo",
-        description="7\" e-ink display, 300 ppi"
+        description='7" e-ink display, 300 ppi',
     )
 
     KOBO_SAGE = DeviceSpec(
@@ -147,7 +150,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kobo",
-        description="8\" e-ink display, 300 ppi"
+        description='8" e-ink display, 300 ppi',
     )
 
     KOBO_ELIPSA_2E = DeviceSpec(
@@ -161,7 +164,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kobo",
-        description="10.3\" e-ink display, 227 ppi"
+        description='10.3" e-ink display, 227 ppi',
     )
 
     KOBO_CLARA_2E = DeviceSpec(
@@ -175,7 +178,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="kobo",
-        description="6\" e-ink display, 300 ppi"
+        description='6" e-ink display, 300 ppi',
     )
 
     # Tolino devices
@@ -190,7 +193,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="tolino",
-        description="7\" e-ink display, 300 ppi"
+        description='7" e-ink display, 300 ppi',
     )
 
     TOLINO_EPOS_3 = DeviceSpec(
@@ -204,7 +207,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="tolino",
-        description="8\" e-ink display, 227 ppi"
+        description='8" e-ink display, 227 ppi',
     )
 
     TOLINO_PAGE_2 = DeviceSpec(
@@ -218,7 +221,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="tolino",
-        description="6\" e-ink display, 300 ppi"
+        description='6" e-ink display, 300 ppi',
     )
 
     # PocketBook devices
@@ -233,7 +236,7 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="pocketbook",
-        description="7.8\" e-ink display, 300 ppi"
+        description='7.8" e-ink display, 300 ppi',
     )
 
     POCKETBOOK_INKPAD_COLOR_3 = DeviceSpec(
@@ -247,7 +250,7 @@ class DeviceSpecs:
         bit_depth=12,  # ~4096 colors typical for e-ink color
         max_colors=4096,
         recommended_pipeline="pocketbook_color",
-        description="7.8\" color e-ink display, 300 ppi"
+        description='7.8" color e-ink display, 300 ppi',
     )
 
     POCKETBOOK_ERA = DeviceSpec(
@@ -261,12 +264,12 @@ class DeviceSpecs:
         bit_depth=4,
         max_colors=16,
         recommended_pipeline="pocketbook",
-        description="7\" e-ink display, 300 ppi"
+        description='7" e-ink display, 300 ppi',
     )
 
     # iPad devices
     IPAD_PRO_11 = DeviceSpec(
-        name="iPad Pro 11\"",
+        name='iPad Pro 11"',
         resolution=(1668, 2388),
         display_type=DisplayType.RETINA,
         ppi=264,
@@ -276,11 +279,11 @@ class DeviceSpecs:
         bit_depth=24,  # 16M colors
         max_colors=16777216,
         recommended_pipeline="ipad",
-        description="11\" Liquid Retina display, 264 ppi"
+        description='11" Liquid Retina display, 264 ppi',
     )
 
     IPAD_PRO_129 = DeviceSpec(
-        name="iPad Pro 12.9\"",
+        name='iPad Pro 12.9"',
         resolution=(2048, 2732),
         display_type=DisplayType.RETINA,
         ppi=264,
@@ -290,7 +293,7 @@ class DeviceSpecs:
         bit_depth=24,
         max_colors=16777216,
         recommended_pipeline="ipad",
-        description="12.9\" Liquid Retina XDR display, 264 ppi"
+        description='12.9" Liquid Retina XDR display, 264 ppi',
     )
 
     IPAD_AIR = DeviceSpec(
@@ -304,7 +307,7 @@ class DeviceSpecs:
         bit_depth=24,
         max_colors=16777216,
         recommended_pipeline="ipad",
-        description="10.9\" Liquid Retina display, 264 ppi"
+        description='10.9" Liquid Retina display, 264 ppi',
     )
 
     IPAD_MINI = DeviceSpec(
@@ -318,7 +321,7 @@ class DeviceSpecs:
         bit_depth=24,
         max_colors=16777216,
         recommended_pipeline="ipad",
-        description="8.3\" Liquid Retina display, 326 ppi"
+        description='8.3" Liquid Retina display, 326 ppi',
     )
 
     IPAD_10 = DeviceSpec(
@@ -332,7 +335,7 @@ class DeviceSpecs:
         bit_depth=24,
         max_colors=16777216,
         recommended_pipeline="ipad",
-        description="10.9\" Liquid Retina display, 264 ppi"
+        description='10.9" Liquid Retina display, 264 ppi',
     )
 
     @classmethod
@@ -387,9 +390,7 @@ class DeviceSpecs:
         devices = cls.get_all_devices()
         if key not in devices:
             available = ", ".join(sorted(devices.keys()))
-            raise KeyError(
-                f"Unknown device '{key}'. Available devices: {available}"
-            )
+            raise KeyError(f"Unknown device '{key}'. Available devices: {available}")
         return devices[key]
 
     @classmethod

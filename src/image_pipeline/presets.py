@@ -171,9 +171,18 @@ class PipelinePresets:
         """
         return [
             # Generic presets
-            "kindle", "tablet", "print", "high_quality", "minimal",
+            "kindle",
+            "tablet",
+            "print",
+            "high_quality",
+            "minimal",
             # Device-specific presets
-            "kobo", "tolino", "pocketbook", "pocketbook_color", "ipad", "eink"
+            "kobo",
+            "tolino",
+            "pocketbook",
+            "pocketbook_color",
+            "ipad",
+            "eink",
         ]
 
     # Device-specific presets with optimized pipelines for e-ink and LCD displays
@@ -240,29 +249,31 @@ class PipelinePresets:
     def from_device_spec(device_spec: DeviceSpec) -> ImagePipeline:
         """
         Create an optimized pipeline based on complete device specifications.
-        
+
         This factory method uses the device's full specifications including:
         - Color support (B&W vs Color)
         - Color gamut (sRGB, DCI-P3, etc.)
         - Bit depth (4-bit, 8-bit, 24-bit)
         - Display type (e-ink, LCD, OLED, Retina)
-        
+
         Args:
             device_spec: Complete device specification
-        
+
         Returns:
             Optimized ImagePipeline for the device
         """
         pipeline = ImagePipeline()
-        
+
         # Step 1: Color Profile Conversion
         # Always add this first to handle color space conversion and B&W optimization
-        pipeline.add_step(ColorProfileStep(
-            color_support=device_spec.color_support,
-            target_gamut=device_spec.color_gamut,
-            bit_depth=device_spec.bit_depth
-        ))
-        
+        pipeline.add_step(
+            ColorProfileStep(
+                color_support=device_spec.color_support,
+                target_gamut=device_spec.color_gamut,
+                bit_depth=device_spec.bit_depth,
+            )
+        )
+
         # Step 2: Contrast Adjustment
         # E-ink displays need more contrast than LCD/OLED
         if device_spec.display_type == DisplayType.EINK:
@@ -275,9 +286,9 @@ class PipelinePresets:
         else:
             # LCD/OLED have good native contrast
             contrast_factor = 1.2
-        
+
         pipeline.add_step(ContrastStep(factor=contrast_factor))
-        
+
         # Step 3: Sharpening
         # E-ink and high-PPI displays benefit from different sharpening
         if device_spec.display_type == DisplayType.EINK:
@@ -292,26 +303,27 @@ class PipelinePresets:
                 sharpen_factor = 1.4
             else:
                 sharpen_factor = 1.3
-        
+
         pipeline.add_step(SharpenStep(factor=sharpen_factor))
-        
+
         # Step 4: Quantization (only for limited color devices)
         # Full color devices (24-bit) don't need quantization
         if device_spec.bit_depth < 16:
             if device_spec.color_support:
                 # Color e-ink with limited palette
-                pipeline.add_step(QuantizeStep(
-                    colors=device_spec.max_colors,
-                    color_mode=True
-                ))
+                pipeline.add_step(
+                    QuantizeStep(colors=device_spec.max_colors, color_mode=True)
+                )
             else:
                 # B&W devices - use bit depth specific palette
-                pipeline.add_step(QuantizeStep(
-                    use_bit_depth=True,
-                    bit_depth=device_spec.bit_depth,
-                    color_mode=False
-                ))
-        
+                pipeline.add_step(
+                    QuantizeStep(
+                        use_bit_depth=True,
+                        bit_depth=device_spec.bit_depth,
+                        color_mode=False,
+                    )
+                )
+
         return pipeline
 
     @staticmethod
