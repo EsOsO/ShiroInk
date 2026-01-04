@@ -1,0 +1,31 @@
+# Trivy Ignore File
+# Suppress security alerts that are false positives or accepted risks
+# Format: CVE-YEAR-NUMBER (one per line)
+
+# Base OS vulnerabilities that don't affect the application runtime
+# (ShiroInk doesn't use these components directly)
+
+# util-linux - heap buffer overread in setpwnam()
+# Not exploitable in containerized Python application (no user management)
+CVE-2025-14104
+
+# OpenSSL SM2 timing side-channel (ARM64 specific)
+# Not applicable - ShiroInk doesn't use SM2 cryptography
+CVE-2025-9231
+
+# OpenSSL RFC 3211 KEK Unwrap vulnerability
+# Not applicable - ShiroInk doesn't use KEK operations
+CVE-2025-9230
+
+# Old CVEs from base image (2005-2011 era, not exploitable in modern containers)
+CVE-2005-2541
+CVE-2007-5686
+CVE-2011-4116
+
+# Temporary vendor issues (awaiting upstream patches)
+TEMP-0290435-0B57B5
+TEMP-0517018-A83CE6
+TEMP-0628843-DBAD28
+
+# Note: Keep pip vulnerability active for monitoring
+# CVE-2025-8869
