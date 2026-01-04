@@ -1,0 +1,3 @@
+"""
+ShiroInk test suite.
+"""

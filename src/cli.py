@@ -37,17 +37,24 @@ def parse_arguments():
         version=f"%(prog)s {__version__}",
     )
     parser.add_argument(
-        "src_dir", type=Path, help="Source directory containing files to process"
+        "src_dir",
+        type=Path,
+        nargs="?",
+        help="Source directory containing files to process",
     )
     parser.add_argument(
-        "dest_dir", type=Path, help="Destination directory to place processed files"
+        "dest_dir",
+        type=Path,
+        nargs="?",
+        help="Destination directory to place processed files",
     )
     parser.add_argument(
         "-r",
         "--resolution",
         type=parse_resolution,
-        default=parse_resolution("1404x1872"),
-        help="Resolution to resize the images (e.g., 800x600, '800 600', '800,600' or '800')",
+        default=None,
+        help="Resolution to resize the images (e.g., 800x600, '800 600', '800,600' or '800'). "
+        "Defaults to 1404x1872 if neither --device nor --resolution is specified.",
     )
     parser.add_argument(
         "--rtl", action="store_true", help="Switch the order of two-page images"
@@ -75,7 +82,31 @@ def parse_arguments():
         "--pipeline",
         type=str,
         default="kindle",
-        choices=["kindle", "tablet", "print", "high_quality", "minimal"],
+        choices=[
+            "kindle",
+            "kobo",
+            "tolino",
+            "pocketbook",
+            "pocketbook_color",
+            "ipad",
+            "eink",
+            "tablet",
+            "print",
+            "high_quality",
+            "minimal",
+        ],
         help="Processing pipeline preset to use (default: kindle)",
+    )
+    parser.add_argument(
+        "--device",
+        type=str,
+        default=None,
+        help="Specific device preset (e.g., kindle_paperwhite, kobo_libra_2, ipad_pro_11). "
+        "Automatically sets resolution and pipeline. Use --list-devices to see available devices.",
+    )
+    parser.add_argument(
+        "--list-devices",
+        action="store_true",
+        help="List all available device presets and exit",
     )
     return parser.parse_args()

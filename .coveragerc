@@ -1,0 +1,32 @@
+[coverage:run]
+source = src
+omit = 
+    */tests/*
+    */__init__.py
+    */__version__.py
+    */venv/*
+    */.venv/*
+    */cli.py
+    */main.py
+branch = True
+parallel = True
+
+[coverage:report]
+precision = 2
+show_missing = True
+skip_covered = False
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod
+    @abc.abstractmethod
+
+[coverage:html]
+directory = htmlcov
+
+[coverage:xml]
+output = coverage.xml

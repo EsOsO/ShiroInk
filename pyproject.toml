@@ -13,6 +13,13 @@ dependencies = [
     "rich>=14.1.0"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.1",
+]
+
 [project.urls]
 Homepage = "https://github.com/EsOsO/ShiroInk"
 Documentation = "https://esoso.github.io/ShiroInk"

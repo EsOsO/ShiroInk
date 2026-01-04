@@ -68,18 +68,84 @@ python src/main.py <src_dir> <dest_dir> [options]
 - `-w, --workers`: Number of threads to use (default: `4`)
 - `--dry-run`: Preview what would be done without processing
 - `-p, --pipeline`: Processing pipeline preset (default: `kindle`)
-  - Choices: `kindle`, `tablet`, `print`, `high_quality`, `minimal`
+  - Choices: `kindle`, `kobo`, `tolino`, `pocketbook`, `pocketbook_color`, `ipad`, `eink`, `tablet`, `print`, `high_quality`, `minimal`
+- `--device`: Specific device preset (auto-sets resolution and pipeline)
+  - Examples: `kindle_paperwhite_11`, `kobo_libra_2`, `ipad_pro_11`
+  - Use `--list-devices` to see all available devices
+- `--list-devices`: List all available device presets and exit
 
 ### Pipeline Presets
 
-#### Kindle (default)
+ShiroInk includes optimized presets for different e-reader brands and display types:
+
+#### E-ink Devices
+
+##### Kindle (default)
 Optimized for Kindle e-readers with e-ink displays:
 ```sh
 python src/main.py manga/ output/ --pipeline kindle
+# Or use specific device preset:
+python src/main.py manga/ output/ --device kindle_paperwhite_11
 ```
 - High contrast for e-ink
 - Moderate sharpening
 - 16-color quantization (reduces file size)
+- Supported devices: Kindle Paperwhite, Kindle Oasis, Kindle Scribe
+
+##### Kobo
+Optimized for Kobo e-readers:
+```sh
+python src/main.py manga/ output/ --pipeline kobo
+# Or use specific device preset:
+python src/main.py manga/ output/ --device kobo_libra_2
+```
+- High contrast for e-ink
+- Strong sharpening (Kobo benefits from sharper images)
+- 16-color quantization
+- Supported devices: Kobo Libra 2, Kobo Sage, Kobo Elipsa 2E, Kobo Clara 2E
+
+##### Tolino
+Optimized for Tolino e-readers:
+```sh
+python src/main.py manga/ output/ --pipeline tolino
+# Or use specific device preset:
+python src/main.py manga/ output/ --device tolino_vision_6
+```
+- High contrast for e-ink
+- Moderate sharpening
+- 16-color quantization
+- Supported devices: Tolino Vision 6, Tolino Epos 3, Tolino Page 2
+
+##### PocketBook
+Optimized for PocketBook e-readers:
+```sh
+# For standard e-ink models:
+python src/main.py manga/ output/ --pipeline pocketbook
+# Or use specific device preset:
+python src/main.py manga/ output/ --device pocketbook_era
+
+# For color e-ink models:
+python src/main.py manga/ output/ --pipeline pocketbook_color
+# Or use specific device preset:
+python src/main.py manga/ output/ --device pocketbook_inkpad_color_3
+```
+- Standard: High contrast, moderate sharpening, 16-color quantization
+- Color: Moderate contrast, light sharpening, full color preservation
+- Supported devices: PocketBook InkPad 4, PocketBook Era, PocketBook InkPad Color 3
+
+#### Tablets and High-Resolution Displays
+
+##### iPad
+Optimized for iPad and Retina displays:
+```sh
+python src/main.py webcomic/ output/ --pipeline ipad
+# Or use specific device preset:
+python src/main.py webcomic/ output/ --device ipad_pro_11
+```
+- Light contrast for LCD/OLED
+- Enhanced sharpening for high-res displays
+- Full color preservation
+- Supported devices: iPad Pro 11", iPad Pro 12.9", iPad Air, iPad Mini, iPad 10th Gen
 
 #### Tablet
 Optimized for color tablets:
@@ -89,6 +155,15 @@ python src/main.py webcomic/ output/ --pipeline tablet -r 1080x1920
 - Moderate contrast
 - Light sharpening
 - Preserves full color
+
+#### Generic E-ink
+Generic preset for any e-ink device:
+```sh
+python src/main.py manga/ output/ --pipeline eink
+```
+- High contrast for e-ink clarity
+- Moderate sharpening
+- 16-color quantization
 
 #### Print
 Minimal processing for print output:
@@ -115,7 +190,40 @@ python src/main.py manga/ output/ --pipeline minimal
 - Fast processing
 - No image enhancements
 
+### Device Presets
+
+For convenience, you can use the `--device` flag to automatically configure resolution and pipeline for specific devices:
+
+```sh
+# List all available devices
+python src/main.py --list-devices
+
+# Use a specific device preset
+python src/main.py manga/ output/ --device kindle_paperwhite_11
+python src/main.py manga/ output/ --device kobo_sage
+python src/main.py manga/ output/ --device ipad_pro_129
+```
+
+Available device families:
+- **Kindle**: `kindle_paperwhite`, `kindle_paperwhite_11`, `kindle_oasis`, `kindle_scribe`
+- **Kobo**: `kobo_clara_2e`, `kobo_libra_2`, `kobo_sage`, `kobo_elipsa_2e`
+- **Tolino**: `tolino_page_2`, `tolino_vision_6`, `tolino_epos_3`
+- **PocketBook**: `pocketbook_era`, `pocketbook_inkpad_4`, `pocketbook_inkpad_color_3`
+- **iPad**: `ipad_10`, `ipad_mini`, `ipad_air`, `ipad_pro_11`, `ipad_pro_129`
+
 ### Examples
+
+#### Device-Specific Processing
+```sh
+# Use device preset (auto-configures resolution and pipeline)
+python src/main.py /path/to/manga /path/to/output --device kindle_paperwhite_11
+
+# Kobo with RTL manga
+python src/main.py /manga/source /manga/output --device kobo_libra_2 --rtl
+
+# iPad Pro with high quality
+python src/main.py /source /dest --device ipad_pro_129 -q 9
+```
 
 #### Standard Kindle Processing
 ```sh
@@ -125,6 +233,11 @@ python src/main.py /path/to/manga /path/to/output
 #### RTL Manga for Tablet
 ```sh
 python src/main.py /manga/source /manga/output --rtl --pipeline tablet -r 1200x1600
+```
+
+#### PocketBook Color E-ink
+```sh
+python src/main.py /manga/source /manga/output --device pocketbook_inkpad_color_3
 ```
 
 #### High Quality with Custom Resolution
@@ -193,12 +306,24 @@ main(config, reporter)  # No console output
 Run ShiroInk using Docker:
 
 ```sh
+# Using device preset
+docker run --rm -it \
+    -v /path/to/source:/manga/src \
+    -v /path/to/destination:/manga/dest \
+    ghcr.io/esoso/shiroink \
+    --device kobo_libra_2 \
+    /manga/src/MangaName /manga/dest/MangaName
+
+# Using pipeline preset
 docker run --rm -it \
     -v /path/to/source:/manga/src \
     -v /path/to/destination:/manga/dest \
     ghcr.io/esoso/shiroink \
     --pipeline kindle \
     /manga/src/MangaName /manga/dest/MangaName
+
+# List available devices
+docker run --rm ghcr.io/esoso/shiroink --list-devices
 ```
 
 ## Development

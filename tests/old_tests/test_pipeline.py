@@ -170,11 +170,50 @@ class TestPipelinePresets(unittest.TestCase):
         """Test listing available presets."""
         presets = PipelinePresets.list_presets()
         
+        # Generic presets
         self.assertIn("kindle", presets)
         self.assertIn("tablet", presets)
         self.assertIn("print", presets)
         self.assertIn("high_quality", presets)
         self.assertIn("minimal", presets)
+        
+        # Device-specific presets
+        self.assertIn("kobo", presets)
+        self.assertIn("tolino", presets)
+        self.assertIn("pocketbook", presets)
+        self.assertIn("pocketbook_color", presets)
+        self.assertIn("ipad", presets)
+        self.assertIn("eink", presets)
+
+    def test_kobo_preset(self):
+        """Test Kobo preset pipeline."""
+        pipeline = PipelinePresets.kobo()
+        steps = pipeline.get_steps()
+        
+        self.assertEqual(len(pipeline), 3)
+        self.assertIn("Contrast", steps)
+        self.assertIn("Sharpen", steps)
+        self.assertIn("Quantize", steps)
+
+    def test_ipad_preset(self):
+        """Test iPad preset pipeline."""
+        pipeline = PipelinePresets.ipad()
+        steps = pipeline.get_steps()
+        
+        self.assertEqual(len(pipeline), 2)
+        self.assertIn("Contrast", steps)
+        self.assertIn("Sharpen", steps)
+        self.assertNotIn("Quantize", steps)  # Full color for iPad
+
+    def test_pocketbook_color_preset(self):
+        """Test PocketBook color preset pipeline."""
+        pipeline = PipelinePresets.pocketbook_color()
+        steps = pipeline.get_steps()
+        
+        self.assertEqual(len(pipeline), 2)
+        self.assertIn("Contrast", steps)
+        self.assertIn("Sharpen", steps)
+        self.assertNotIn("Quantize", steps)  # Color preserving
 
 
 if __name__ == "__main__":

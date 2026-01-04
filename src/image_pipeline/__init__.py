@@ -2,10 +2,12 @@ from pathlib import Path
 from .contrast import contrast, ContrastStep
 from .resize import resize
 from .sharpen import sharpen, SharpenStep
-from .quantize import quantize, QuantizeStep
+from .quantize import quantize, QuantizeStep, create_palette_from_bit_depth
+from .color_profile import ColorProfileStep
 from .save import save
 from .pipeline import ProcessingStep, ImagePipeline
 from .presets import PipelinePresets
+from .devices import DeviceSpecs, DeviceSpec, DisplayType, ColorGamut
 from PIL import Image
 
 
@@ -59,6 +61,11 @@ __all__ = [
     "ContrastStep",
     "SharpenStep",
     "QuantizeStep",
+    "ColorProfileStep",
+    "DeviceSpecs",
+    "DeviceSpec",
+    "DisplayType",
+    "ColorGamut",
     # Legacy functions
     "contrast",
     "sharpen",
