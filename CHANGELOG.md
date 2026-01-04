@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0](https://github.com/EsOsO/ShiroInk/compare/v2.1.0...v2.2.0) (2026-01-04)
+
+
+### Features
+
+* comprehensive device profiles and test suite ([#23](https://github.com/EsOsO/ShiroInk/issues/23)) ([e9e65ac](https://github.com/EsOsO/ShiroInk/commit/e9e65ac8c9e5c94c72cfb6533fb3ac2c4d674530))
+
 ## [2.1.0](https://github.com/EsOsO/ShiroInk/compare/v2.0.9...v2.1.0) (2026-01-04)
 
 
