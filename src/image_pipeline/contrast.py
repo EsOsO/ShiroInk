@@ -31,15 +31,3 @@ class ContrastStep(ProcessingStep):
     def get_name(self) -> str:
         """Get the name of this step."""
         return "Contrast"
-
-
-# Legacy function for backward compatibility
-def contrast(img: Image.Image, factor: float = 1.5) -> Image.Image:
-    """
-    Adjust the contrast of the image to improve the quality for Kindle devices.
-
-    This is a legacy function maintained for backward compatibility.
-    Consider using ContrastStep instead.
-    """
-    step = ContrastStep(factor=factor)
-    return step.process(img)

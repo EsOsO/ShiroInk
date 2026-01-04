@@ -32,6 +32,7 @@ WORKDIR /app
 COPY --from=builder /app/wheels /wheels
 COPY --from=builder /app/requirements.txt .
 
+RUN pip install --upgrade pip>=25.2.1
 RUN pip install --no-cache-dir /wheels/*
 
 RUN addgroup --gid 1000 --system app && \
