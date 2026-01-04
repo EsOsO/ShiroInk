@@ -46,7 +46,7 @@ class TestImagePipeline:
         pipeline.add_step(QuantizeStep())
         
         assert len(pipeline) == 3
-        assert pipeline.get_steps() == ["Contrast", "Sharpen", "Quantize"]
+        assert pipeline.get_steps() == ["Contrast", "Sharpen", "Quantize(16)"]
 
     def test_method_chaining(self):
         """Pipeline should support method chaining."""
