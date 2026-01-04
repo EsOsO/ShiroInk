@@ -7,6 +7,9 @@ from .contrast import ContrastStep
 from .sharpen import SharpenStep
 from .quantize import QuantizeStep, Palette16
 from .color_profile import ColorProfileStep
+from .crop import SmartCropStep
+from .rotation import AutoRotateStep
+from .text_enhance import TextEnhanceStep, AdaptiveTextEnhanceStep
 from .devices import DeviceSpecs, DeviceSpec, DisplayType, ColorGamut
 
 
@@ -19,6 +22,9 @@ class PipelinePresets:
         Create a pipeline optimized for Kindle e-readers.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - High contrast for e-ink displays
         - Moderate sharpening
         - 16-color quantization for file size reduction
@@ -27,6 +33,9 @@ class PipelinePresets:
             ImagePipeline configured for Kindle devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
         pipeline.add_step(ContrastStep(factor=1.5))
         pipeline.add_step(SharpenStep(factor=1.2))
         pipeline.add_step(QuantizeStep(palette=Palette16))
@@ -38,6 +47,9 @@ class PipelinePresets:
         Create a pipeline optimized for color tablets.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - Moderate contrast
         - Light sharpening
         - No quantization (preserves color)
@@ -46,6 +58,9 @@ class PipelinePresets:
             ImagePipeline configured for tablet devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.3, edge_enhance=0.25))
         pipeline.add_step(ContrastStep(factor=1.3))
         pipeline.add_step(SharpenStep(factor=1.1))
         return pipeline
@@ -131,7 +146,8 @@ class PipelinePresets:
 
         Args:
             name: Name of the preset (kindle, kobo, tolino, pocketbook, pocketbook_color,
-                  ipad, eink, tablet, print, high_quality, minimal).
+                  ipad, eink, tablet, print, high_quality, minimal, scanned_manga,
+                  scanned_manga_advanced).
 
         Returns:
             ImagePipeline for the specified preset.
@@ -153,6 +169,9 @@ class PipelinePresets:
             "pocketbook_color": PipelinePresets.pocketbook_color,
             "ipad": PipelinePresets.ipad,
             "eink": PipelinePresets.eink,
+            # Manga-specific presets
+            "scanned_manga": PipelinePresets.scanned_manga,
+            "scanned_manga_advanced": PipelinePresets.scanned_manga_advanced,
         }
 
         if name.lower() not in presets:
@@ -183,6 +202,9 @@ class PipelinePresets:
             "pocketbook_color",
             "ipad",
             "eink",
+            # Manga-specific presets
+            "scanned_manga",
+            "scanned_manga_advanced",
         ]
 
     # Device-specific presets with optimized pipelines for e-ink and LCD displays
@@ -193,6 +215,9 @@ class PipelinePresets:
         Create a pipeline optimized for Kobo e-readers.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - High contrast for e-ink displays
         - Strong sharpening (Kobo benefits from sharper images)
         - 16-color quantization for file size reduction
@@ -201,6 +226,9 @@ class PipelinePresets:
             ImagePipeline configured for Kobo devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
         pipeline.add_step(ContrastStep(factor=1.6))
         pipeline.add_step(SharpenStep(factor=1.3))
         pipeline.add_step(QuantizeStep(palette=Palette16))
@@ -212,6 +240,9 @@ class PipelinePresets:
         Create a pipeline optimized for Tolino e-readers.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - High contrast for e-ink displays
         - Moderate sharpening
         - 16-color quantization for file size reduction
@@ -220,6 +251,9 @@ class PipelinePresets:
             ImagePipeline configured for Tolino devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
         pipeline.add_step(ContrastStep(factor=1.5))
         pipeline.add_step(SharpenStep(factor=1.2))
         pipeline.add_step(QuantizeStep(palette=Palette16))
@@ -231,6 +265,9 @@ class PipelinePresets:
         Create a pipeline optimized for PocketBook e-readers.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - High contrast for e-ink displays
         - Moderate sharpening
         - 16-color quantization for file size reduction
@@ -240,6 +277,9 @@ class PipelinePresets:
             ImagePipeline configured for PocketBook devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
         pipeline.add_step(ContrastStep(factor=1.5))
         pipeline.add_step(SharpenStep(factor=1.2))
         pipeline.add_step(QuantizeStep(palette=Palette16))
@@ -256,6 +296,11 @@ class PipelinePresets:
         - Bit depth (4-bit, 8-bit, 24-bit)
         - Display type (e-ink, LCD, OLED, Retina)
 
+        All pipelines include manga-optimized preprocessing:
+        - Auto-rotation correction
+        - Smart cropping to remove margins
+        - Text enhancement for readability
+
         Args:
             device_spec: Complete device specification
 
@@ -264,8 +309,23 @@ class PipelinePresets:
         """
         pipeline = ImagePipeline()
 
+        # Manga-specific preprocessing steps (applied to all devices)
+        # Step 0a: Auto-rotation for scanned pages
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+
+        # Step 0b: Smart cropping to maximize screen space
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+
+        # Step 0c: Text enhancement (adjust for display type)
+        if device_spec.display_type == DisplayType.EINK:
+            # E-ink benefits from stronger text enhancement
+            pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
+        else:
+            # LCD/OLED use lighter enhancement
+            pipeline.add_step(TextEnhanceStep(text_sharpen=1.3, edge_enhance=0.25))
+
         # Step 1: Color Profile Conversion
-        # Always add this first to handle color space conversion and B&W optimization
+        # Always add this to handle color space conversion and B&W optimization
         pipeline.add_step(
             ColorProfileStep(
                 color_support=device_spec.color_support,
@@ -332,6 +392,9 @@ class PipelinePresets:
         Create a pipeline optimized for PocketBook color e-ink devices.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - Moderate contrast (color e-ink is more delicate)
         - Light sharpening
         - No quantization (preserves color)
@@ -340,6 +403,9 @@ class PipelinePresets:
             ImagePipeline configured for PocketBook color devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.3, edge_enhance=0.25))
         pipeline.add_step(ContrastStep(factor=1.3))
         pipeline.add_step(SharpenStep(factor=1.1))
         return pipeline
@@ -350,6 +416,9 @@ class PipelinePresets:
         Create a pipeline optimized for iPad and Retina displays.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - Light contrast for LCD/OLED displays
         - Enhanced sharpening for high-resolution displays
         - No quantization (preserves full color)
@@ -358,6 +427,9 @@ class PipelinePresets:
             ImagePipeline configured for iPad devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.4, edge_enhance=0.25))
         pipeline.add_step(ContrastStep(factor=1.2))
         pipeline.add_step(SharpenStep(factor=1.4))
         return pipeline
@@ -368,6 +440,9 @@ class PipelinePresets:
         Create a generic pipeline optimized for e-ink displays.
 
         Features:
+        - Auto-rotation correction for scanned pages
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
         - High contrast for e-ink clarity
         - Moderate sharpening
         - 16-color quantization for file size reduction
@@ -376,7 +451,74 @@ class PipelinePresets:
             ImagePipeline configured for generic e-ink devices.
         """
         pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
         pipeline.add_step(ContrastStep(factor=1.5))
         pipeline.add_step(SharpenStep(factor=1.2))
+        pipeline.add_step(QuantizeStep(palette=Palette16))
+        return pipeline
+
+    @staticmethod
+    def scanned_manga() -> ImagePipeline:
+        """
+        Create a pipeline optimized for scanned manga.
+
+        Features:
+        - Auto-rotation correction (up to 5 degrees)
+        - Smart cropping to remove white margins
+        - Text enhancement for better readability
+        - High contrast for e-ink displays
+        - Moderate sharpening
+        - 16-color quantization for file size reduction
+
+        This preset is ideal for:
+        - Scanned manga pages with rotation/alignment issues
+        - Images with large white borders
+        - Content requiring enhanced text clarity
+
+        Returns:
+            ImagePipeline configured for scanned manga optimization.
+        """
+        pipeline = ImagePipeline()
+        # Step 1: Fix rotation (before cropping to avoid cropping artifacts)
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        # Step 2: Remove white margins to maximize screen space
+        pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
+        # Step 3: Enhance text for better readability
+        pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
+        # Step 4: Apply contrast for e-ink
+        pipeline.add_step(ContrastStep(factor=1.5))
+        # Step 5: Sharpen for crisp rendering
+        pipeline.add_step(SharpenStep(factor=1.2))
+        # Step 6: Reduce to 16 colors for file size
+        pipeline.add_step(QuantizeStep(palette=Palette16))
+        return pipeline
+
+    @staticmethod
+    def scanned_manga_advanced() -> ImagePipeline:
+        """
+        Create an advanced pipeline for high-quality scanned manga processing.
+
+        Features:
+        - Auto-rotation correction
+        - Smart cropping with aggressive margin removal
+        - Adaptive text enhancement with unsharp mask
+        - High contrast for e-ink displays
+        - Advanced sharpening
+        - 16-color quantization
+
+        This preset provides the best quality for scanned content but
+        may take slightly longer to process.
+
+        Returns:
+            ImagePipeline configured for advanced scanned manga optimization.
+        """
+        pipeline = ImagePipeline()
+        pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
+        pipeline.add_step(SmartCropStep(threshold=240, min_margin=8))
+        pipeline.add_step(AdaptiveTextEnhanceStep(text_sharpen=1.6, detail_enhance=1.3))
+        pipeline.add_step(ContrastStep(factor=1.6))
+        pipeline.add_step(SharpenStep(factor=1.3))
         pipeline.add_step(QuantizeStep(palette=Palette16))
         return pipeline

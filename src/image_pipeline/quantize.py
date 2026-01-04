@@ -170,21 +170,3 @@ class QuantizeStep(ProcessingStep):
     def get_name(self) -> str:
         """Get the name of this step."""
         return f"Quantize({self.colors})"
-
-
-# Legacy function for backward compatibility
-def quantize(img: Image.Image, palette: bytes = Palette16) -> Image.Image:
-    """
-    Quantize the image to 16 colors.
-
-    This is a legacy function maintained for backward compatibility.
-    Consider using QuantizeStep instead.
-
-    Args:
-        img: The image to be quantized.
-        palette: Color palette to use.
-    Returns:
-        The quantized image.
-    """
-    step = QuantizeStep(palette=palette)
-    return step.process(img)

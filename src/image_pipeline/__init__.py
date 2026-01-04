@@ -1,9 +1,12 @@
 from pathlib import Path
-from .contrast import contrast, ContrastStep
+from .contrast import ContrastStep
 from .resize import resize
-from .sharpen import sharpen, SharpenStep
-from .quantize import quantize, QuantizeStep, create_palette_from_bit_depth
+from .sharpen import SharpenStep
+from .quantize import QuantizeStep, create_palette_from_bit_depth
 from .color_profile import ColorProfileStep
+from .crop import SmartCropStep
+from .rotation import AutoRotateStep
+from .text_enhance import TextEnhanceStep, AdaptiveTextEnhanceStep
 from .save import save
 from .pipeline import ProcessingStep, ImagePipeline
 from .presets import PipelinePresets
@@ -62,14 +65,16 @@ __all__ = [
     "SharpenStep",
     "QuantizeStep",
     "ColorProfileStep",
+    "SmartCropStep",
+    "AutoRotateStep",
+    "TextEnhanceStep",
+    "AdaptiveTextEnhanceStep",
     "DeviceSpecs",
     "DeviceSpec",
     "DisplayType",
     "ColorGamut",
-    # Legacy functions
-    "contrast",
-    "sharpen",
-    "quantize",
+    "create_palette_from_bit_depth",
+    # Utility functions (still needed)
     "resize",
     "save",
 ]
