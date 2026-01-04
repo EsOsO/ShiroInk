@@ -152,9 +152,12 @@ class QuantizeStep(ProcessingStep):
             colors = min(self.colors, 256)
             palette = self.palette
 
-            # Pad palette to 256 colors if needed
-            if colors < 256:
-                palette = palette + palette[:3] * (256 - colors)
+            # Pad palette to 768 bytes (256 colors * 3 RGB) if needed
+            if len(palette) < 768:
+                # Repeat the first color to pad
+                while len(palette) < 768:
+                    palette = palette + palette[:3]
+                palette = palette[:768]
 
             palette_img = Image.new("P", (1, 1))
             palette_img.putpalette(palette)
