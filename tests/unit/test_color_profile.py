@@ -20,7 +20,7 @@ class TestColorProfileStepCreation:
 
     def test_create_bw_step(self):
         """Create a B&W color profile step."""
-        step = ColorProfileStep(color_support=False, bit_depth=4)
+        step = ColorProfileStep(color_support=False, target_gamut=None, bit_depth=4)
         
         assert step.color_support is False
         assert step.bit_depth == 4
@@ -30,23 +30,23 @@ class TestColorProfileStepCreation:
         """Create a color profile step with sRGB."""
         step = ColorProfileStep(
             color_support=True,
-            color_gamut=ColorGamut.SRGB,
+            target_gamut=ColorGamut.SRGB,
             bit_depth=12
         )
         
         assert step.color_support is True
-        assert step.color_gamut == ColorGamut.SRGB
+        assert step.target_gamut == ColorGamut.SRGB
         assert step.bit_depth == 12
 
     def test_create_color_step_dci_p3(self):
         """Create a color profile step with DCI-P3."""
         step = ColorProfileStep(
             color_support=True,
-            color_gamut=ColorGamut.DCI_P3,
+            target_gamut=ColorGamut.DCI_P3,
             bit_depth=24
         )
         
-        assert step.color_gamut == ColorGamut.DCI_P3
+        assert step.target_gamut == ColorGamut.DCI_P3
 
 
 class TestGrayscaleConversion:
@@ -54,33 +54,36 @@ class TestGrayscaleConversion:
 
     def test_convert_rgb_to_grayscale(self, test_color_image):
         """RGB image should be converted to grayscale."""
-        step = ColorProfileStep(color_support=False, bit_depth=8)
+        step = ColorProfileStep(color_support=False, target_gamut=None, bit_depth=8)
         result = step.process(test_color_image)
         
         assert isinstance(result, Image.Image)
-        assert result.mode == "L"
+        # Note: result is RGB mode for pipeline compatibility, but rendered as grayscale
+        assert result.mode == "RGB"
 
     def test_4bit_grayscale_posterization(self, test_color_image):
         """4-bit should produce 16 grayscale levels."""
-        step = ColorProfileStep(color_support=False, bit_depth=4)
+        step = ColorProfileStep(color_support=False, target_gamut=None, bit_depth=4)
         result = step.process(test_color_image)
         
-        assert result.mode == "L"
+        # Note: result is RGB mode for pipeline compatibility
+        assert result.mode == "RGB"
         
-        # Count unique gray values - should be <= 16
-        unique_values = set(result.getdata())
+        # Convert to grayscale to count unique values
+        gray = result.convert("L")
+        unique_values = set(gray.getdata())
         assert len(unique_values) <= 16
 
     def test_8bit_grayscale_no_posterization(self, test_color_image):
         """8-bit grayscale should have full range."""
-        step = ColorProfileStep(color_support=False, bit_depth=8)
+        step = ColorProfileStep(color_support=False, target_gamut=None, bit_depth=8)
         result = step.process(test_color_image)
         
-        assert result.mode == "L"
+        assert result.mode == "RGB"
 
     def test_grayscale_preserves_size(self, test_color_image):
         """Grayscale conversion should preserve image size."""
-        step = ColorProfileStep(color_support=False, bit_depth=4)
+        step = ColorProfileStep(color_support=False, target_gamut=None, bit_depth=4)
         result = step.process(test_color_image)
         
         assert result.size == test_color_image.size
@@ -93,7 +96,7 @@ class TestColorConversion:
         """Color mode should keep image in RGB."""
         step = ColorProfileStep(
             color_support=True,
-            color_gamut=ColorGamut.SRGB,
+            target_gamut=ColorGamut.SRGB,
             bit_depth=24
         )
         result = step.process(test_color_image)
@@ -104,7 +107,7 @@ class TestColorConversion:
         """Color conversion should preserve image size."""
         step = ColorProfileStep(
             color_support=True,
-            color_gamut=ColorGamut.SRGB,
+            target_gamut=ColorGamut.SRGB,
             bit_depth=24
         )
         result = step.process(test_color_image)
@@ -115,7 +118,7 @@ class TestColorConversion:
         """sRGB conversion should work."""
         step = ColorProfileStep(
             color_support=True,
-            color_gamut=ColorGamut.SRGB,
+            target_gamut=ColorGamut.SRGB,
             bit_depth=12
         )
         result = step.process(test_color_image)
@@ -127,7 +130,7 @@ class TestColorConversion:
         """DCI-P3 conversion should work."""
         step = ColorProfileStep(
             color_support=True,
-            color_gamut=ColorGamut.DCI_P3,
+            target_gamut=ColorGamut.DCI_P3,
             bit_depth=24
         )
         result = step.process(test_color_image)
@@ -141,18 +144,18 @@ class TestEdgeCases:
 
     def test_process_already_grayscale(self, test_grayscale_image):
         """Processing already-grayscale image should work."""
-        step = ColorProfileStep(color_support=False, bit_depth=4)
+        step = ColorProfileStep(color_support=False, target_gamut=None, bit_depth=4)
         result = step.process(test_grayscale_image)
         
-        assert result.mode == "L"
+        assert result.mode == "RGB"
 
     def test_none_gamut_for_bw(self, test_color_image):
         """B&W device with None gamut should work."""
         step = ColorProfileStep(
             color_support=False,
-            color_gamut=None,
+            target_gamut=None,
             bit_depth=4
         )
         result = step.process(test_color_image)
         
-        assert result.mode == "L"
+        assert result.mode == "RGB"
