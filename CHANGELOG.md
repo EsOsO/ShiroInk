@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://github.com/EsOsO/ShiroInk/compare/v2.0.9...v2.1.0) (2026-01-04)
+
+
+### Features
+
+* device-aware image processing with comprehensive test suite ([#21](https://github.com/EsOsO/ShiroInk/issues/21)) ([3759683](https://github.com/EsOsO/ShiroInk/commit/37596831d16ec8763783c7bac8146bc9ddd8e252))
+
+
+### Documentation
+
+* Update CI/CD documentation with current automated workflows ([9780d4c](https://github.com/EsOsO/ShiroInk/commit/9780d4cbf306e3344dcb42a6c96d0d0ca055dba6))
+
 ## [2.0.9](https://github.com/EsOsO/ShiroInk/compare/v2.0.8...v2.0.9) (2025-12-31)
 
 
