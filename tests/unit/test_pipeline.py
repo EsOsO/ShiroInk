@@ -66,7 +66,7 @@ class TestImagePipeline:
         pipeline.remove_step("Sharpen")
         
         assert len(pipeline) == 2
-        assert pipeline.get_steps() == ["Contrast", "Quantize"]
+        assert pipeline.get_steps() == ["Contrast", "Quantize(16)"]
 
     def test_clear_pipeline(self):
         """Clearing pipeline should remove all steps."""
@@ -153,7 +153,7 @@ class TestPipelinePresets:
         )
         
         assert len(pipeline) == 3
-        assert pipeline.get_steps() == ["Contrast", "Sharpen", "Quantize"]
+        assert pipeline.get_steps() == ["Contrast", "Sharpen", "Quantize(16)"]
 
     def test_custom_preset_partial(self):
         """Custom preset with partial parameters."""

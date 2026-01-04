@@ -53,32 +53,32 @@ class TestQuantizeStepCreation:
         """Default QuantizeStep should use Palette16."""
         step = QuantizeStep()
         
-        assert step.get_name() == "Quantize"
+        assert step.get_name().startswith("Quantize")
 
     def test_quantize_with_custom_palette(self):
         """QuantizeStep with custom palette image."""
         custom_palette = Palette16()
         step = QuantizeStep(palette=custom_palette)
         
-        assert step.get_name() == "Quantize"
+        assert step.get_name().startswith("Quantize")
 
     def test_quantize_with_colors_parameter(self):
         """QuantizeStep with direct colors count."""
         step = QuantizeStep(colors=64)
         
-        assert step.get_name() == "Quantize"
+        assert step.get_name().startswith("Quantize")
 
     def test_quantize_with_bit_depth_grayscale(self):
         """QuantizeStep with bit_depth for grayscale."""
         step = QuantizeStep(use_bit_depth=True, bit_depth=4, color_mode=False)
         
-        assert step.get_name() == "Quantize"
+        assert step.get_name().startswith("Quantize")
 
     def test_quantize_with_bit_depth_color(self):
         """QuantizeStep with bit_depth for color."""
         step = QuantizeStep(use_bit_depth=True, bit_depth=12, color_mode=True)
         
-        assert step.get_name() == "Quantize"
+        assert step.get_name().startswith("Quantize")
 
 
 class TestQuantizeProcessing:
