@@ -83,14 +83,17 @@ class TestFileProcessing:
 
     def test_error_tracking(self, tmp_path):
         """Test error tracking during processing."""
+        from src.error_handler import ErrorSeverity
+        
         error_tracker = ErrorTracker()
         
         # Simulate adding errors
+        test_error = ValueError("Test error")
         error_tracker.add_error(
-            file_path=Path("test.jpg"),
-            step_name="TestStep",
-            error_message="Test error",
-            severity="error"
+            error=test_error,
+            path=Path("test.jpg"),
+            step="TestStep",
+            severity=ErrorSeverity.ERROR
         )
         
         assert error_tracker.has_errors()
