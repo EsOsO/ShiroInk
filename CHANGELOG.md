@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0](https://github.com/EsOsO/ShiroInk/compare/v2.2.0...v2.3.0) (2026-01-04)
+
+
+### Features
+
+* Add manga processing pipeline and modernize API ([#25](https://github.com/EsOsO/ShiroInk/issues/25)) ([6eec919](https://github.com/EsOsO/ShiroInk/commit/6eec9190d693e193aeb7f234fbeeb91150634341))
+
 ## [2.2.0](https://github.com/EsOsO/ShiroInk/compare/v2.1.0...v2.2.0) (2026-01-04)
 
 
