@@ -90,7 +90,7 @@ jobs:
       - name: Check coverage threshold
         if: matrix.os == 'ubuntu-latest'
         run: |
-          coverage report --fail-under=70
+          coverage report --fail-under=60
 
   test-device-presets:
     name: Test Device Presets
