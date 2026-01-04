@@ -6,6 +6,8 @@ omit =
     */__version__.py
     */venv/*
     */.venv/*
+    */cli.py
+    */main.py
 branch = True
 parallel = True
 
