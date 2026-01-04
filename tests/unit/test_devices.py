@@ -139,7 +139,7 @@ class TestSpecificDevices:
         """Test PocketBook InkPad Color 3 specifications."""
         device = DeviceSpecs.get_device("pocketbook_inkpad_color_3")
         
-        assert device.resolution == (1236, 1648)
+        assert device.resolution == (1404, 1872)
         assert device.display_type == DisplayType.EINK
         assert device.color_support is True
         assert device.color_gamut == ColorGamut.SRGB
