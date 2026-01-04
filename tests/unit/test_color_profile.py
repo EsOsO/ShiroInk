@@ -24,7 +24,7 @@ class TestColorProfileStepCreation:
         
         assert step.color_support is False
         assert step.bit_depth == 4
-        assert step.get_name() == "ColorProfile"
+        assert step.get_name() == "ColorProfile(B&W-4bit)"
 
     def test_create_color_step_srgb(self):
         """Create a color profile step with sRGB."""

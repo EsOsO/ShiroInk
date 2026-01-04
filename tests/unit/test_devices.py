@@ -227,7 +227,7 @@ class TestColorGamut:
 
     def test_color_gamut_values(self):
         """Verify color gamut enum values."""
-        assert ColorGamut.NONE.value == "none"
+        assert ColorGamut.NONE.value is None
         assert ColorGamut.SRGB.value == "sRGB"
         assert ColorGamut.DCI_P3.value == "DCI-P3"
         assert ColorGamut.ADOBE_RGB.value == "Adobe RGB"
