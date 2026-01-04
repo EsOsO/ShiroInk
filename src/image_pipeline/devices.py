@@ -61,7 +61,10 @@ class DeviceSpec:
     def __repr__(self) -> str:
         """String representation of device spec."""
         color_info = "Color" if self.color_support else "B&W"
-        return f"{self.name} ({self.resolution[0]}x{self.resolution[1]}, {self.display_type.value}, {color_info})"
+        return (
+            f"{self.name} ({self.resolution[0]}x{self.resolution[1]}, "
+            f"{self.display_type.value}, {color_info})"
+        )
 
 
 class DeviceSpecs:
@@ -224,7 +227,7 @@ class DeviceSpecs:
 
     # Kobo devices
     # Kobo devices (2020-2025)
-    
+
     # 2020 releases
     KOBO_NIA = DeviceSpec(
         name="Kobo Nia",
@@ -400,7 +403,7 @@ class DeviceSpecs:
     )
 
     # PocketBook devices (2020-2025)
-    
+
     # 2020 releases
     POCKETBOOK_TOUCH_LUX_5 = DeviceSpec(
         name="PocketBook Touch Lux 5",
