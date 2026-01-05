@@ -152,6 +152,28 @@ def main() -> int:
         _print_rich_help()
         return 0
 
+    # Detect first-run: no src_dir and no special flags
+    is_first_run = (
+        not args.src_dir
+        and not args.wizard
+        and not args.list_profiles
+        and not args.list_devices
+    )
+
+    if is_first_run:
+        # Offer wizard to first-time users
+        from wizard.prompts import prompt_yes_no
+
+        print()
+        if prompt_yes_no(
+            "Welcome to ShiroInk! Would you like to run the interactive setup wizard?"
+        ):
+            args.wizard = True
+        else:
+            print("\nYou can always run the wizard later with: shiroink --wizard")
+            print("For help, run: shiroink --help")
+            return 0
+
     # Handle --wizard flag
     if args.wizard:
         from interactive_wizard import InteractiveWizard
