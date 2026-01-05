@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#miglioramento-punto-4-gestione-errori-migliorata" class="md-skip">
+        <a href="#error-handling-system" class="md-skip">
           Skip to content
         </a>
       
@@ -779,10 +779,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#obiettivo" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obiettivo
+        Overview
       
     </span>
   </a>
@@ -790,193 +790,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architettura" class="md-nav__link">
+  <a href="#error-classification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architettura
+        Error Classification
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Architettura">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pattern-utilizzati" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pattern Utilizzati
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modifiche-implementate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modifiche Implementate
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Modifiche Implementate">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-eccezioni-custom-srcexceptionspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Eccezioni Custom (src/exceptions.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-error-tracking-system-srcerror_handlerpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Error Tracking System (src/error_handler.py)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Error Tracking System (src/error_handler.py)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#errortracker-class" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorTracker Class
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errorseverity-enum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorSeverity Enum
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errorrecord-dataclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorRecord Dataclass
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-retry-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Retry Logic
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-integrazione-in-processingconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Integrazione in ProcessingConfig
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-error-handling-in-file_processorpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Error Handling in file_processor.py
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Error Handling in file_processor.py">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#__process_file-con-retry" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        __process_file con Retry
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cbz-operations-con-error-tracking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CBZ Operations con Error Tracking
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-error-summary-in-mainpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Error Summary in main.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#livelli-di-errore" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Livelli di Errore
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Livelli di Errore">
+    <nav class="md-nav" aria-label="Error Classification">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1018,22 +840,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flow-di-gestione-errori" class="md-nav__link">
+  <a href="#exception-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flow di Gestione Errori
+        Exception Hierarchy
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Flow di Gestione Errori">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Tracking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Tracking">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#continue-on-error-true-default" class="md-nav__link">
+  <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Continue on Error = True (Default)
+        Key Features
       
     </span>
   </a>
@@ -1041,10 +874,60 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#continue-on-error-false" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Continue on Error = False
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retry-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retry Logic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#processingconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProcessingConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
       
     </span>
   </a>
@@ -1079,22 +962,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esempi-di-utilizzo" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esempi di Utilizzo
+        Usage Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Esempi di Utilizzo">
+    <nav class="md-nav" aria-label="Usage Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-processing-standard-continue-on-error" class="md-nav__link">
+  <a href="#standard-processing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Processing Standard (Continue on Error)
+        Standard Processing
       
     </span>
   </a>
@@ -1102,10 +985,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-strict-mode-stop-on-error" class="md-nav__link">
+  <a href="#strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Strict Mode (Stop on Error)
+        Strict Mode
       
     </span>
   </a>
@@ -1113,10 +996,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-custom-retry-configuration" class="md-nav__link">
+  <a href="#custom-retry-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Custom Retry Configuration
+        Custom Retry Configuration
       
     </span>
   </a>
@@ -1124,10 +1007,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-debug-mode-con-error-details" class="md-nav__link">
+  <a href="#debug-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Debug Mode con Error Details
+        Debug Mode
       
     </span>
   </a>
@@ -1136,6 +1019,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Pipeline
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1152,10 +1046,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test-error-tracking" class="md-nav__link">
+  <a href="#unit-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Error Tracking
+        Unit Tests
       
     </span>
   </a>
@@ -1163,10 +1057,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#test-retry-logic" class="md-nav__link">
+  <a href="#error-simulation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Retry Logic
+        Error Simulation
       
     </span>
   </a>
@@ -1179,22 +1073,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benefici-ottenuti" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Benefici Ottenuti
+        Best Practices
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Benefici Ottenuti">
+    <nav class="md-nav" aria-label="Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-robustezza" class="md-nav__link">
+  <a href="#development-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Robustezza
+        Development Mode
       
     </span>
   </a>
@@ -1202,93 +1096,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-visibilita" class="md-nav__link">
+  <a href="#production-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Visibilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-recuperabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Recuperabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Debugging
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-produzione" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Produzione
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#statistiche-error-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Statistiche Error Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurazione-consigliata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configurazione Consigliata
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configurazione Consigliata">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Development
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production
+        Production Mode
       
     </span>
   </a>
@@ -1312,33 +1123,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metriche" class="md-nav__link">
+  <a href="#error-prevention" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metriche
+        Error Prevention
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#confronto-primadopo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confronto Prima/Dopo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Confronto Prima/Dopo">
+    <nav class="md-nav" aria-label="Error Prevention">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prima" class="md-nav__link">
+  <a href="#before-processing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prima
+        Before Processing
       
     </span>
   </a>
@@ -1346,10 +1146,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dopo" class="md-nav__link">
+  <a href="#during-processing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dopo
+        During Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After Processing
       
     </span>
   </a>
@@ -1362,10 +1173,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusioni" class="md-nav__link">
+  <a href="#monitoring-and-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusioni
+        Monitoring and Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1677,10 +1499,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#obiettivo" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obiettivo
+        Overview
       
     </span>
   </a>
@@ -1688,193 +1510,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architettura" class="md-nav__link">
+  <a href="#error-classification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architettura
+        Error Classification
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Architettura">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pattern-utilizzati" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pattern Utilizzati
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modifiche-implementate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modifiche Implementate
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Modifiche Implementate">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-eccezioni-custom-srcexceptionspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Eccezioni Custom (src/exceptions.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-error-tracking-system-srcerror_handlerpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Error Tracking System (src/error_handler.py)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Error Tracking System (src/error_handler.py)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#errortracker-class" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorTracker Class
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errorseverity-enum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorSeverity Enum
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errorrecord-dataclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorRecord Dataclass
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-retry-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Retry Logic
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-integrazione-in-processingconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Integrazione in ProcessingConfig
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-error-handling-in-file_processorpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Error Handling in file_processor.py
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Error Handling in file_processor.py">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#__process_file-con-retry" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        __process_file con Retry
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cbz-operations-con-error-tracking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CBZ Operations con Error Tracking
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-error-summary-in-mainpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Error Summary in main.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#livelli-di-errore" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Livelli di Errore
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Livelli di Errore">
+    <nav class="md-nav" aria-label="Error Classification">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1916,22 +1560,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flow-di-gestione-errori" class="md-nav__link">
+  <a href="#exception-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flow di Gestione Errori
+        Exception Hierarchy
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Flow di Gestione Errori">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Tracking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Tracking">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#continue-on-error-true-default" class="md-nav__link">
+  <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Continue on Error = True (Default)
+        Key Features
       
     </span>
   </a>
@@ -1939,10 +1594,60 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#continue-on-error-false" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Continue on Error = False
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retry-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retry Logic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#processingconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProcessingConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
       
     </span>
   </a>
@@ -1977,22 +1682,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esempi-di-utilizzo" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esempi di Utilizzo
+        Usage Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Esempi di Utilizzo">
+    <nav class="md-nav" aria-label="Usage Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-processing-standard-continue-on-error" class="md-nav__link">
+  <a href="#standard-processing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Processing Standard (Continue on Error)
+        Standard Processing
       
     </span>
   </a>
@@ -2000,10 +1705,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-strict-mode-stop-on-error" class="md-nav__link">
+  <a href="#strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Strict Mode (Stop on Error)
+        Strict Mode
       
     </span>
   </a>
@@ -2011,10 +1716,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-custom-retry-configuration" class="md-nav__link">
+  <a href="#custom-retry-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Custom Retry Configuration
+        Custom Retry Configuration
       
     </span>
   </a>
@@ -2022,10 +1727,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-debug-mode-con-error-details" class="md-nav__link">
+  <a href="#debug-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Debug Mode con Error Details
+        Debug Mode
       
     </span>
   </a>
@@ -2034,6 +1739,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Pipeline
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2050,10 +1766,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test-error-tracking" class="md-nav__link">
+  <a href="#unit-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Error Tracking
+        Unit Tests
       
     </span>
   </a>
@@ -2061,10 +1777,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#test-retry-logic" class="md-nav__link">
+  <a href="#error-simulation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Retry Logic
+        Error Simulation
       
     </span>
   </a>
@@ -2077,22 +1793,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benefici-ottenuti" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Benefici Ottenuti
+        Best Practices
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Benefici Ottenuti">
+    <nav class="md-nav" aria-label="Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-robustezza" class="md-nav__link">
+  <a href="#development-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Robustezza
+        Development Mode
       
     </span>
   </a>
@@ -2100,93 +1816,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-visibilita" class="md-nav__link">
+  <a href="#production-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Visibilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-recuperabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Recuperabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Debugging
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-produzione" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Produzione
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#statistiche-error-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Statistiche Error Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurazione-consigliata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configurazione Consigliata
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configurazione Consigliata">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Development
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production
+        Production Mode
       
     </span>
   </a>
@@ -2210,33 +1843,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metriche" class="md-nav__link">
+  <a href="#error-prevention" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metriche
+        Error Prevention
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#confronto-primadopo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confronto Prima/Dopo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Confronto Prima/Dopo">
+    <nav class="md-nav" aria-label="Error Prevention">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prima" class="md-nav__link">
+  <a href="#before-processing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prima
+        Before Processing
       
     </span>
   </a>
@@ -2244,10 +1866,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dopo" class="md-nav__link">
+  <a href="#during-processing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dopo
+        During Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After Processing
       
     </span>
   </a>
@@ -2260,10 +1893,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusioni" class="md-nav__link">
+  <a href="#monitoring-and-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusioni
+        Monitoring and Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -2290,368 +1934,256 @@
   
 
 
-<h1 id="miglioramento-punto-4-gestione-errori-migliorata">Miglioramento Punto 4: Gestione Errori Migliorata<a class="headerlink" href="#miglioramento-punto-4-gestione-errori-migliorata" title="Permanent link">&para;</a></h1>
-<h2 id="obiettivo">Obiettivo<a class="headerlink" href="#obiettivo" title="Permanent link">&para;</a></h2>
-<p>Implementare un sistema robusto di gestione errori che:
-- Differenzi tra errori critici e recuperabili
-- Fornisca retry logic per operazioni I/O
-- Tracci e riporti tutti gli errori
-- Permetta di continuare il processing anche in caso di errori parziali</p>
-<h2 id="architettura">Architettura<a class="headerlink" href="#architettura" title="Permanent link">&para;</a></h2>
-<h3 id="pattern-utilizzati">Pattern Utilizzati<a class="headerlink" href="#pattern-utilizzati" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Exception Hierarchy</strong>: Eccezioni custom per errori specifici</li>
-<li><strong>Error Tracking</strong>: Centralizzazione del tracking errori</li>
-<li><strong>Retry Pattern</strong>: Tentativi multipli per operazioni fallibili</li>
-<li><strong>Fail-Safe</strong>: Continue-on-error policy configurabile</li>
-</ul>
-<h2 id="modifiche-implementate">Modifiche Implementate<a class="headerlink" href="#modifiche-implementate" title="Permanent link">&para;</a></h2>
-<h3 id="1-eccezioni-custom-srcexceptionspy">1. Eccezioni Custom (src/exceptions.py)<a class="headerlink" href="#1-eccezioni-custom-srcexceptionspy" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ShiroInkError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Base exception for all ShiroInk errors.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">ImageProcessingError</span><span class="p">(</span><span class="n">ShiroInkError</span><span class="p">):</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised when image processing fails.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">CBZExtractionError</span><span class="p">(</span><span class="n">ShiroInkError</span><span class="p">):</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised when CBZ extraction fails.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">CBZCreationError</span><span class="p">(</span><span class="n">ShiroInkError</span><span class="p">):</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised when CBZ creation fails.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">FileReadError</span><span class="p">(</span><span class="n">ShiroInkError</span><span class="p">):</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised when reading a file fails.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">class</span><span class="w"> </span><span class="nc">FileWriteError</span><span class="p">(</span><span class="n">ShiroInkError</span><span class="p">):</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised when writing a file fails.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">class</span><span class="w"> </span><span class="nc">RetryableError</span><span class="p">(</span><span class="n">ShiroInkError</span><span class="p">):</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception for errors that can be retried.&quot;&quot;&quot;</span>
-</code></pre></div>
-<p><strong>Caratteristiche:</strong>
-- Gerarchia di eccezioni con base comune
-- Informazioni contestuali (path, step, original_error)
-- Messaggi formattati automaticamente
-- Support per retry logic</p>
-<h3 id="2-error-tracking-system-srcerror_handlerpy">2. Error Tracking System (src/error_handler.py)<a class="headerlink" href="#2-error-tracking-system-srcerror_handlerpy" title="Permanent link">&para;</a></h3>
-<h4 id="errortracker-class">ErrorTracker Class<a class="headerlink" href="#errortracker-class" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorTracker</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">severity</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">retry_count</span><span class="p">)</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ErrorRecord</span><span class="p">]</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">has_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">has_critical_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
-</code></pre></div>
-<p><strong>Funzionalità:</strong>
-- Traccia tutti gli errori con contesto completo
-- Statistiche per file e step
-- Filtering per severity
-- Summary report dettagliato</p>
-<h4 id="errorseverity-enum">ErrorSeverity Enum<a class="headerlink" href="#errorseverity-enum" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorSeverity</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">WARNING</span> <span class="o">=</span> <span class="s2">&quot;warning&quot;</span>   <span class="c1"># Non bloccante, processing continua</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">ERROR</span> <span class="o">=</span> <span class="s2">&quot;error&quot;</span>       <span class="c1"># Errore ma recuperabile</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">CRITICAL</span> <span class="o">=</span> <span class="s2">&quot;critical&quot;</span> <span class="c1"># Errore grave, potrebbe bloccare</span>
-</code></pre></div>
-<h4 id="errorrecord-dataclass">ErrorRecord Dataclass<a class="headerlink" href="#errorrecord-dataclass" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@dataclass</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorRecord</span><span class="p">:</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">error</span><span class="p">:</span> <span class="ne">Exception</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">severity</span><span class="p">:</span> <span class="n">ErrorSeverity</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">step</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">float</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">retry_count</span><span class="p">:</span> <span class="nb">int</span>
-</code></pre></div>
-<h3 id="3-retry-logic">3. Retry Logic<a class="headerlink" href="#3-retry-logic" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">retry_on_error</span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">backoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">exceptions</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">,)</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span>
-</code></pre></div>
-<p><strong>Strategia:</strong>
-- Exponential backoff (delay × backoff^attempt)
-- Configurabile per numero tentativi
-- Selective exception handling
-- Integrato nel file processing</p>
-<h3 id="4-integrazione-in-processingconfig">4. Integrazione in ProcessingConfig<a class="headerlink" href="#4-integrazione-in-processingconfig" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@dataclass</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProcessingConfig</span><span class="p">:</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># ... campi esistenti ...</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">continue_on_error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Continue anche con errori</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>            <span class="c1"># Tentativi per I/O operations</span>
-</code></pre></div>
-<h3 id="5-error-handling-in-file_processorpy">5. Error Handling in file_processor.py<a class="headerlink" href="#5-error-handling-in-file_processorpy" title="Permanent link">&para;</a></h3>
-<h4 id="__process_file-con-retry">__process_file con Retry<a class="headerlink" href="#__process_file-con-retry" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">__process_file</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>            <span class="n">process</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>            <span class="k">break</span>  <span class="c1"># Success</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">config</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                <span class="k">continue</span>  <span class="c1"># Retry</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>                <span class="c1"># Track error and handle based on continue_on_error</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>                <span class="n">error_tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>                <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">continue_on_error</span><span class="p">:</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>                    <span class="k">raise</span>
-</code></pre></div>
-<h4 id="cbz-operations-con-error-tracking">CBZ Operations con Error Tracking<a class="headerlink" href="#cbz-operations-con-error-tracking" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_and_process_cbz</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="c1"># Extract and process</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        <span class="n">error</span> <span class="o">=</span> <span class="n">CBZExtractionError</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="n">error_tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">continue_on_error</span><span class="p">:</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>            <span class="k">raise</span> <span class="n">error</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-</code></pre></div>
-<h3 id="6-error-summary-in-mainpy">6. Error Summary in main.py<a class="headerlink" href="#6-error-summary-in-mainpy" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">error_tracker</span> <span class="o">=</span> <span class="n">ErrorTracker</span><span class="p">()</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="c1"># Processing...</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="c1"># Print summary</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">if</span> <span class="n">error_tracker</span><span class="o">.</span><span class="n">has_errors</span><span class="p">():</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>        <span class="n">summary</span> <span class="o">=</span> <span class="n">error_tracker</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total errors: </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;total_errors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Warnings: </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;warnings&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Errors: </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;errors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Critical: </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;critical&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="c1"># Show details in debug mode</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>            <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">error_tracker</span><span class="o">.</span><span class="n">get_errors</span><span class="p">()[:</span><span class="mi">5</span><span class="p">]:</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>                <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
-<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>        <span class="k">return</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">error_tracker</span><span class="o">.</span><span class="n">has_critical_errors</span><span class="p">()</span> <span class="k">else</span> <span class="mi">1</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>
-<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>    <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># Success</span>
-</code></pre></div>
-<h2 id="livelli-di-errore">Livelli di Errore<a class="headerlink" href="#livelli-di-errore" title="Permanent link">&para;</a></h2>
+<h1 id="error-handling-system">Error Handling System<a class="headerlink" href="#error-handling-system" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>ShiroInk implements a robust error handling system that differentiates between recoverable and critical errors, provides automatic retry logic, and tracks all failures for comprehensive reporting.</p>
+<h2 id="error-classification">Error Classification<a class="headerlink" href="#error-classification" title="Permanent link">&para;</a></h2>
 <h3 id="warning">WARNING<a class="headerlink" href="#warning" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Significato</strong>: Problema minore, processing continua</li>
-<li><strong>Esempi</strong>: </li>
-<li>File già esistente</li>
-<li>Metadata mancante</li>
-<li><strong>Azione</strong>: Log e continua</li>
-</ul>
+<p>Minor issues that don't affect processing</p>
+<p><strong>Examples:</strong>
+- File already exists
+- Missing metadata
+- Non-critical format issues</p>
+<p><strong>Action:</strong> Log and continue</p>
 <h3 id="error">ERROR<a class="headerlink" href="#error" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Significato</strong>: Errore durante processing di un file</li>
-<li><strong>Esempi</strong>:</li>
-<li>File corrotto</li>
-<li>Formato non supportato</li>
-<li>Processing step fallito</li>
-<li><strong>Azione</strong>: Log, skip file, continua con altri (se continue_on_error=True)</li>
-</ul>
+<p>Recoverable failures affecting individual files</p>
+<p><strong>Examples:</strong>
+- Corrupted file
+- Unsupported format
+- Processing step failure</p>
+<p><strong>Action:</strong> Log, skip file, continue processing</p>
 <h3 id="critical">CRITICAL<a class="headerlink" href="#critical" title="Permanent link">&para;</a></h3>
+<p>Severe errors that may compromise results</p>
+<p><strong>Examples:</strong>
+- Directory inaccessible
+- Insufficient disk space
+- Permission denied
+- Batch failure threshold exceeded</p>
+<p><strong>Action:</strong> Log and potentially halt batch processing</p>
+<h2 id="exception-hierarchy">Exception Hierarchy<a class="headerlink" href="#exception-hierarchy" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ShiroInkError (base)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── ImageProcessingError
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── FileReadError
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── FileWriteError
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── CBZExtractionError
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── CBZCreationError
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── RetryableError
+</code></pre></div>
+<h2 id="error-tracking">Error Tracking<a class="headerlink" href="#error-tracking" title="Permanent link">&para;</a></h2>
+<p>The <code>ErrorTracker</code> class centralizes error collection and statistics:</p>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Significato</strong>: Errore grave che potrebbe compromettere risultati</li>
-<li><strong>Esempi</strong>:</li>
-<li>Directory inaccessibile</li>
-<li>Spazio disco esaurito</li>
-<li>Permessi insufficienti</li>
-<li><strong>Azione</strong>: Log e considera blocco (se continue_on_error=False)</li>
+<li>Tracks all errors with full context</li>
+<li>Categorizes by severity level</li>
+<li>Provides aggregated statistics</li>
+<li>Generates summary reports</li>
 </ul>
-<h2 id="flow-di-gestione-errori">Flow di Gestione Errori<a class="headerlink" href="#flow-di-gestione-errori" title="Permanent link">&para;</a></h2>
-<h3 id="continue-on-error-true-default">Continue on Error = True (Default)<a class="headerlink" href="#continue-on-error-true-default" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>File 1: Success ✓
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>File 2: Error (retry 3x) ✗ → Track &amp; Continue
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>File 3: Success ✓
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>File 4: Critical Error ✗ → Track &amp; Continue
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>File 5: Success ✓
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Result: Processing completes, exit code 2
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Summary shows all errors
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">error_handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">ErrorTracker</span><span class="p">,</span> <span class="n">ErrorSeverity</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">tracker</span> <span class="o">=</span> <span class="n">ErrorTracker</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Record an error</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">error</span><span class="o">=</span><span class="n">ImageProcessingError</span><span class="p">(</span><span class="s2">&quot;Failed to process&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;image.jpg&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">severity</span><span class="o">=</span><span class="n">ErrorSeverity</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">step</span><span class="o">=</span><span class="s2">&quot;contrast&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># Get statistics</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">summary</span> <span class="o">=</span> <span class="n">tracker</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># {</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1">#   &#39;total_errors&#39;: 1,</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1">#   &#39;warnings&#39;: 0,</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1">#   &#39;errors&#39;: 1,</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1">#   &#39;critical&#39;: 0,</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1">#   &#39;files_with_errors&#39;: 1,</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1">#   &#39;errors_by_step&#39;: {&#39;contrast&#39;: 1}</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># }</span>
 </code></pre></div>
-<h3 id="continue-on-error-false">Continue on Error = False<a class="headerlink" href="#continue-on-error-false" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>File 1: Success ✓
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>File 2: Error (retry 3x) ✗ → Track &amp; STOP
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Result: Processing stops, exit code 1
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Summary shows errors up to failure point
+<h2 id="retry-logic">Retry Logic<a class="headerlink" href="#retry-logic" title="Permanent link">&para;</a></h2>
+<p>Automatic retry with exponential backoff for transient failures:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@retry_on_error</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="c1"># Processing logic</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">pass</span>
 </code></pre></div>
+<p><strong>Strategy:</strong>
+- Initial delay: 1 second
+- Backoff multiplier: 2x
+- Total attempts: 4 (initial + 3 retries)
+- Timeline: 0s, 1s, 3s, 7s</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="processingconfig">ProcessingConfig<a class="headerlink" href="#processingconfig" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProcessingConfig</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">continue_on_error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Continue despite errors</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>            <span class="c1"># Retry attempts for I/O</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># Verbose error details</span>
+</code></pre></div>
+<h3 id="behavior">Behavior<a class="headerlink" href="#behavior" title="Permanent link">&para;</a></h3>
+<p><strong>continue_on_error = True (Default)</strong>
+- Process all files despite errors
+- Track and report failures
+- Exit code: 0 (success), 1 (errors), 2 (critical)</p>
+<p><strong>continue_on_error = False</strong>
+- Stop on first error
+- Useful for strict validation
+- Exit code: 0 (success), 1+ (failure)</p>
 <h2 id="exit-codes">Exit Codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>0</strong>: Success (no errors)</li>
-<li><strong>1</strong>: Errors occurred (but no critical errors)</li>
-<li><strong>2</strong>: Critical errors occurred</li>
+<li><code>0</code>: Success - no errors</li>
+<li><code>1</code>: Processing completed with non-critical errors</li>
+<li><code>2</code>: Critical errors occurred</li>
 </ul>
 <h2 id="error-summary-report">Error Summary Report<a class="headerlink" href="#error-summary-report" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>============================================================
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ERROR SUMMARY
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>============================================================
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Total errors: 5
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  Warnings: 1
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  Errors: 3
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  Critical: 1
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Files with errors: 4
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Most problematic file: /path/to/file.jpg (2 errors)
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>Errors by step:
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>  image_processing: 3
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>  cbz_creation: 1
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>  cbz_extraction: 1
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>First 5 errors in detail:
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>  [ERROR] ImageProcessingError: Failed to process (step: contrast): /path/file1.jpg
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>  [ERROR] ImageProcessingError: Failed to process (step: sharpen): /path/file2.jpg
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>  [CRITICAL] CBZCreationError: Failed to create CBZ: /output/archive.cbz
-<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>  ...
-<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>============================================================
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ERROR SUMMARY
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Total errors: 5
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  Warnings: 1
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  Errors: 3
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  Critical: 1
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Files affected: 4
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Most problematic: /path/to/file.jpg (2 errors)
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>Errors by step:
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  image_processing: 3
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  cbz_creation: 1
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  cbz_extraction: 1
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>First 5 errors:
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  [ERROR] ImageProcessingError: Failed at step contrast
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>  [ERROR] FileReadError: Permission denied
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>  [CRITICAL] CBZCreationError: Invalid archive
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>  ...
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 </code></pre></div>
-<h2 id="esempi-di-utilizzo">Esempi di Utilizzo<a class="headerlink" href="#esempi-di-utilizzo" title="Permanent link">&para;</a></h2>
-<h3 id="1-processing-standard-continue-on-error">1. Processing Standard (Continue on Error)<a class="headerlink" href="#1-processing-standard-continue-on-error" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>manga/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>kindle
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="standard-processing">Standard Processing<a class="headerlink" href="#standard-processing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Continue despite errors (default)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>kindle
 </code></pre></div>
-- Processa tutti i file
-- Traccia errori ma continua
-- Mostra summary finale</p>
-<h3 id="2-strict-mode-stop-on-error">2. Strict Mode (Stop on Error)<a class="headerlink" href="#2-strict-mode-stop-on-error" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;manga&quot;</span><span class="p">),</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">),</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Stop on first error</span>
+<p>Output shows total errors and summary.</p>
+<h3 id="strict-mode">Strict Mode<a class="headerlink" href="#strict-mode" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">),</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">),</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># Stop on first error</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="custom-retry-configuration">Custom Retry Configuration<a class="headerlink" href="#custom-retry-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">),</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">),</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">5</span>  <span class="c1"># More aggressive retry</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="debug-mode">Debug Mode<a class="headerlink" href="#debug-mode" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>--debug
+</code></pre></div>
+<p>Shows:
+- All retry attempts
+- Detailed error messages
+- Processing statistics</p>
+<h2 id="integration-with-pipeline">Integration with Pipeline<a class="headerlink" href="#integration-with-pipeline" title="Permanent link">&para;</a></h2>
+<p>Errors during pipeline execution are caught and tracked:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">image_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="n">pipeline</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_pipeline</span><span class="p">()</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="n">processed</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="n">processed</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="n">error_tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>            <span class="n">error</span><span class="o">=</span><span class="n">e</span><span class="p">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>            <span class="n">path</span><span class="o">=</span><span class="n">image_path</span><span class="p">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>            <span class="n">severity</span><span class="o">=</span><span class="n">ErrorSeverity</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>            <span class="n">step</span><span class="o">=</span><span class="s2">&quot;pipeline&quot;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        <span class="p">)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">continue_on_error</span><span class="p">:</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>            <span class="k">raise</span>
+</code></pre></div>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Test error tracking</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/unit/test_error_handler.py<span class="w"> </span>-v
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Test retry logic</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/unit/test_retry.py<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="error-simulation">Error Simulation<a class="headerlink" href="#error-simulation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Test error tracking</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">tracker</span> <span class="o">=</span> <span class="n">ErrorTracker</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">error</span><span class="o">=</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Test error&quot;</span><span class="p">),</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test.jpg&quot;</span><span class="p">),</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">severity</span><span class="o">=</span><span class="n">ErrorSeverity</span><span class="o">.</span><span class="n">ERROR</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="k">assert</span> <span class="n">tracker</span><span class="o">.</span><span class="n">has_errors</span><span class="p">()</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="k">assert</span> <span class="n">tracker</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()[</span><span class="s2">&quot;total_errors&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+</code></pre></div>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="development-mode">Development Mode<a class="headerlink" href="#development-mode" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Fail fast</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>            <span class="c1"># Quick feedback</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">debug</span><span class="o">=</span><span class="kc">True</span>                <span class="c1"># Full logging</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="production-mode">Production Mode<a class="headerlink" href="#production-mode" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># Process everything</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>            <span class="c1"># Reasonable retry</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">debug</span><span class="o">=</span><span class="kc">False</span>               <span class="c1"># Summary only</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="3-custom-retry-configuration">3. Custom Retry Configuration<a class="headerlink" href="#3-custom-retry-configuration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;manga&quot;</span><span class="p">),</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">),</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># More aggressive retry</span>
+<h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># Never stop</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>            <span class="c1"># Aggressive retry</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">debug</span><span class="o">=</span><span class="kc">True</span>                <span class="c1"># Full analysis log</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="4-debug-mode-con-error-details">4. Debug Mode con Error Details<a class="headerlink" href="#4-debug-mode-con-error-details" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>manga/<span class="w"> </span>output/<span class="w"> </span>--debug
-</code></pre></div>
-- Mostra tentativi di retry
-- Mostra primi 5 errori in dettaglio
-- Log completo di tutte le operazioni</p>
-<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
-<h3 id="test-error-tracking">Test Error Tracking<a class="headerlink" href="#test-error-tracking" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">tracker</span> <span class="o">=</span> <span class="n">ErrorTracker</span><span class="p">()</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">error</span><span class="o">=</span><span class="n">ImageProcessingError</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">),</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="n">path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/test.jpg&#39;</span><span class="p">),</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">severity</span><span class="o">=</span><span class="n">ErrorSeverity</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">step</span><span class="o">=</span><span class="s1">&#39;contrast&#39;</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">)</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">assert</span> <span class="n">tracker</span><span class="o">.</span><span class="n">has_errors</span><span class="p">()</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="k">assert</span> <span class="n">tracker</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()[</span><span class="s1">&#39;total_errors&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
-</code></pre></div>
-<h3 id="test-retry-logic">Test Retry Logic<a class="headerlink" href="#test-retry-logic" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nd">@retry_on_error</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">flaky_operation</span><span class="p">():</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="c1"># Simulates operation that might fail</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="o">...</span>
-</code></pre></div>
-<h2 id="benefici-ottenuti">Benefici Ottenuti<a class="headerlink" href="#benefici-ottenuti" title="Permanent link">&para;</a></h2>
-<h3 id="1-robustezza">1. Robustezza<a class="headerlink" href="#1-robustezza" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Prima</strong>: Un errore bloccava tutto il processing</li>
-<li><strong>Dopo</strong>: Processing continua, errori tracciati</li>
-</ul>
-<h3 id="2-visibilita">2. Visibilità<a class="headerlink" href="#2-visibilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Prima</strong>: Errori solo in console, difficili da analizzare</li>
-<li><strong>Dopo</strong>: Summary strutturato con statistiche</li>
-</ul>
-<h3 id="3-recuperabilita">3. Recuperabilità<a class="headerlink" href="#3-recuperabilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Prima</strong>: Nessun retry, errori transienti causavano fallimenti</li>
-<li><strong>Dopo</strong>: Retry automatico con exponential backoff</li>
-</ul>
-<h3 id="4-debugging">4. Debugging<a class="headerlink" href="#4-debugging" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Prima</strong>: Difficile identificare pattern di errori</li>
-<li><strong>Dopo</strong>: Statistiche per file e step, file più problematici</li>
-</ul>
-<h3 id="5-produzione">5. Produzione<a class="headerlink" href="#5-produzione" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Prima</strong>: Batch jobs fallivano completamente</li>
-<li><strong>Dopo</strong>: Batch completa, report di cosa è andato storto</li>
-</ul>
-<h2 id="statistiche-error-summary">Statistiche Error Summary<a class="headerlink" href="#statistiche-error-summary" title="Permanent link">&para;</a></h2>
-<p>Il summary fornisce:
-- <strong>total_errors</strong>: Conteggio totale errori
-- <strong>warnings/errors/critical</strong>: Breakdown per severity
-- <strong>files_with_errors</strong>: Quanti file hanno avuto problemi
-- <strong>most_problematic_file</strong>: File con più errori + conteggio
-- <strong>errors_by_step</strong>: Distribuzione errori per processing step</p>
-<h2 id="configurazione-consigliata">Configurazione Consigliata<a class="headerlink" href="#configurazione-consigliata" title="Permanent link">&para;</a></h2>
-<h3 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">ProcessingConfig</span><span class="p">(</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Fail fast</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>            <span class="c1"># Quick feedback</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>               <span class="c1"># Full logging</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">)</span>
-</code></pre></div>
-<h3 id="production">Production<a class="headerlink" href="#production" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">ProcessingConfig</span><span class="p">(</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># Process everything</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>            <span class="c1"># Reasonable retry</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>              <span class="c1"># Summary only</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">)</span>
-</code></pre></div>
-<h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">ProcessingConfig</span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># Never stop</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="n">max_retries</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>            <span class="c1"># Aggressive retry</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>               <span class="c1"># Full log for analysis</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">)</span>
-</code></pre></div>
-<h2 id="metriche">Metriche<a class="headerlink" href="#metriche" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Nuove classi</strong>: 10+ exception types</li>
-<li><strong>ErrorTracker</strong>: 1 classe centralizzata</li>
-<li><strong>Retry logic</strong>: Configurable backoff strategy</li>
-<li><strong>Exit codes</strong>: 3 livelli (success, error, critical)</li>
-<li><strong>Summary fields</strong>: 7 metriche statistiche</li>
-</ul>
-<h2 id="confronto-primadopo">Confronto Prima/Dopo<a class="headerlink" href="#confronto-primadopo" title="Permanent link">&para;</a></h2>
-<h3 id="prima">Prima<a class="headerlink" href="#prima" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="n">process_file</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Perso dopo scroll</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="c1"># Processing continua o si blocca?</span>
-</code></pre></div>
-<h3 id="dopo">Dopo<a class="headerlink" href="#dopo" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>            <span class="n">process_file</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>            <span class="k">break</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">config</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>                <span class="k">continue</span>  <span class="c1"># Retry</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>                <span class="n">error_tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>                <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">continue_on_error</span><span class="p">:</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>                    <span class="k">continue</span>  <span class="c1"># Next file</span>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>                <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>                    <span class="k">raise</span>  <span class="c1"># Stop</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="c1"># End: Full summary report</span>
-</code></pre></div>
-<h2 id="conclusioni">Conclusioni<a class="headerlink" href="#conclusioni" title="Permanent link">&para;</a></h2>
-<p>Il sistema di gestione errori trasforma ShiroInk da fragile a robusto:</p>
+<h2 id="error-prevention">Error Prevention<a class="headerlink" href="#error-prevention" title="Permanent link">&para;</a></h2>
+<h3 id="before-processing">Before Processing<a class="headerlink" href="#before-processing" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Resilienza</strong>: Retry automatico per errori transienti</li>
-<li><strong>Visibilità</strong>: Tracking completo con statistiche</li>
-<li><strong>Flessibilità</strong>: Continue-on-error configurabile</li>
-<li><strong>Produzione-ready</strong>: Gestione batch affidabile</li>
-<li><strong>Debug-friendly</strong>: Summary dettagliati e error logs</li>
+<li>Validate directory access</li>
+<li>Check disk space</li>
+<li>Verify file permissions</li>
+<li>Validate file formats</li>
 </ol>
-<p>Il sistema è pronto per deployment in produzione con gestione professionale degli errori.</p>
+<h3 id="during-processing">During Processing<a class="headerlink" href="#during-processing" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Use try-catch blocks</li>
+<li>Implement retry logic</li>
+<li>Track all failures</li>
+<li>Log contextual information</li>
+</ol>
+<h3 id="after-processing">After Processing<a class="headerlink" href="#after-processing" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Generate summary report</li>
+<li>Identify patterns</li>
+<li>Suggest corrective actions</li>
+<li>Archive logs for analysis</li>
+</ol>
+<h2 id="monitoring-and-logging">Monitoring and Logging<a class="headerlink" href="#monitoring-and-logging" title="Permanent link">&para;</a></h2>
+<p>Error tracking data can be used for:</p>
+<ul>
+<li><strong>Monitoring</strong>: Alert on critical errors</li>
+<li><strong>Analytics</strong>: Identify problematic files or steps</li>
+<li><strong>Improvement</strong>: Fix recurring issues</li>
+<li><strong>Audit</strong>: Track all processing failures</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../pipeline-system/">Pipeline System</a> - Processing steps</li>
+<li><a href="../progress-reporter/">Progress Reporting</a> - User feedback</li>
+<li><a href="../../guides/quickstart/">Configuration</a> - Setup instructions</li>
+</ul>
 
 
 
@@ -2674,7 +2206,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 31, 2025 10:16:55 UTC">December 31, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 5, 2026 15:09:55 UTC">January 5, 2026</span>
   </span>
 
     

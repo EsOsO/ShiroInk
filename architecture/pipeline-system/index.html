@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#miglioramento-punto-3-pipeline-di-processing-configurabile" class="md-skip">
+        <a href="#image-processing-pipeline-system" class="md-skip">
           Skip to content
         </a>
       
@@ -723,10 +723,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#obiettivo" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obiettivo
+        Overview
       
     </span>
   </a>
@@ -734,22 +734,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architettura" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architettura
+        Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Architettura">
+    <nav class="md-nav" aria-label="Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pattern-utilizzati" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pattern Utilizzati
+        Core Concepts
       
     </span>
   </a>
@@ -762,50 +762,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modifiche-implementate" class="md-nav__link">
+  <a href="#available-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modifiche Implementate
+        Available Steps
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Modifiche Implementate">
+    <nav class="md-nav" aria-label="Available Steps">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-interfaccia-processingstep-srcimage_pipelinepipelinepy" class="md-nav__link">
+  <a href="#resizestep" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Interfaccia ProcessingStep (src/image_pipeline/pipeline.py)
+        ResizeStep
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-classe-imagepipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Classe ImagePipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-refactoring-step-esistenti" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Refactoring Step Esistenti
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Refactoring Step Esistenti">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#contraststep" class="md-nav__link">
@@ -844,40 +821,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#4-pipeline-presets-srcimage_pipelinepresetspy" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#preset-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Pipeline Presets (src/image_pipeline/presets.py)
+        Preset Pipelines
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Pipeline Presets (src/image_pipeline/presets.py)">
+    <nav class="md-nav" aria-label="Preset Pipelines">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preset-disponibili" class="md-nav__link">
+  <a href="#kindle-default" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preset Disponibili
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-integrazione-con-processingconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Integrazione con ProcessingConfig
+        kindle (Default)
       
     </span>
   </a>
@@ -885,10 +846,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-supporto-cli" class="md-nav__link">
+  <a href="#tablet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Supporto CLI
+        tablet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high_quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        high_quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        minimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        custom
       
     </span>
   </a>
@@ -901,22 +895,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esempi-di-utilizzo" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esempi di Utilizzo
+        Usage Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Esempi di Utilizzo">
+    <nav class="md-nav" aria-label="Usage Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uso-cli-standard" class="md-nav__link">
+  <a href="#using-presets-via-cli" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso CLI Standard
+        Using Presets via CLI
       
     </span>
   </a>
@@ -924,10 +918,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uso-programmatico-preset" class="md-nav__link">
+  <a href="#programmatic-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso Programmatico - Preset
+        Programmatic Usage
       
     </span>
   </a>
@@ -935,32 +929,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uso-programmatico-custom" class="md-nav__link">
+  <a href="#dynamic-modification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso Programmatico - Custom
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#method-chaining" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Method Chaining
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modifica-dinamica" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modifica Dinamica
+        Dynamic Modification
       
     </span>
   </a>
@@ -973,22 +945,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#estendibilita" class="md-nav__link">
+  <a href="#creating-custom-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estendibilità
+        Creating Custom Steps
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Estendibilità">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-custom-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Custom Presets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#creare-un-nuovo-processing-step" class="md-nav__link">
+  <a href="#strategy-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creare un Nuovo Processing Step
+        Strategy Pattern
       
     </span>
   </a>
@@ -996,10 +990,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creare-un-nuovo-preset" class="md-nav__link">
+  <a href="#chain-of-responsibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creare un Nuovo Preset
+        Chain of Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#factory-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Factory Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#builder-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Builder Pattern
       
     </span>
   </a>
@@ -1024,10 +1040,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test-unitari-test_pipelinepy" class="md-nav__link">
+  <a href="#unit-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Unitari (test_pipeline.py)
+        Unit Tests
       
     </span>
   </a>
@@ -1035,10 +1051,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#test-funzionali" class="md-nav__link">
+  <a href="#functional-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Funzionali
+        Functional Tests
       
     </span>
   </a>
@@ -1051,22 +1067,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vantaggi-ottenuti" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vantaggi Ottenuti
+        Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Vantaggi Ottenuti">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-flessibilita" class="md-nav__link">
+  <a href="#before-hardcoded-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Flessibilità
+        Before (Hardcoded Pipeline)
       
     </span>
   </a>
@@ -1074,43 +1112,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-estendibilita" class="md-nav__link">
+  <a href="#after-flexible-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Estendibilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-testabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Testabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-riusabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Riusabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Performance
+        After (Flexible Pipeline)
       
     </span>
   </a>
@@ -1119,139 +1124,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#confronto-primadopo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confronto Prima/Dopo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Confronto Prima/Dopo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prima-hardcoded-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prima: Hardcoded Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dopo-configurable-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dopo: Configurable Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backward-compatibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backward Compatibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metriche" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metriche
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#casi-duso-reali" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Casi d'Uso Reali
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Casi d&#39;Uso Reali">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-webcomic-per-mobile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Webcomic per Mobile
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-manga-per-e-ink" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Manga per E-Ink
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-archivio-alta-qualita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Archivio Alta Qualità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-conversione-veloce-no-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Conversione Veloce (No Processing)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusioni" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conclusioni
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1616,10 +1488,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#obiettivo" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obiettivo
+        Overview
       
     </span>
   </a>
@@ -1627,22 +1499,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architettura" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architettura
+        Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Architettura">
+    <nav class="md-nav" aria-label="Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pattern-utilizzati" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pattern Utilizzati
+        Core Concepts
       
     </span>
   </a>
@@ -1655,50 +1527,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modifiche-implementate" class="md-nav__link">
+  <a href="#available-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modifiche Implementate
+        Available Steps
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Modifiche Implementate">
+    <nav class="md-nav" aria-label="Available Steps">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-interfaccia-processingstep-srcimage_pipelinepipelinepy" class="md-nav__link">
+  <a href="#resizestep" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Interfaccia ProcessingStep (src/image_pipeline/pipeline.py)
+        ResizeStep
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-classe-imagepipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Classe ImagePipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-refactoring-step-esistenti" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Refactoring Step Esistenti
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Refactoring Step Esistenti">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#contraststep" class="md-nav__link">
@@ -1737,40 +1586,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#4-pipeline-presets-srcimage_pipelinepresetspy" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#preset-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Pipeline Presets (src/image_pipeline/presets.py)
+        Preset Pipelines
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Pipeline Presets (src/image_pipeline/presets.py)">
+    <nav class="md-nav" aria-label="Preset Pipelines">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preset-disponibili" class="md-nav__link">
+  <a href="#kindle-default" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preset Disponibili
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-integrazione-con-processingconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Integrazione con ProcessingConfig
+        kindle (Default)
       
     </span>
   </a>
@@ -1778,10 +1611,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-supporto-cli" class="md-nav__link">
+  <a href="#tablet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Supporto CLI
+        tablet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high_quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        high_quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        minimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        custom
       
     </span>
   </a>
@@ -1794,22 +1660,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esempi-di-utilizzo" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esempi di Utilizzo
+        Usage Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Esempi di Utilizzo">
+    <nav class="md-nav" aria-label="Usage Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uso-cli-standard" class="md-nav__link">
+  <a href="#using-presets-via-cli" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso CLI Standard
+        Using Presets via CLI
       
     </span>
   </a>
@@ -1817,10 +1683,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uso-programmatico-preset" class="md-nav__link">
+  <a href="#programmatic-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso Programmatico - Preset
+        Programmatic Usage
       
     </span>
   </a>
@@ -1828,32 +1694,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uso-programmatico-custom" class="md-nav__link">
+  <a href="#dynamic-modification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso Programmatico - Custom
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#method-chaining" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Method Chaining
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modifica-dinamica" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modifica Dinamica
+        Dynamic Modification
       
     </span>
   </a>
@@ -1866,22 +1710,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#estendibilita" class="md-nav__link">
+  <a href="#creating-custom-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estendibilità
+        Creating Custom Steps
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Estendibilità">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-custom-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Custom Presets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#creare-un-nuovo-processing-step" class="md-nav__link">
+  <a href="#strategy-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creare un Nuovo Processing Step
+        Strategy Pattern
       
     </span>
   </a>
@@ -1889,10 +1755,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creare-un-nuovo-preset" class="md-nav__link">
+  <a href="#chain-of-responsibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creare un Nuovo Preset
+        Chain of Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#factory-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Factory Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#builder-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Builder Pattern
       
     </span>
   </a>
@@ -1917,10 +1805,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test-unitari-test_pipelinepy" class="md-nav__link">
+  <a href="#unit-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Unitari (test_pipeline.py)
+        Unit Tests
       
     </span>
   </a>
@@ -1928,10 +1816,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#test-funzionali" class="md-nav__link">
+  <a href="#functional-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Funzionali
+        Functional Tests
       
     </span>
   </a>
@@ -1944,22 +1832,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vantaggi-ottenuti" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vantaggi Ottenuti
+        Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Vantaggi Ottenuti">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-flessibilita" class="md-nav__link">
+  <a href="#before-hardcoded-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Flessibilità
+        Before (Hardcoded Pipeline)
       
     </span>
   </a>
@@ -1967,43 +1877,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-estendibilita" class="md-nav__link">
+  <a href="#after-flexible-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Estendibilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-testabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Testabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-riusabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Riusabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Performance
+        After (Flexible Pipeline)
       
     </span>
   </a>
@@ -2012,139 +1889,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#confronto-primadopo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confronto Prima/Dopo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Confronto Prima/Dopo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prima-hardcoded-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prima: Hardcoded Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dopo-configurable-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dopo: Configurable Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backward-compatibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backward Compatibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metriche" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metriche
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#casi-duso-reali" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Casi d'Uso Reali
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Casi d&#39;Uso Reali">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-webcomic-per-mobile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Webcomic per Mobile
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-manga-per-e-ink" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Manga per E-Ink
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-archivio-alta-qualita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Archivio Alta Qualità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-conversione-veloce-no-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Conversione Veloce (No Processing)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusioni" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conclusioni
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2168,314 +1912,216 @@
   
 
 
-<h1 id="miglioramento-punto-3-pipeline-di-processing-configurabile">Miglioramento Punto 3: Pipeline di Processing Configurabile<a class="headerlink" href="#miglioramento-punto-3-pipeline-di-processing-configurabile" title="Permanent link">&para;</a></h1>
-<h2 id="obiettivo">Obiettivo<a class="headerlink" href="#obiettivo" title="Permanent link">&para;</a></h2>
-<p>Implementare una pipeline di processing modulare e configurabile che permetta di:
-- Modificare l'ordine delle operazioni di processing
-- Abilitare/disabilitare singoli step
-- Creare preset ottimizzati per diversi dispositivi
-- Estendere facilmente con nuovi step di processing</p>
-<h2 id="architettura">Architettura<a class="headerlink" href="#architettura" title="Permanent link">&para;</a></h2>
-<h3 id="pattern-utilizzati">Pattern Utilizzati<a class="headerlink" href="#pattern-utilizzati" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Strategy Pattern</strong>: Ogni step di processing è una strategia intercambiabile</li>
-<li><strong>Chain of Responsibility</strong>: Gli step vengono eseguiti in sequenza</li>
-<li><strong>Builder Pattern</strong>: Costruzione fluida della pipeline con method chaining</li>
-<li><strong>Factory Pattern</strong>: PipelinePresets per creare configurazioni predefinite</li>
-</ul>
-<h2 id="modifiche-implementate">Modifiche Implementate<a class="headerlink" href="#modifiche-implementate" title="Permanent link">&para;</a></h2>
-<h3 id="1-interfaccia-processingstep-srcimage_pipelinepipelinepy">1. Interfaccia ProcessingStep (src/image_pipeline/pipeline.py)<a class="headerlink" href="#1-interfaccia-processingstep-srcimage_pipelinepipelinepy" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProcessingStep</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for image processing steps.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Process the image.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">pass</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the name of this processing step.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">pass</span>
-</code></pre></div>
-<p><strong>Caratteristiche:</strong>
-- Interfaccia comune per tutti gli step
-- Configurazione tramite kwargs nel costruttore
-- Rappresentazione string per debugging</p>
-<h3 id="2-classe-imagepipeline">2. Classe ImagePipeline<a class="headerlink" href="#2-classe-imagepipeline" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ImagePipeline</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Configurable image processing pipeline.&quot;&quot;&quot;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="n">ProcessingStep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ImagePipeline&quot;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">remove_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ImagePipeline&quot;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ImagePipeline&quot;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span>
-</code></pre></div>
-<p><strong>Funzionalità:</strong>
-- Gestione dinamica degli step (add, remove, clear)
-- Method chaining per costruzione fluida
-- Esecuzione sequenziale degli step
-- Informazioni sulla pipeline (get_steps, len, repr)</p>
-<h3 id="3-refactoring-step-esistenti">3. Refactoring Step Esistenti<a class="headerlink" href="#3-refactoring-step-esistenti" title="Permanent link">&para;</a></h3>
-<h4 id="contraststep">ContrastStep<a class="headerlink" href="#contraststep" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ContrastStep</span><span class="p">(</span><span class="n">ProcessingStep</span><span class="p">):</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">):</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="n">factor</span><span class="p">)</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
-</code></pre></div>
-<h4 id="sharpenstep">SharpenStep<a class="headerlink" href="#sharpenstep" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SharpenStep</span><span class="p">(</span><span class="n">ProcessingStep</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">):</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="n">factor</span><span class="p">)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
-</code></pre></div>
-<h4 id="quantizestep">QuantizeStep<a class="headerlink" href="#quantizestep" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">QuantizeStep</span><span class="p">(</span><span class="n">ProcessingStep</span><span class="p">):</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">palette</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">Palette16</span><span class="p">):</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">)</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">palette</span> <span class="o">=</span> <span class="n">palette</span>
-</code></pre></div>
-<p><strong>Nota:</strong> Le funzioni legacy (contrast, sharpen, quantize) sono mantenute per backward compatibility.</p>
-<h3 id="4-pipeline-presets-srcimage_pipelinepresetspy">4. Pipeline Presets (src/image_pipeline/presets.py)<a class="headerlink" href="#4-pipeline-presets-srcimage_pipelinepresetspy" title="Permanent link">&para;</a></h3>
-<h4 id="preset-disponibili">Preset Disponibili<a class="headerlink" href="#preset-disponibili" title="Permanent link">&para;</a></h4>
-<p><strong>Kindle</strong> (default)
-- Contrast (factor=1.5) → High contrast per display e-ink
-- Sharpen (factor=1.2) → Moderato sharpening
-- Quantize (16 colors) → Riduzione dimensione file</p>
-<p><strong>Tablet</strong>
-- Contrast (factor=1.3) → Moderato contrasto
-- Sharpen (factor=1.1) → Leggero sharpening
-- No Quantize → Preserva i colori</p>
-<p><strong>Print</strong>
-- Sharpen (factor=1.05) → Solo leggero sharpening
-- Minimal processing per stampa</p>
-<p><strong>High Quality</strong>
-- Contrast (factor=1.2) → Leggero contrasto
-- Sharpen (factor=1.4) → Enhanced sharpening
-- No Quantize → Qualità massima</p>
-<p><strong>Minimal</strong>
-- Pipeline vuota → Nessun processing</p>
-<p><strong>Custom</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">PipelinePresets</span><span class="o">.</span><span class="n">custom</span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">contrast</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span>      <span class="c1"># Optional</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">sharpen</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>       <span class="c1"># Optional</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">quantize</span><span class="o">=</span><span class="kc">True</span>      <span class="c1"># Optional</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+<h1 id="image-processing-pipeline-system">Image Processing Pipeline System<a class="headerlink" href="#image-processing-pipeline-system" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The image processing pipeline is a modular, configurable system for transforming images through a sequence of processing steps. Each step implements the <code>ProcessingStep</code> interface, allowing flexible composition and customization.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h3 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h3>
+<p><strong>ProcessingStep (Interface)</strong>
+- Abstract base class for all processing operations
+- Must implement <code>process()</code> and <code>get_name()</code> methods
+- Encapsulates both configuration and execution</p>
+<p><strong>ImagePipeline (Container)</strong>
+- Manages a sequence of ProcessingStep instances
+- Executes steps in order (Chain of Responsibility pattern)
+- Supports dynamic add/remove operations
+- Provides fluent interface for construction</p>
+<p><strong>Pipeline Presets (Factory)</strong>
+- Pre-configured pipelines for common use cases
+- Optimized for specific device types and quality requirements
+- Easy to extend or customize</p>
+<h2 id="available-steps">Available Steps<a class="headerlink" href="#available-steps" title="Permanent link">&para;</a></h2>
+<h3 id="resizestep">ResizeStep<a class="headerlink" href="#resizestep" title="Permanent link">&para;</a></h3>
+<p>Resizes images to exact device screen dimensions.</p>
+<p><strong>Configuration:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ResizeStep</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">fit_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;contain&quot;</span><span class="p">)</span>
 </code></pre></div></p>
-<h3 id="5-integrazione-con-processingconfig">5. Integrazione con ProcessingConfig<a class="headerlink" href="#5-integrazione-con-processingconfig" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@dataclass</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProcessingConfig</span><span class="p">:</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="c1"># ... altri campi ...</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">pipeline_preset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;kindle&quot;</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">custom_pipeline</span><span class="p">:</span> <span class="n">ImagePipeline</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImagePipeline</span><span class="p">:</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the pipeline based on configuration.&quot;&quot;&quot;</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_pipeline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_pipeline</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>            <span class="k">return</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">get_preset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_preset</span><span class="p">)</span>
+<p><strong>Use case:</strong> Ensure output matches exact device resolution</p>
+<h3 id="contraststep">ContrastStep<a class="headerlink" href="#contraststep" title="Permanent link">&para;</a></h3>
+<p>Adjusts image contrast for better readability on e-ink displays.</p>
+<p><strong>Configuration:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Use case:</strong> Enhance visibility on low-contrast displays</p>
+<h3 id="sharpenstep">SharpenStep<a class="headerlink" href="#sharpenstep" title="Permanent link">&para;</a></h3>
+<p>Enhances edge sharpness and detail clarity.</p>
+<p><strong>Configuration:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Use case:</strong> Improve text and line clarity</p>
+<h3 id="quantizestep">QuantizeStep<a class="headerlink" href="#quantizestep" title="Permanent link">&para;</a></h3>
+<p>Reduces color palette to decrease file size.</p>
+<p><strong>Configuration:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QuantizeStep</span><span class="p">(</span><span class="n">palette</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">Palette16</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Use case:</strong> Optimize for e-ink displays or reduce file size</p>
+<h2 id="preset-pipelines">Preset Pipelines<a class="headerlink" href="#preset-pipelines" title="Permanent link">&para;</a></h2>
+<h3 id="kindle-default">kindle (Default)<a class="headerlink" href="#kindle-default" title="Permanent link">&para;</a></h3>
+<p>Optimized for Amazon Kindle e-ink readers.</p>
+<p><strong>Steps:</strong>
+- ResizeStep (to device resolution)
+- ContrastStep (factor: 1.5)
+- SharpenStep (factor: 1.2)
+- QuantizeStep (16 colors)</p>
+<p><strong>Best for:</strong> E-ink readers, file size optimization</p>
+<h3 id="tablet">tablet<a class="headerlink" href="#tablet" title="Permanent link">&para;</a></h3>
+<p>Optimized for LCD/tablet displays.</p>
+<p><strong>Steps:</strong>
+- ResizeStep (to device resolution)
+- ContrastStep (factor: 1.3)
+- SharpenStep (factor: 1.1)</p>
+<p><strong>Best for:</strong> Color LCD devices, web viewing</p>
+<h3 id="high_quality">high_quality<a class="headerlink" href="#high_quality" title="Permanent link">&para;</a></h3>
+<p>Maximum quality for archival storage.</p>
+<p><strong>Steps:</strong>
+- ResizeStep (to device resolution)
+- ContrastStep (factor: 1.2)
+- SharpenStep (factor: 1.4)</p>
+<p><strong>Best for:</strong> Archive storage, future-proofing</p>
+<h3 id="minimal">minimal<a class="headerlink" href="#minimal" title="Permanent link">&para;</a></h3>
+<p>No processing (pass-through).</p>
+<p><strong>Steps:</strong> None</p>
+<p><strong>Best for:</strong> Quick conversions, preserving original quality</p>
+<h3 id="custom">custom<a class="headerlink" href="#custom" title="Permanent link">&para;</a></h3>
+<p>Build a custom pipeline programmatically.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.8</span><span class="p">))</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">))</span>
 </code></pre></div>
-<h3 id="6-supporto-cli">6. Supporto CLI<a class="headerlink" href="#6-supporto-cli" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>src<span class="w"> </span>dest<span class="w"> </span>--pipeline<span class="w"> </span>kindle<span class="w">      </span><span class="c1"># Default</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>src<span class="w"> </span>dest<span class="w"> </span>--pipeline<span class="w"> </span>tablet
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>src<span class="w"> </span>dest<span class="w"> </span>--pipeline<span class="w"> </span>print
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>src<span class="w"> </span>dest<span class="w"> </span>--pipeline<span class="w"> </span>high_quality
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>src<span class="w"> </span>dest<span class="w"> </span>--pipeline<span class="w"> </span>minimal
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="using-presets-via-cli">Using Presets via CLI<a class="headerlink" href="#using-presets-via-cli" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Default (kindle preset)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Tablet optimization</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>tablet
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># High quality archive</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>high_quality
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># No processing</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>minimal
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>-p {kindle,tablet,print,high_quality,minimal}, --pipeline {kindle,tablet,print,high_quality,minimal}
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    Processing pipeline preset to use (default: kindle)
+<h3 id="programmatic-usage">Programmatic Usage<a class="headerlink" href="#programmatic-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.presets</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipelinePresets</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">process</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Using a preset</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">kindle</span><span class="p">()</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1072</span><span class="p">,</span> <span class="mi">1448</span><span class="p">),</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Using custom pipeline</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.8</span><span class="p">))</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">))</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1072</span><span class="p">,</span> <span class="mi">1448</span><span class="p">),</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c1"># Method chaining</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="p">(</span><span class="n">ImagePipeline</span><span class="p">()</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="mf">1.5</span><span class="p">))</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)))</span>
 </code></pre></div>
-<h2 id="esempi-di-utilizzo">Esempi di Utilizzo<a class="headerlink" href="#esempi-di-utilizzo" title="Permanent link">&para;</a></h2>
-<h3 id="uso-cli-standard">Uso CLI Standard<a class="headerlink" href="#uso-cli-standard" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Kindle preset (default)</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>manga_folder<span class="w"> </span>output_folder
+<h3 id="dynamic-modification">Dynamic Modification<a class="headerlink" href="#dynamic-modification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Start with preset</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">kindle</span><span class="p">()</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Modify it</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">remove_step</span><span class="p">(</span><span class="s2">&quot;Quantize&quot;</span><span class="p">)</span>  <span class="c1"># Preserve colors</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">CustomStep</span><span class="p">())</span>   <span class="c1"># Add custom processing</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="creating-custom-steps">Creating Custom Steps<a class="headerlink" href="#creating-custom-steps" title="Permanent link">&para;</a></h2>
+<p>To add a new processing step:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessingStep</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFilter</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">BlurStep</span><span class="p">(</span><span class="n">ProcessingStep</span><span class="p">):</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply Gaussian blur to image.&quot;&quot;&quot;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">):</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">))</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        <span class="k">return</span> <span class="s2">&quot;Blur&quot;</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="c1"># Use it</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">BlurStep</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">3.0</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="creating-custom-presets">Creating Custom Presets<a class="headerlink" href="#creating-custom-presets" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.presets</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipelinePresets</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImagePipeline</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Tablet preset</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>manga_folder<span class="w"> </span>output_folder<span class="w"> </span>--pipeline<span class="w"> </span>tablet
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Minimal processing</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>manga_folder<span class="w"> </span>output_folder<span class="w"> </span>--pipeline<span class="w"> </span>minimal
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Add to PipelinePresets class</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nd">@staticmethod</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">manga_optimized</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ImagePipeline</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Pipeline optimized for manga.&quot;&quot;&quot;</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.8</span><span class="p">))</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">))</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">QuantizeStep</span><span class="p">())</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="k">return</span> <span class="n">pipeline</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># Use it</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">manga_optimized</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="uso-programmatico-preset">Uso Programmatico - Preset<a class="headerlink" href="#uso-programmatico-preset" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.presets</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipelinePresets</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">process</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Usa preset</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">kindle</span><span class="p">()</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">process</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="uso-programmatico-custom">Uso Programmatico - Custom<a class="headerlink" href="#uso-programmatico-custom" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImagePipeline</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.contrast</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContrastStep</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.sharpen</span><span class="w"> </span><span class="kn">import</span> <span class="n">SharpenStep</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># Costruisci pipeline custom</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.8</span><span class="p">))</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">process</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="method-chaining">Method Chaining<a class="headerlink" href="#method-chaining" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="p">(</span><span class="n">ImagePipeline</span><span class="p">()</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>           <span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">))</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>           <span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.2</span><span class="p">))</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>           <span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">QuantizeStep</span><span class="p">()))</span>
-</code></pre></div>
-<h3 id="modifica-dinamica">Modifica Dinamica<a class="headerlink" href="#modifica-dinamica" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Parti da un preset</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">kindle</span><span class="p">()</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Rimuovi quantization per preservare colori</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">remove_step</span><span class="p">(</span><span class="s2">&quot;Quantize&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Aggiungi uno step custom</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">CustomBlurStep</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-<h2 id="estendibilita">Estendibilità<a class="headerlink" href="#estendibilita" title="Permanent link">&para;</a></h2>
-<h3 id="creare-un-nuovo-processing-step">Creare un Nuovo Processing Step<a class="headerlink" href="#creare-un-nuovo-processing-step" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">image_pipeline.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessingStep</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFilter</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">BlurStep</span><span class="p">(</span><span class="n">ProcessingStep</span><span class="p">):</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom blur processing step.&quot;&quot;&quot;</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">):</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">)</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">))</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="k">return</span> <span class="s2">&quot;Blur&quot;</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="c1"># Uso</span>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
-<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">BlurStep</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">3.0</span><span class="p">))</span>
-</code></pre></div>
-<h3 id="creare-un-nuovo-preset">Creare un Nuovo Preset<a class="headerlink" href="#creare-un-nuovo-preset" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nd">@staticmethod</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">manga_optimized</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ImagePipeline</span><span class="p">:</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Pipeline ottimizzata per manga.&quot;&quot;&quot;</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">ImagePipeline</span><span class="p">()</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">ContrastStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.8</span><span class="p">))</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">SharpenStep</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">))</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">pipeline</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">QuantizeStep</span><span class="p">())</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">return</span> <span class="n">pipeline</span>
-</code></pre></div>
+<h2 id="design-patterns">Design Patterns<a class="headerlink" href="#design-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="strategy-pattern">Strategy Pattern<a class="headerlink" href="#strategy-pattern" title="Permanent link">&para;</a></h3>
+<p>Each ProcessingStep is a strategy that can be swapped or replaced.</p>
+<h3 id="chain-of-responsibility">Chain of Responsibility<a class="headerlink" href="#chain-of-responsibility" title="Permanent link">&para;</a></h3>
+<p>Pipeline executes steps sequentially, each transforming the image for the next.</p>
+<h3 id="factory-pattern">Factory Pattern<a class="headerlink" href="#factory-pattern" title="Permanent link">&para;</a></h3>
+<p>PipelinePresets creates pre-configured pipelines.</p>
+<h3 id="builder-pattern">Builder Pattern<a class="headerlink" href="#builder-pattern" title="Permanent link">&para;</a></h3>
+<p>Fluent interface (<code>add_step()</code>, <code>remove_step()</code>) for constructing pipelines.</p>
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
-<h3 id="test-unitari-test_pipelinepy">Test Unitari (test_pipeline.py)<a class="headerlink" href="#test-unitari-test_pipelinepy" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>test_pipeline.py<span class="w"> </span>-v
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Run pipeline tests</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/unit/test_pipeline.py<span class="w"> </span>-v
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Run device preset tests</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/unit/test_devices.py<span class="w"> </span>-v
 </code></pre></div>
-<p><strong>Coverage:</strong>
-- 16 test passati
-- Test per ogni step individuale
-- Test per pipeline con multiple configurazioni
-- Test per tutti i preset
-- Test per modifica dinamica della pipeline</p>
-<p><strong>Risultati:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Ran 16 tests in 0.005s
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>OK
-</code></pre></div></p>
-<h3 id="test-funzionali">Test Funzionali<a class="headerlink" href="#test-funzionali" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Test con diversi preset</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>test_dir<span class="w"> </span>output<span class="w"> </span>--dry-run<span class="w"> </span>--pipeline<span class="w"> </span>kindle
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>test_dir<span class="w"> </span>output<span class="w"> </span>--dry-run<span class="w"> </span>--pipeline<span class="w"> </span>tablet
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>test_dir<span class="w"> </span>output<span class="w"> </span>--dry-run<span class="w"> </span>--pipeline<span class="w"> </span>minimal
+<h3 id="functional-tests">Functional Tests<a class="headerlink" href="#functional-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Test different presets</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>test_images/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>kindle
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>test_images/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>tablet
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>test_images/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>high_quality
 </code></pre></div>
-<h2 id="vantaggi-ottenuti">Vantaggi Ottenuti<a class="headerlink" href="#vantaggi-ottenuti" title="Permanent link">&para;</a></h2>
-<h3 id="1-flessibilita">1. Flessibilità<a class="headerlink" href="#1-flessibilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Prima:</strong> Pipeline hardcoded (contrast → sharpen → quantize)</li>
-<li><strong>Dopo:</strong> Pipeline completamente configurabile via CLI o codice</li>
-</ul>
-<h3 id="2-estendibilita">2. Estendibilità<a class="headerlink" href="#2-estendibilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Aggiungere nuovi step richiede solo:</li>
-<li>Creare classe che estende ProcessingStep</li>
-<li>Implementare process() e get_name()</li>
-<li>Zero modifiche al core del sistema</li>
-</ul>
-<h3 id="3-testabilita">3. Testabilità<a class="headerlink" href="#3-testabilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Ogni step testabile isolatamente</li>
-<li>Pipeline testabile con mock steps</li>
-<li>16 unit test che validano funzionalità</li>
-</ul>
-<h3 id="4-riusabilita">4. Riusabilità<a class="headerlink" href="#4-riusabilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Preset predefiniti per casi d'uso comuni</li>
-<li>Facile creare nuovi preset</li>
-<li>Pipeline condivisibili tra progetti</li>
-</ul>
-<h3 id="5-performance">5. Performance<a class="headerlink" href="#5-performance" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Possibilità di disabilitare step costosi</li>
-<li>Pipeline minimal per processing veloce</li>
-<li>Ottimizzazioni device-specific</li>
-</ul>
-<h2 id="confronto-primadopo">Confronto Prima/Dopo<a class="headerlink" href="#confronto-primadopo" title="Permanent link">&para;</a></h2>
-<h3 id="prima-hardcoded-pipeline">Prima: Hardcoded Pipeline<a class="headerlink" href="#prima-hardcoded-pipeline" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="n">img</span> <span class="o">=</span> <span class="n">contrast</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>      <span class="c1"># Sempre applicato</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">img</span> <span class="o">=</span> <span class="n">sharpen</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>       <span class="c1"># Sempre applicato</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">img</span> <span class="o">=</span> <span class="n">quantize</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>      <span class="c1"># Sempre applicato</span>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Pipeline preset can be specified via CLI or configuration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessingConfig</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">),</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">),</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="n">pipeline_preset</span><span class="o">=</span><span class="s2">&quot;tablet&quot;</span>  <span class="c1"># or custom instance</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">)</span>
 </code></pre></div>
-<p><strong>Problemi:</strong>
-- Impossibile modificare ordine
-- Impossibile disabilitare step
-- Impossibile aggiungere step custom
-- Un solo caso d'uso (Kindle)</p>
-<h3 id="dopo-configurable-pipeline">Dopo: Configurable Pipeline<a class="headerlink" href="#dopo-configurable-pipeline" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">pipeline</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="k">if</span> <span class="n">pipeline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        <span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">kindle</span><span class="p">()</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    <span class="n">processed_img</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  <span class="c1"># Configurabile!</span>
-</code></pre></div>
-<p><strong>Vantaggi:</strong>
-- Ordine modificabile
-- Step abilitabili/disabilitabili
-- Estensibile con step custom
-- Multiple configurazioni (5 preset + custom)</p>
-<h2 id="backward-compatibility">Backward Compatibility<a class="headerlink" href="#backward-compatibility" title="Permanent link">&para;</a></h2>
-<p><strong>100% mantenuta:</strong>
-- Comportamento default identico (Kindle preset)
-- Funzioni legacy (contrast, sharpen, quantize) ancora disponibili
-- API process() retrocompatibile (pipeline parameter opzionale)</p>
-<h2 id="metriche">Metriche<a class="headerlink" href="#metriche" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Nuove classi:</strong> 4 (ProcessingStep, ImagePipeline, PipelinePresets + 3 Step classes)</li>
-<li><strong>Preset predefiniti:</strong> 5 (kindle, tablet, print, high_quality, minimal)</li>
-<li><strong>Linee di codice:</strong> ~400 (pipeline.py + presets.py + refactoring)</li>
-<li><strong>Test coverage:</strong> 16 unit test, 100% successo</li>
-<li><strong>Flessibilità:</strong> Da 1 configurazione fissa a infinite configurazioni</li>
-</ul>
-<h2 id="casi-duso-reali">Casi d'Uso Reali<a class="headerlink" href="#casi-duso-reali" title="Permanent link">&para;</a></h2>
-<h3 id="1-webcomic-per-mobile">1. Webcomic per Mobile<a class="headerlink" href="#1-webcomic-per-mobile" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>webcomic/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>tablet<span class="w"> </span>-r<span class="w"> </span>1080x1920
-</code></pre></div>
-<h3 id="2-manga-per-e-ink">2. Manga per E-Ink<a class="headerlink" href="#2-manga-per-e-ink" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>manga/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>kindle
-</code></pre></div>
-<h3 id="3-archivio-alta-qualita">3. Archivio Alta Qualità<a class="headerlink" href="#3-archivio-alta-qualita" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>original/<span class="w"> </span>archive/<span class="w"> </span>--pipeline<span class="w"> </span>high_quality
-</code></pre></div>
-<h3 id="4-conversione-veloce-no-processing">4. Conversione Veloce (No Processing)<a class="headerlink" href="#4-conversione-veloce-no-processing" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>source/<span class="w"> </span>dest/<span class="w"> </span>--pipeline<span class="w"> </span>minimal
-</code></pre></div>
-<h2 id="conclusioni">Conclusioni<a class="headerlink" href="#conclusioni" title="Permanent link">&para;</a></h2>
-<p>Il refactoring della pipeline di processing rappresenta un miglioramento sostanziale:</p>
+<h2 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Architettura</strong>: Da monolitica a modulare</li>
-<li><strong>Configurabilità</strong>: Da zero a completa</li>
-<li><strong>Estendibilità</strong>: Facile aggiungere nuovi step</li>
-<li><strong>Testabilità</strong>: Ogni componente testabile isolatamente</li>
-<li><strong>Usabilità</strong>: Preset pronti all'uso + personalizzazione avanzata</li>
+<li><strong>Modularity</strong>: Each step is independent and testable</li>
+<li><strong>Flexibility</strong>: Easy to add, remove, or reorder steps</li>
+<li><strong>Extensibility</strong>: Create custom steps without modifying core code</li>
+<li><strong>Performance</strong>: Disable expensive steps when not needed</li>
+<li><strong>Reusability</strong>: Share pipelines across projects</li>
 </ol>
-<p>Il sistema è ora pronto per supportare qualsiasi caso d'uso di processing immagini mantenendo semplicità per gli utenti base e potenza per gli utenti avanzati.</p>
+<h2 id="migration-guide">Migration Guide<a class="headerlink" href="#migration-guide" title="Permanent link">&para;</a></h2>
+<h3 id="before-hardcoded-pipeline">Before (Hardcoded Pipeline)<a class="headerlink" href="#before-hardcoded-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">img</span> <span class="o">=</span> <span class="n">contrast</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">img</span> <span class="o">=</span> <span class="n">sharpen</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">img</span> <span class="o">=</span> <span class="n">quantize</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="after-flexible-pipeline">After (Flexible Pipeline)<a class="headerlink" href="#after-flexible-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipelinePresets</span><span class="o">.</span><span class="n">kindle</span><span class="p">()</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">img</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</code></pre></div>
 
 
 
@@ -2498,7 +2144,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 31, 2025 10:16:55 UTC">December 31, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 5, 2026 15:09:55 UTC">January 5, 2026</span>
   </span>
 
     

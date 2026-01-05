@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#miglioramento-punto-2-separazione-delle-responsabilita-e-dependency-injection" class="md-skip">
+        <a href="#progress-reporting-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -751,10 +751,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#obiettivo" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obiettivo
+        Overview
       
     </span>
   </a>
@@ -762,22 +762,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modifiche-implementate" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modifiche Implementate
+        Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Modifiche Implementate">
+    <nav class="md-nav" aria-label="Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-nuova-interfaccia-astratta-progressreporter-srcprogress_reporterpy" class="md-nav__link">
+  <a href="#the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Nuova Interfaccia Astratta: ProgressReporter (src/progress_reporter.py)
+        The Problem
       
     </span>
   </a>
@@ -785,171 +785,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-implementazioni-concrete" class="md-nav__link">
+  <a href="#the-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Implementazioni Concrete
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Implementazioni Concrete">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-consoleprogressreporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        a) ConsoleProgressReporter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-silentprogressreporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        b) SilentProgressReporter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#c-fileprogressreporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        c) FileProgressReporter
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-dependency-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Dependency Injection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-modifiche-ai-file-esistenti" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Modifiche ai File Esistenti
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Modifiche ai File Esistenti">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#srcmainpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        src/main.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#srcfile_processorpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        src/file_processor.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#srcconfigpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        src/config.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vantaggi-ottenuti" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vantaggi Ottenuti
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Vantaggi Ottenuti">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-testabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Testabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-flessibilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Flessibilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-separazione-delle-responsabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Separazione delle Responsabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-estensibilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Estensibilità
+        The Solution
       
     </span>
   </a>
@@ -962,10 +801,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#test-eseguiti" class="md-nav__link">
+  <a href="#progressreporter-interface" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Eseguiti
+        ProgressReporter Interface
       
     </span>
   </a>
@@ -973,22 +812,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esempio-di-utilizzo" class="md-nav__link">
+  <a href="#implementations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esempio di Utilizzo
+        Implementations
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Esempio di Utilizzo">
+    <nav class="md-nav" aria-label="Implementations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uso-standard-console" class="md-nav__link">
+  <a href="#consoleprogressreporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso Standard (Console)
+        ConsoleProgressReporter
       
     </span>
   </a>
@@ -996,10 +835,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
+  <a href="#silentprogressreporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing
+        SilentProgressReporter
       
     </span>
   </a>
@@ -1007,10 +846,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-su-file" class="md-nav__link">
+  <a href="#fileprogressreporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logging su File
+        FileProgressReporter
       
     </span>
   </a>
@@ -1023,10 +862,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backward-compatibility" class="md-nav__link">
+  <a href="#dependency-injection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backward Compatibility
+        Dependency Injection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-custom-reporters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Custom Reporters
       
     </span>
   </a>
@@ -1034,10 +912,232 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusioni" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusioni
+        Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-processing-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Processing (Console)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#silent-processing-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Silent Processing (Testing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Levels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Log Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INFO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WARNING
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ERROR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEBUG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests-with-silentreporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests with SilentReporter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests-with-filereporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Tests with FileReporter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-reporter-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Reporter Type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Log Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1377,10 +1477,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#obiettivo" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obiettivo
+        Overview
       
     </span>
   </a>
@@ -1388,22 +1488,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modifiche-implementate" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modifiche Implementate
+        Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Modifiche Implementate">
+    <nav class="md-nav" aria-label="Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-nuova-interfaccia-astratta-progressreporter-srcprogress_reporterpy" class="md-nav__link">
+  <a href="#the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Nuova Interfaccia Astratta: ProgressReporter (src/progress_reporter.py)
+        The Problem
       
     </span>
   </a>
@@ -1411,171 +1511,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-implementazioni-concrete" class="md-nav__link">
+  <a href="#the-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Implementazioni Concrete
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Implementazioni Concrete">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-consoleprogressreporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        a) ConsoleProgressReporter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-silentprogressreporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        b) SilentProgressReporter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#c-fileprogressreporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        c) FileProgressReporter
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-dependency-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Dependency Injection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-modifiche-ai-file-esistenti" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Modifiche ai File Esistenti
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Modifiche ai File Esistenti">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#srcmainpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        src/main.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#srcfile_processorpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        src/file_processor.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#srcconfigpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        src/config.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vantaggi-ottenuti" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vantaggi Ottenuti
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Vantaggi Ottenuti">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-testabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Testabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-flessibilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Flessibilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-separazione-delle-responsabilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Separazione delle Responsabilità
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-estensibilita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Estensibilità
+        The Solution
       
     </span>
   </a>
@@ -1588,10 +1527,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#test-eseguiti" class="md-nav__link">
+  <a href="#progressreporter-interface" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Eseguiti
+        ProgressReporter Interface
       
     </span>
   </a>
@@ -1599,22 +1538,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esempio-di-utilizzo" class="md-nav__link">
+  <a href="#implementations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esempio di Utilizzo
+        Implementations
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Esempio di Utilizzo">
+    <nav class="md-nav" aria-label="Implementations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uso-standard-console" class="md-nav__link">
+  <a href="#consoleprogressreporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Uso Standard (Console)
+        ConsoleProgressReporter
       
     </span>
   </a>
@@ -1622,10 +1561,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
+  <a href="#silentprogressreporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing
+        SilentProgressReporter
       
     </span>
   </a>
@@ -1633,10 +1572,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-su-file" class="md-nav__link">
+  <a href="#fileprogressreporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logging su File
+        FileProgressReporter
       
     </span>
   </a>
@@ -1649,10 +1588,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backward-compatibility" class="md-nav__link">
+  <a href="#dependency-injection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backward Compatibility
+        Dependency Injection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-custom-reporters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Custom Reporters
       
     </span>
   </a>
@@ -1660,10 +1638,232 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusioni" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusioni
+        Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-processing-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Processing (Console)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#silent-processing-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Silent Processing (Testing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Levels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Log Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INFO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WARNING
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ERROR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEBUG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests-with-silentreporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests with SilentReporter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests-with-filereporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Tests with FileReporter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-reporter-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Reporter Type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Log Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1690,181 +1890,285 @@
   
 
 
-<h1 id="miglioramento-punto-2-separazione-delle-responsabilita-e-dependency-injection">Miglioramento Punto 2: Separazione delle Responsabilità e Dependency Injection<a class="headerlink" href="#miglioramento-punto-2-separazione-delle-responsabilita-e-dependency-injection" title="Permanent link">&para;</a></h1>
-<h2 id="obiettivo">Obiettivo<a class="headerlink" href="#obiettivo" title="Permanent link">&para;</a></h2>
-<p>Disaccoppiare la logica di business dall'interfaccia utente (UI) attraverso l'introduzione di un'astrazione per il reporting del progresso, rendendo il codice più testabile e flessibile.</p>
-<h2 id="modifiche-implementate">Modifiche Implementate<a class="headerlink" href="#modifiche-implementate" title="Permanent link">&para;</a></h2>
-<h3 id="1-nuova-interfaccia-astratta-progressreporter-srcprogress_reporterpy">1. Nuova Interfaccia Astratta: <code>ProgressReporter</code> (src/progress_reporter.py)<a class="headerlink" href="#1-nuova-interfaccia-astratta-progressreporter-srcprogress_reporterpy" title="Permanent link">&para;</a></h3>
-<p>Creata un'interfaccia astratta che definisce il contratto per il reporting del progresso:</p>
+<h1 id="progress-reporting-architecture">Progress Reporting Architecture<a class="headerlink" href="#progress-reporting-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>ShiroInk uses an abstract <code>ProgressReporter</code> interface to decouple progress tracking from specific UI frameworks. This enables flexible reporting without coupling business logic to console output or other UI dependencies.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h3 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h3>
+<p>Without abstraction:
+- Business logic tightly coupled to Rich library
+- Testing requires complex UI mocking
+- Difficult to add new reporting methods
+- UI concerns mixed with processing logic</p>
+<h3 id="the-solution">The Solution<a class="headerlink" href="#the-solution" title="Permanent link">&para;</a></h3>
+<p>Abstract <code>ProgressReporter</code> interface enables:
+- Multiple reporting implementations
+- Easy testing without UI
+- Flexible output channels
+- Clear separation of concerns</p>
+<h2 id="progressreporter-interface">ProgressReporter Interface<a class="headerlink" href="#progressreporter-interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProgressReporter</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract interface for progress reporting and logging.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract interface for progress reporting.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">advance_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">advance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="c1"># ... altri metodi</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a message.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">pass</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="nd">@abstractmethod</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a progress task.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">pass</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="nd">@abstractmethod</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">advance_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">advance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Update task progress.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">pass</span>
 </code></pre></div>
-<h3 id="2-implementazioni-concrete">2. Implementazioni Concrete<a class="headerlink" href="#2-implementazioni-concrete" title="Permanent link">&para;</a></h3>
-<h4 id="a-consoleprogressreporter">a) ConsoleProgressReporter<a class="headerlink" href="#a-consoleprogressreporter" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Usa Rich per output colorato nella console</li>
-<li>Identico al comportamento originale dell'applicazione</li>
-<li>Perfetto per uso interattivo</li>
-</ul>
-<h4 id="b-silentprogressreporter">b) SilentProgressReporter<a class="headerlink" href="#b-silentprogressreporter" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Non produce alcun output</li>
-<li>Ideale per:</li>
-<li>Unit testing</li>
-<li>Ambienti headless/CI/CD</li>
-<li>Esecuzioni in background</li>
-</ul>
-<h4 id="c-fileprogressreporter">c) FileProgressReporter<a class="headerlink" href="#c-fileprogressreporter" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Scrive i log su file</li>
-<li>Utile per:</li>
-<li>Debugging</li>
-<li>Auditing</li>
-<li>Esecuzioni batch con log persistente</li>
-</ul>
-<h3 id="3-dependency-injection">3. Dependency Injection<a class="headerlink" href="#3-dependency-injection" title="Permanent link">&para;</a></h3>
-<p><strong>Prima (file_processor.py):</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_images_in_directory</span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">src_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">dest_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">progress</span><span class="p">:</span> <span class="n">Progress</span><span class="p">,</span>  <span class="c1"># Accoppiamento stretto con Rich</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">rtl</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">quality</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">progress</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Processing...&quot;</span><span class="p">)</span>  <span class="c1"># Dipendenza diretta da Rich</span>
-</code></pre></div></p>
-<p><strong>Dopo:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_images_in_directory</span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">config</span><span class="p">:</span> <span class="n">ProcessingConfig</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">reporter</span><span class="p">:</span> <span class="n">ProgressReporter</span><span class="p">,</span>  <span class="c1"># Astrazione iniettata</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Processing...&quot;</span><span class="p">)</span>  <span class="c1"># Interfaccia astratta</span>
-</code></pre></div></p>
-<h3 id="4-modifiche-ai-file-esistenti">4. Modifiche ai File Esistenti<a class="headerlink" href="#4-modifiche-ai-file-esistenti" title="Permanent link">&para;</a></h3>
-<h4 id="srcmainpy">src/main.py<a class="headerlink" href="#srcmainpy" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Aggiunto parametro <code>reporter: ProgressReporter</code> a <code>main()</code></li>
-<li>Creazione del reporter appropriato (ConsoleProgressReporter) nel punto di ingresso</li>
-<li>Dependency injection del reporter nelle funzioni di processing</li>
-</ul>
-<h4 id="srcfile_processorpy">src/file_processor.py<a class="headerlink" href="#srcfile_processorpy" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Sostituito <code>Progress</code> con <code>ProgressReporter</code> in tutte le funzioni</li>
-<li>Rimosso accoppiamento con <code>progress.console.log()</code></li>
-<li>Usato <code>reporter.log()</code> con livelli appropriati (info, error, debug)</li>
-</ul>
-<h4 id="srcconfigpy">src/config.py<a class="headerlink" href="#srcconfigpy" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Rimossi <code>create_progress()</code> e <code>console</code> (non più necessari)</li>
-<li>Mantenuta solo la dataclass <code>ProcessingConfig</code></li>
-</ul>
-<h2 id="vantaggi-ottenuti">Vantaggi Ottenuti<a class="headerlink" href="#vantaggi-ottenuti" title="Permanent link">&para;</a></h2>
-<h3 id="1-testabilita">1. Testabilità<a class="headerlink" href="#1-testabilita" title="Permanent link">&para;</a></h3>
-<p><strong>Prima:</strong> Testare richiedeva istanziare oggetti Rich Progress complessi
-<strong>Dopo:</strong> Usare SilentProgressReporter per test puliti e veloci</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_process_images</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">reporter</span> <span class="o">=</span> <span class="n">SilentProgressReporter</span><span class="p">()</span>  <span class="c1"># Nessun output</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">process_images_in_directory</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="c1"># Test passa senza output e senza dipendenze UI</span>
+<h2 id="implementations">Implementations<a class="headerlink" href="#implementations" title="Permanent link">&para;</a></h2>
+<h3 id="consoleprogressreporter">ConsoleProgressReporter<a class="headerlink" href="#consoleprogressreporter" title="Permanent link">&para;</a></h3>
+<p>Rich-formatted console output with colors and progress bars.</p>
+<p><strong>Features:</strong>
+- Colored output by log level
+- Progress bars for file processing
+- Real-time status updates
+- Professional formatting</p>
+<p><strong>Use case:</strong> Interactive command-line use</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsoleProgressReporter</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">ConsoleProgressReporter</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Processing started&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">task_id</span> <span class="o">=</span> <span class="n">reporter</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">&quot;Processing files&quot;</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">reporter</span><span class="o">.</span><span class="n">advance_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="2-flessibilita">2. Flessibilità<a class="headerlink" href="#2-flessibilita" title="Permanent link">&para;</a></h3>
-<p>Facile cambiare il comportamento del reporting senza modificare la business logic:
-- Console output per uso interattivo
-- File logging per batch processing
-- Silent per testing o ambienti headless</p>
-<h3 id="3-separazione-delle-responsabilita">3. Separazione delle Responsabilità<a class="headerlink" href="#3-separazione-delle-responsabilita" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Business logic (file_processor.py) non conosce Rich o console</li>
-<li>UI concerns isolati nelle implementazioni di ProgressReporter</li>
-<li>Violazione zero del principio Single Responsibility</li>
-</ul>
-<h3 id="4-estensibilita">4. Estensibilità<a class="headerlink" href="#4-estensibilita" title="Permanent link">&para;</a></h3>
-<p>Aggiungere nuove implementazioni è banale:
-- HTTPProgressReporter (invio a server remoto)
-- DatabaseProgressReporter (salvataggio in DB)
-- SlackProgressReporter (notifiche Slack)</p>
-<h2 id="test-eseguiti">Test Eseguiti<a class="headerlink" href="#test-eseguiti" title="Permanent link">&para;</a></h2>
+<h3 id="silentprogressreporter">SilentProgressReporter<a class="headerlink" href="#silentprogressreporter" title="Permanent link">&para;</a></h3>
+<p>No output at all.</p>
+<p><strong>Features:</strong>
+- Zero I/O overhead
+- No console pollution
+- Completely silent</p>
+<p><strong>Use cases:</strong>
+- Unit testing
+- CI/CD pipelines
+- Headless environments
+- Background processing</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SilentProgressReporter</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">SilentProgressReporter</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>  <span class="c1"># Runs silently</span>
+</code></pre></div>
+<h3 id="fileprogressreporter">FileProgressReporter<a class="headerlink" href="#fileprogressreporter" title="Permanent link">&para;</a></h3>
+<p>Logs to a file instead of console.</p>
+<p><strong>Features:</strong>
+- Persistent log file
+- Time-stamped entries
+- Structured logging
+- No console output</p>
+<p><strong>Use cases:</strong>
+- Batch processing
+- Server environments
+- Audit trails
+- Debugging complex issues</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileProgressReporter</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">FileProgressReporter</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;processing.log&quot;</span><span class="p">))</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Creates: processing.log with all messages</span>
+</code></pre></div>
+<h2 id="dependency-injection">Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permanent link">&para;</a></h2>
+<h3 id="pattern">Pattern<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ProcessingConfig</span><span class="p">,</span> <span class="n">reporter</span><span class="p">:</span> <span class="n">ProgressReporter</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Main processing function with injected reporter.&quot;&quot;&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Starting processing&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="c1"># Business logic doesn&#39;t know or care about reporter type</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_pipeline</span><span class="p">()</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">process_files</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Completed&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p><strong>Test funzionale con ConsoleProgressReporter</strong>
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>/tmp/test<span class="w"> </span>/tmp/output<span class="w"> </span>--dry-run<span class="w"> </span>-d
-</code></pre></div>
-   ✓ Output identico al comportamento originale</p>
-</li>
-<li>
-<p><strong>Test con SilentProgressReporter</strong>
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">SilentProgressReporter</span><span class="p">()</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
-</code></pre></div>
-   ✓ Nessun output, esecuzione silenziosa</p>
-</li>
-<li>
-<p><strong>Test con FileProgressReporter</strong>
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">FileProgressReporter</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/tmp/log.txt&quot;</span><span class="p">))</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
-</code></pre></div>
-   ✓ Log scritto correttamente su file</p>
-</li>
-<li>
-<p><strong>Unit tests</strong>
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>test_example.py
-</code></pre></div>
-   ✓ Tutti i test passano (4/4)</p>
-</li>
+<li><strong>Testability</strong>: Use SilentProgressReporter in tests</li>
+<li><strong>Flexibility</strong>: Swap implementations without changing code</li>
+<li><strong>Separation</strong>: Business logic independent of UI</li>
+<li><strong>Extensibility</strong>: Easy to add new reporter types</li>
 </ol>
-<h2 id="esempio-di-utilizzo">Esempio di Utilizzo<a class="headerlink" href="#esempio-di-utilizzo" title="Permanent link">&para;</a></h2>
-<h3 id="uso-standard-console">Uso Standard (Console)<a class="headerlink" href="#uso-standard-console" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsoleProgressReporter</span>
+<h2 id="creating-custom-reporters">Creating Custom Reporters<a class="headerlink" href="#creating-custom-reporters" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProgressReporter</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomReporter</span><span class="p">(</span><span class="n">ProgressReporter</span><span class="p">):</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom reporter implementation.&quot;&quot;&quot;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="c1"># Your logging logic</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">level</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="n">task_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Task: </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        <span class="k">return</span> <span class="n">task_id</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">advance_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">advance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        <span class="c1"># Update progress tracking</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>        <span class="k">pass</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># Use it</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">CustomReporter</span><span class="p">({})</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="standard-processing-console">Standard Processing (Console)<a class="headerlink" href="#standard-processing-console" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>--pipeline<span class="w"> </span>kindle
+</code></pre></div>
+<p>Output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Processing images... ━━━━━━━━━━━━━━━━━━━ 50%
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Processing: image1.jpg... ✓
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Processing: image2.jpg... ✓
+</code></pre></div></p>
+<h3 id="silent-processing-testing">Silent Processing (Testing)<a class="headerlink" href="#silent-processing-testing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SilentProgressReporter</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">ConsoleProgressReporter</span><span class="p">()</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_processing</span><span class="p">():</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test_input&quot;</span><span class="p">),</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test_output&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">reporter</span> <span class="o">=</span> <span class="n">SilentProgressReporter</span><span class="p">()</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="c1"># No console output during test</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="c1"># Verify results</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="k">assert</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test_output/image.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SilentProgressReporter</span>
+<h3 id="file-logging">File Logging<a class="headerlink" href="#file-logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileProgressReporter</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">SilentProgressReporter</span><span class="p">()</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reporter</span><span class="o">.</span><span class="n">_tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1"># Verifica che tutti i task siano completati</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">src_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">),</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">FileProgressReporter</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;processing.log&quot;</span><span class="p">))</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># Review log</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;processing.log&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div>
-<h3 id="logging-su-file">Logging su File<a class="headerlink" href="#logging-su-file" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">progress_reporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileProgressReporter</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">reporter</span> <span class="o">=</span> <span class="n">FileProgressReporter</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/var/log/shiroink.log&quot;</span><span class="p">))</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Run silently with file logging</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>python<span class="w"> </span>src/main.py<span class="w"> </span>input/<span class="w"> </span>output/<span class="w"> </span>&gt;<span class="w"> </span>batch.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Check results</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>tail<span class="w"> </span>batch.log
 </code></pre></div>
-<h2 id="backward-compatibility">Backward Compatibility<a class="headerlink" href="#backward-compatibility" title="Permanent link">&para;</a></h2>
-<p>Il comportamento di default rimane identico all'originale:
-- <code>ConsoleProgressReporter</code> fornisce lo stesso output Rich colorato
-- L'interfaccia CLI non cambia
-- Gli utenti esistenti non notano differenze</p>
-<h2 id="conclusioni">Conclusioni<a class="headerlink" href="#conclusioni" title="Permanent link">&para;</a></h2>
-<p>Questo refactoring migliora significativamente:
-- <strong>Manutenibilità</strong>: Codice più pulito e separato
-- <strong>Testabilità</strong>: Test unitari senza dipendenze UI
-- <strong>Flessibilità</strong>: Facile cambiare il comportamento del reporting
-- <strong>Estensibilità</strong>: Aggiungere nuove implementazioni è triviale</p>
-<p>Il codice è ora conforme ai principi SOLID, in particolare:
-- <strong>S</strong>ingle Responsibility Principle
-- <strong>O</strong>pen/Closed Principle
-- <strong>D</strong>ependency Inversion Principle</p>
+<h2 id="integration-with-error-handling">Integration with Error Handling<a class="headerlink" href="#integration-with-error-handling" title="Permanent link">&para;</a></h2>
+<p>The reporter is used throughout error handling:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ProcessingConfig</span><span class="p">,</span> <span class="n">reporter</span><span class="p">:</span> <span class="n">ProgressReporter</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">error_tracker</span> <span class="o">=</span> <span class="n">ErrorTracker</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="n">process_files</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">,</span> <span class="n">error_tracker</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="n">error_tracker</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ErrorSeverity</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="c1"># Report summary</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="k">if</span> <span class="n">error_tracker</span><span class="o">.</span><span class="n">has_errors</span><span class="p">():</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        <span class="n">summary</span> <span class="o">=</span> <span class="n">error_tracker</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>            <span class="sa">f</span><span class="s2">&quot;Completed with </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;total_errors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> errors&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>            <span class="n">level</span><span class="o">=</span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>        <span class="p">)</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>        <span class="k">return</span> <span class="mi">1</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>    <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Completed successfully&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permanent link">&para;</a></h2>
+<h3 id="info">INFO<a class="headerlink" href="#info" title="Permanent link">&para;</a></h3>
+<p>General informational messages.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Starting processing&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="warning">WARNING<a class="headerlink" href="#warning" title="Permanent link">&para;</a></h3>
+<p>Issues that don't stop processing.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;File already exists, skipping&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="error">ERROR<a class="headerlink" href="#error" title="Permanent link">&para;</a></h3>
+<p>Recoverable errors.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Failed to process file, skipping&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="debug">DEBUG<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h3>
+<p>Detailed technical information (if debug mode enabled).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">reporter</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Opening image pipeline&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;debug&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="performance-considerations">Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ConsoleProgressReporter</strong>: Slight I/O overhead for formatting</li>
+<li><strong>SilentProgressReporter</strong>: Zero overhead (ideal for testing)</li>
+<li><strong>FileProgressReporter</strong>: Disk I/O but buffered for efficiency</li>
+</ul>
+<h2 id="testing-strategy">Testing Strategy<a class="headerlink" href="#testing-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests-with-silentreporter">Unit Tests with SilentReporter<a class="headerlink" href="#unit-tests-with-silentreporter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_file_processing</span><span class="p">():</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">ProcessingConfig</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">reporter</span> <span class="o">=</span> <span class="n">SilentProgressReporter</span><span class="p">()</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="c1"># No output, fast execution</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">process_files</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="k">assert</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">True</span>
+</code></pre></div>
+<h3 id="integration-tests-with-filereporter">Integration Tests with FileReporter<a class="headerlink" href="#integration-tests-with-filereporter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_batch_processing</span><span class="p">():</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">log_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test.log&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">reporter</span> <span class="o">=</span> <span class="n">FileProgressReporter</span><span class="p">(</span><span class="n">log_file</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">reporter</span><span class="p">)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="c1"># Verify log contents</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    <span class="n">log_contents</span> <span class="o">=</span> <span class="n">log_file</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    <span class="k">assert</span> <span class="s2">&quot;completed&quot;</span> <span class="ow">in</span> <span class="n">log_contents</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="extension-points">Extension Points<a class="headerlink" href="#extension-points" title="Permanent link">&para;</a></h2>
+<h3 id="adding-a-new-reporter-type">Adding a New Reporter Type<a class="headerlink" href="#adding-a-new-reporter-type" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Inherit from <code>ProgressReporter</code></li>
+<li>Implement required methods</li>
+<li>Use like any other reporter</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MetricsReporter</span><span class="p">(</span><span class="n">ProgressReporter</span><span class="p">):</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics_endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">metrics_endpoint</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        <span class="c1"># Send to metrics service</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>        <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">level</span><span class="p">})</span>
+</code></pre></div>
+<h3 id="adding-a-new-log-level">Adding a New Log Level<a class="headerlink" href="#adding-a-new-log-level" title="Permanent link">&para;</a></h3>
+<p>Extend log levels by modifying reporter implementations:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;trace&quot;</span><span class="p">:</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>        <span class="c1"># Ultra-detailed logging</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_trace</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;debug&quot;</span><span class="p">:</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>        <span class="c1"># Debug information</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../pipeline-system/">Pipeline System</a> - Processing pipeline</li>
+<li><a href="../error-handling/">Error Handling</a> - Error tracking</li>
+<li><a href="../../guides/quickstart/">Configuration</a> - Setup instructions</li>
+</ul>
 
 
 
@@ -1887,7 +2191,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 31, 2025 10:16:55 UTC">December 31, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 5, 2026 15:09:55 UTC">January 5, 2026</span>
   </span>
 
     
