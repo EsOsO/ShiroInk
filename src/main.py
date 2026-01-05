@@ -96,8 +96,8 @@ def process_images(config: ProcessingConfig, reporter: ProgressReporter) -> int:
             "\nProcessing completed successfully with no errors!", level="info"
         )
 
-        # Suggest saving as profile
-        if not args.profile:
+        # Suggest saving as profile (unless one was already loaded)
+        if not config.loaded_profile:
             from profiles.manager import ProfileManager
 
             try:
@@ -204,11 +204,14 @@ def main() -> int:
             profile_schema = profile_manager.load(args.profile)
             profile_config = profile_schema.to_dict()
 
-            # Use profile values for optional params if not specified
-            if args.resolution is None and profile_config.get("resolution"):
-                args.resolution = tuple(profile_config["resolution"])
+            # Load device first (has priority over resolution)
             if args.device is None and profile_config.get("device"):
                 args.device = profile_config["device"]
+            # Only load resolution if device is not set
+            # (device presets set their own optimal resolution)
+            elif args.resolution is None and profile_config.get("resolution"):
+                args.resolution = tuple(profile_config["resolution"])
+
             if args.quality == 6 and profile_config.get("quality"):
                 args.quality = profile_config["quality"]
             if args.workers == 4 and profile_config.get("workers"):
@@ -350,6 +353,7 @@ def main() -> int:
         workers=args.workers,
         pipeline_preset=pipeline_preset,
         custom_pipeline=custom_pipeline,
+        loaded_profile=args.profile if hasattr(args, "profile") else None,
     )
 
     # Create the appropriate reporter

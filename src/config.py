@@ -23,6 +23,7 @@ class ProcessingConfig:
     custom_pipeline: "ImagePipeline | None" = field(default=None, repr=False)
     continue_on_error: bool = True  # Continue processing even if some files fail
     max_retries: int = 3  # Maximum retries for I/O operations
+    loaded_profile: str | None = None  # Name of loaded profile (if any)
 
     def __post_init__(self):
         """Validate configuration parameters."""
