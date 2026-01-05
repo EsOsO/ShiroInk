@@ -79,7 +79,73 @@ class DeviceSelectionStep(WizardStep):
             5: None,  # List
         }
 
-        return {"device": device_map.get(choice)}
+        selected_device = device_map.get(choice)
+
+        # If user chose "List all devices", show complete list
+        if choice == 5:
+            selected_device = self._show_all_devices()
+
+        return {"device": selected_device}
+
+    def _show_all_devices(self) -> Optional[str]:
+        """Show all available devices and let user choose."""
+        from image_pipeline.devices import DeviceSpecs
+
+        print()
+        print_section("Available Devices")
+
+        all_devices = DeviceSpecs.get_all_devices()
+
+        # Group devices by manufacturer
+        groups = {
+            "Kindle": [],
+            "Kobo": [],
+            "Tolino": [],
+            "PocketBook": [],
+            "iPad": [],
+        }
+
+        for key, spec in sorted(all_devices.items()):
+            if key.startswith("kindle"):
+                groups["Kindle"].append((key, spec.name))
+            elif key.startswith("kobo"):
+                groups["Kobo"].append((key, spec.name))
+            elif key.startswith("tolino"):
+                groups["Tolino"].append((key, spec.name))
+            elif key.startswith("pocketbook"):
+                groups["PocketBook"].append((key, spec.name))
+            elif key.startswith("ipad"):
+                groups["iPad"].append((key, spec.name))
+
+        # Display grouped devices
+        device_list = []
+        idx = 1
+        for group_name, devices in groups.items():
+            if devices:
+                print(f"\n{group_name}:")
+                for device_key, device_name in devices:
+                    print(f"  {idx}) {device_name} ({device_key})")
+                    device_list.append(device_key)
+                    idx += 1
+
+        print(f"\n  {idx}) Back to quick selection")
+        device_list.append(None)
+
+        print()
+        choice = prompt_integer(
+            "Select device number:",
+            default=1,
+            min_val=1,
+            max_val=len(device_list),
+        )
+
+        selected_key = device_list[choice - 1]
+        if selected_key:
+            print_success(f"Selected: {all_devices[selected_key].name}")
+        else:
+            print_info("Returning to quick selection...")
+
+        return selected_key
 
 
 class FormatSelectionStep(WizardStep):
