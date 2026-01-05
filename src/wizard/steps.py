@@ -24,6 +24,15 @@ def _(key: str) -> str:
     return key
 
 
+# English translations (Phase 2: will integrate with localization system)
+TEXTS = {
+    "device_selection_header": "Device Selection",
+    "device_selection_prompt": "Choose your target device:",
+    "format_selection_header": "Format Selection",
+    "format_selection_prompt": "Choose page orientation:",
+}
+
+
 class WizardStep:
     """Base class for wizard steps."""
 
@@ -54,10 +63,10 @@ class DeviceSelectionStep(WizardStep):
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute device selection step."""
-        print_section(_("wizard.device_selection"))
+        print_section("Device Selection")
 
         choice = prompt_choice(
-            _("wizard.device_selection"),
+            "Choose your target device:",
             self.DEVICES,
             default=1,
         )
@@ -78,7 +87,7 @@ class FormatSelectionStep(WizardStep):
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute format selection step."""
-        print_section(_("wizard.format_selection"))
+        print_section("Format Selection")
 
         formats = [
             (1, "Left-to-Right (Western comics)"),
@@ -86,7 +95,7 @@ class FormatSelectionStep(WizardStep):
         ]
 
         choice = prompt_choice(
-            _("wizard.format_selection"),
+            "Choose page orientation:",
             formats,
             default=1,
         )
