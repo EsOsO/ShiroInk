@@ -201,24 +201,19 @@ def main() -> int:
         profile_manager = ProfileManager()
 
         try:
-            profile_config = profile_manager.load(args.profile)
-
-            # Merge profile config with CLI args (CLI args take precedence)
-            if not args.src_dir:
-                args.src_dir = Path(profile_config.get("src_dir", ""))
-            if not args.dest_dir:
-                args.dest_dir = Path(profile_config.get("dest_dir", ""))
+            profile_schema = profile_manager.load(args.profile)
+            profile_config = profile_schema.to_dict()
 
             # Use profile values for optional params if not specified
-            if args.resolution is None and "resolution" in profile_config:
+            if args.resolution is None and profile_config.get("resolution"):
                 args.resolution = tuple(profile_config["resolution"])
-            if args.device is None and "device" in profile_config:
+            if args.device is None and profile_config.get("device"):
                 args.device = profile_config["device"]
-            if args.quality == 6 and "quality" in profile_config:
+            if args.quality == 6 and profile_config.get("quality"):
                 args.quality = profile_config["quality"]
-            if args.workers == 4 and "workers" in profile_config:
+            if args.workers == 4 and profile_config.get("workers"):
                 args.workers = profile_config["workers"]
-            if not args.rtl and "rtl" in profile_config:
+            if not args.rtl and profile_config.get("rtl"):
                 args.rtl = profile_config["rtl"]
 
             print(f"Loaded profile: {args.profile}")
