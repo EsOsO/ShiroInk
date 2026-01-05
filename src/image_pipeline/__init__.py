@@ -27,9 +27,11 @@ def process(
     Process the image by applying pipeline steps and saving it.
 
     Processing order (CRITICAL for maintaining exact device resolution):
-    1. Apply pipeline steps that should happen BEFORE resize (crop, rotate, enhance)
+    1. Apply pipeline steps that should happen BEFORE resize
+       (crop, rotate, enhance)
     2. Resize to exact device resolution (via ResizeStep in pipeline)
-    3. Apply pipeline steps that should happen AFTER resize (contrast, sharpen, quantize)
+    3. Apply pipeline steps that should happen AFTER resize
+       (contrast, sharpen, quantize)
     4. Save the image
 
     This ensures the final image is EXACTLY the device resolution, even after

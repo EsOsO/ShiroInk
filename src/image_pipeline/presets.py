@@ -36,7 +36,7 @@ from .color_profile import ColorProfileStep
 from .crop import SmartCropStep
 from .rotation import AutoRotateStep
 from .text_enhance import TextEnhanceStep, AdaptiveTextEnhanceStep
-from .devices import DeviceSpecs, DeviceSpec, DisplayType, ColorGamut
+from .devices import DeviceSpec, DisplayType
 
 
 class PipelinePresets:
@@ -181,9 +181,9 @@ class PipelinePresets:
         Get a preset pipeline by name.
 
         Args:
-            name: Name of the preset (kindle, kobo, tolino, pocketbook, pocketbook_color,
-                  ipad, eink, tablet, print, high_quality, minimal, scanned_manga,
-                  scanned_manga_advanced).
+            name: Name of the preset (kindle, kobo, tolino, pocketbook,
+                  pocketbook_color, ipad, eink, tablet, print, high_quality,
+                  minimal, scanned_manga, scanned_manga_advanced).
 
         Returns:
             ImagePipeline for the specified preset.
