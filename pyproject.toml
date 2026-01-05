@@ -1,6 +1,6 @@
 [project]
 name = "shiroink"
-version = "2.4.2"
+version = "2.4.3"
 description = "Manga and comic book image optimization tool"
 authors = [
     {name = "Massimo Bonvicini", email = "esoso@users.noreply.github.com"}
