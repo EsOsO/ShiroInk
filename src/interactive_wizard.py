@@ -94,6 +94,12 @@ class InteractiveWizard:
                 self._prompt_save_profile()
                 return self._config
 
+            elif action == "save":
+                # User wants to save profile before proceeding
+                self._prompt_save_profile()
+                # After saving, ask again if they want to proceed
+                continue
+
             elif action == "modify":
                 # User wants to modify - show menu
                 step_to_modify = self._prompt_which_step_to_modify()
@@ -149,19 +155,28 @@ class InteractiveWizard:
 
         from wizard.prompts import prompt_input
 
+        def validate_profile_name(name: str) -> str | None:
+            """Validate profile name is not empty."""
+            if not name.strip():
+                return "Profile name cannot be empty"
+            return None
+
         profile_name = prompt_input(
-            "Profile name (e.g., 'my-kindle'):", validate_not_empty=True
+            "Profile name (e.g., 'my-kindle'):", validate=validate_profile_name
         )
 
         try:
-            # Convert paths to strings for storage
-            config_to_save = self._config.copy()
-            if "src_dir" in config_to_save:
-                config_to_save["src_dir"] = str(config_to_save["src_dir"])
-            if "dest_dir" in config_to_save:
-                config_to_save["dest_dir"] = str(config_to_save["dest_dir"])
-
-            self.profile_manager.save(profile_name, config_to_save)
+            # Extract profile parameters from config
+            self.profile_manager.save(
+                name=profile_name,
+                device=self._config.get("device"),
+                pipeline=self._config.get("pipeline"),
+                resolution=self._config.get("resolution"),
+                rtl=self._config.get("rtl", False),
+                quality=self._config.get("quality", 6),
+                workers=self._config.get("workers", 4),
+                description="",
+            )
             print_success(f"Profile '{profile_name}' saved successfully!")
         except Exception as e:
             from wizard.prompts import print_warning
