@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.1](https://github.com/EsOsO/ShiroInk/compare/v2.4.0...v2.4.1) (2026-01-05)
+
+
+### Documentation
+
+* add communication and documentation standards to agent guidelines ([#34](https://github.com/EsOsO/ShiroInk/issues/34)) ([10b38a3](https://github.com/EsOsO/ShiroInk/commit/10b38a3fd4a0e1c325c91262de350eb862ebff7b))
+
 ## [2.4.0](https://github.com/EsOsO/ShiroInk/compare/v2.3.0...v2.4.0) (2026-01-05)
 
 
