@@ -17,6 +17,82 @@ pip install pytest pytest-cov pytest-mock
 export PYTHONPATH=src  # Windows: set PYTHONPATH=src
 ```
 
+## Communication and Documentation Standards
+
+### Language Conventions
+
+**IMPORTANT**: This project follows strict language conventions for code and communication:
+
+- **User Communication**: Respond in the same language the user writes in (e.g., Italian if user writes in Italian, English if user writes in English)
+- **Internal Reasoning**: ALL internal thoughts and reasoning processes MUST be in English
+- **Code Documentation**: ALWAYS in English
+  - Docstrings: English only
+  - Comments: English only
+  - Variable/function names: English only
+- **Git Commits**: ALWAYS in English
+  - Commit messages: English only
+  - PR descriptions: English only
+  - Issue descriptions: English only
+
+**Example**:
+```python
+# ✅ CORRECT
+def process_image(image: Image.Image) -> Image.Image:
+    """
+    Process an image through the pipeline.
+    
+    Args:
+        image: Input image to process.
+        
+    Returns:
+        Processed image.
+    """
+    # Apply rotation correction before cropping
+    rotated = self._fix_rotation(image)
+    return rotated
+
+# ❌ WRONG - Italian documentation
+def elabora_immagine(image: Image.Image) -> Image.Image:
+    """
+    Elabora un'immagine attraverso la pipeline.
+    
+    Args:
+        image: Immagine da elaborare.
+    """
+    # Applica correzione rotazione prima del crop
+    ruotata = self._correggi_rotazione(image)
+    return ruotata
+```
+
+**Why English for code?**
+- Makes the codebase accessible to the international open-source community
+- Ensures consistency across all technical documentation
+- Facilitates collaboration with developers worldwide
+- Standard practice in professional software development
+
+### Pre-Commit Checklist
+
+**ALWAYS run these commands BEFORE committing** (in order):
+
+```bash
+# 1. Format code with black
+black src/ tests/
+
+# 2. Verify with flake8
+flake8 src/ --max-line-length=88 --extend-ignore=E203,W503
+
+# 3. Run tests
+pytest tests/unit/ -v --tb=short
+
+# 4. Stage changes
+git add <modified files>
+
+# 5. Commit with descriptive message (in English)
+git commit -m "feat: add feature description"
+```
+
+**⚠️ CRITICAL**: Never commit without running black first! Code formatting must be part of the development workflow, not an afterthought.
+
 ## Build/Lint/Test Commands
 
 ### Running Tests
