@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.3](https://github.com/EsOsO/ShiroInk/compare/v2.4.2...v2.4.3) (2026-01-05)
+
+
+### Documentation
+
+* translate architecture documentation to English and improve clarity ([b82aec1](https://github.com/EsOsO/ShiroInk/commit/b82aec1903ac986f9e7b0f28bec43f59fe21a703))
+
 ## [2.4.2](https://github.com/EsOsO/ShiroInk/compare/v2.4.1...v2.4.2) (2026-01-05)
 
 
