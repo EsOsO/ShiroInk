@@ -39,19 +39,80 @@ class LocalizationManager:
         self._translations: dict[str, Any] = {}
         self._load_translations()
 
+    def _get_prefs_file(self) -> Path:
+        """
+        Get the path to the preferences file.
+
+        Returns:
+            Path to ~/.config/shiroink/prefs.json
+        """
+        config_dir = Path.home() / ".config" / "shiroink"
+        return config_dir / "prefs.json"
+
+    def _load_saved_language(self) -> Optional[Language]:
+        """
+        Load language preference from saved preferences file.
+
+        Returns:
+            Language if saved preference exists, None otherwise
+        """
+        prefs_file = self._get_prefs_file()
+        if not prefs_file.exists():
+            return None
+
+        try:
+            with open(prefs_file, "r", encoding="utf-8") as f:
+                prefs = json.load(f)
+                lang_value = prefs.get("language")
+                if lang_value:
+                    return Language(lang_value)
+        except Exception:
+            pass  # Silently ignore errors reading preferences
+
+        return None
+
+    def _save_language(self) -> None:
+        """Save current language preference to preferences file."""
+        prefs_file = self._get_prefs_file()
+
+        try:
+            # Create config directory if it doesn't exist
+            prefs_file.parent.mkdir(parents=True, exist_ok=True)
+
+            # Load existing preferences or create new
+            prefs = {}
+            if prefs_file.exists():
+                with open(prefs_file, "r", encoding="utf-8") as f:
+                    prefs = json.load(f)
+
+            # Update language preference
+            prefs["language"] = self._language.value
+
+            # Save preferences
+            with open(prefs_file, "w", encoding="utf-8") as f:
+                json.dump(prefs, f, indent=2, ensure_ascii=False)
+        except Exception:
+            pass  # Silently ignore errors saving preferences
+
     def _detect_language(self) -> Language:
         """
         Detect language from system settings.
 
         Priority:
-        1. SHIROINK_LANG environment variable
-        2. System locale settings
-        3. Default to English
+        1. Saved user preference (in ~/.config/shiroink/prefs.json)
+        2. SHIROINK_LANG environment variable
+        3. System locale settings
+        4. Default to English
 
         Returns:
             Language enum value
         """
-        # Check environment variable first
+        # Check saved preference first
+        saved_lang = self._load_saved_language()
+        if saved_lang:
+            return saved_lang
+
+        # Check environment variable
         env_lang = os.getenv("SHIROINK_LANG")
         if env_lang:
             try:
@@ -141,6 +202,7 @@ class LocalizationManager:
         """
         self._language = language
         self._load_translations()
+        self._save_language()  # Persist the preference
 
 
 # Global instance
