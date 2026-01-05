@@ -27,12 +27,15 @@ def _(key: str) -> str:
 class WizardStep:
     """Base class for wizard steps."""
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """
         Execute the wizard step.
 
+        Args:
+            config: Current accumulated configuration.
+
         Returns:
-            Dictionary with step results
+            Dictionary with step results, or None if cancelled.
         """
         raise NotImplementedError
 
@@ -49,7 +52,7 @@ class DeviceSelectionStep(WizardStep):
         (5, "Don't know / List all devices"),
     ]
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute device selection step."""
         print_section(_("wizard.device_selection"))
 
@@ -73,7 +76,7 @@ class DeviceSelectionStep(WizardStep):
 class FormatSelectionStep(WizardStep):
     """Format (LTR/RTL) selection step."""
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute format selection step."""
         print_section(_("wizard.format_selection"))
 
@@ -94,7 +97,7 @@ class FormatSelectionStep(WizardStep):
 class PathsSelectionStep(WizardStep):
     """Source and destination path selection step."""
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute paths selection step."""
         print_section("Select directories")
 
@@ -136,7 +139,7 @@ class PathsSelectionStep(WizardStep):
 class QualitySelectionStep(WizardStep):
     """Quality level selection step."""
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute quality selection step."""
         print_section("Quality Selection")
 
@@ -153,7 +156,7 @@ class QualitySelectionStep(WizardStep):
 class PerformanceSelectionStep(WizardStep):
     """Performance (workers) selection step."""
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute performance selection step."""
         print_section("Performance Configuration")
 
@@ -175,21 +178,17 @@ class PerformanceSelectionStep(WizardStep):
 class ReviewStep(WizardStep):
     """Configuration review step."""
 
-    def __init__(self, config: Optional[dict[str, Any]] = None):
-        """Initialize with config."""
-        self.config = config or {}
-
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute review step."""
         print_header("Configuration Review")
 
         print_section("Configuration Review")
-        print(f"  {'Device:':<20} {self.config.get('device', 'Default')}")
-        print(f"  {'Format:':<20} {'RTL' if self.config.get('rtl') else 'LTR'}")
-        print(f"  {'Source:':<20} {self.config.get('src_dir')}")
-        print(f"  {'Destination:':<20} {self.config.get('dest_dir')}")
-        print(f"  {'Quality:':<20} {self.config.get('quality')} / 9")
-        print(f"  {'Workers:':<20} {self.config.get('workers')}")
+        print(f"  {'Device:':<20} {config.get('device', 'Default')}")
+        print(f"  {'Format:':<20} {'RTL' if config.get('rtl') else 'LTR'}")
+        print(f"  {'Source:':<20} {config.get('src_dir')}")
+        print(f"  {'Destination:':<20} {config.get('dest_dir')}")
+        print(f"  {'Quality:':<20} {config.get('quality')} / 9")
+        print(f"  {'Workers:':<20} {config.get('workers')}")
 
         return {}
 
@@ -197,7 +196,7 @@ class ReviewStep(WizardStep):
 class ConfirmationStep(WizardStep):
     """Final confirmation step."""
 
-    def execute(self) -> dict[str, Any]:
+    def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute confirmation step."""
         print()
 
