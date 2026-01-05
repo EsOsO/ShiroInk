@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.2](https://github.com/EsOsO/ShiroInk/compare/v2.4.1...v2.4.2) (2026-01-05)
+
+
+### Dependencies
+
+* **deps:** bump actions/upload-artifact from 4 to 6 ([#29](https://github.com/EsOsO/ShiroInk/issues/29)) ([0bd9b98](https://github.com/EsOsO/ShiroInk/commit/0bd9b98792380d714459be600b7a08f8b3756b7e))
+* **deps:** bump docker/login-action ([#32](https://github.com/EsOsO/ShiroInk/issues/32)) ([2532375](https://github.com/EsOsO/ShiroInk/commit/2532375fb8979d1c980a1f41a540c97128ac18bc))
+* **deps:** bump docker/metadata-action ([#30](https://github.com/EsOsO/ShiroInk/issues/30)) ([6a79ac7](https://github.com/EsOsO/ShiroInk/commit/6a79ac76052790d07edb086f4601c6b06640d817))
+* **deps:** bump github/codeql-action from 3 to 4 ([#33](https://github.com/EsOsO/ShiroInk/issues/33)) ([4c121ff](https://github.com/EsOsO/ShiroInk/commit/4c121ff1a5b8172781471bca03493a0cd6361e07))
+* **deps:** bump pillow from 12.0.0 to 12.1.0 ([#31](https://github.com/EsOsO/ShiroInk/issues/31)) ([5c1ee5c](https://github.com/EsOsO/ShiroInk/commit/5c1ee5cae50e2db0a80c40e5c604bcf55e01a205))
+
 ## [2.4.1](https://github.com/EsOsO/ShiroInk/compare/v2.4.0...v2.4.1) (2026-01-05)
 
 
