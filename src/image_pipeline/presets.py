@@ -1,5 +1,31 @@
 """
 Predefined pipeline configurations for different devices and use cases.
+
+IMPORTANT: Pipeline Step Ordering
+=================================
+The order of steps in a pipeline is critical for ensuring the final image
+matches the exact device resolution:
+
+PRE-RESIZE STEPS (applied before resizing to device dimensions):
+- AutoRotateStep: Fix rotation issues in scanned content
+- SmartCropStep: Remove white margins to maximize content area
+- TextEnhanceStep: Enhance text readability
+
+RESIZE STEP (automatically inserted by process() function):
+- ResizeStep: Resize to EXACT device resolution with aspect-ratio padding
+  This step is NOT included in presets - it's added automatically based
+  on the target device resolution passed to process()
+
+POST-RESIZE STEPS (applied after resizing to device dimensions):
+- ColorProfileStep: Apply color profile conversion
+- ContrastStep: Adjust contrast for display type
+- SharpenStep: Sharpen for crisp rendering
+- QuantizeStep: Reduce colors for file size (e-ink devices)
+
+This ordering ensures:
+1. Blank margins are removed before sizing
+2. Final image is EXACTLY the device screen resolution
+3. Quality enhancements are applied at the target resolution
 """
 
 from .pipeline import ImagePipeline
@@ -10,7 +36,7 @@ from .color_profile import ColorProfileStep
 from .crop import SmartCropStep
 from .rotation import AutoRotateStep
 from .text_enhance import TextEnhanceStep, AdaptiveTextEnhanceStep
-from .devices import DeviceSpecs, DeviceSpec, DisplayType, ColorGamut
+from .devices import DeviceSpec, DisplayType
 
 
 class PipelinePresets:
@@ -23,19 +49,29 @@ class PipelinePresets:
 
         Features:
         - Auto-rotation correction for scanned pages
-        - Smart cropping to remove white margins
+        - Smart cropping to remove white margins (BEFORE resize)
         - Text enhancement for better readability
         - High contrast for e-ink displays
         - Moderate sharpening
         - 16-color quantization for file size reduction
 
+        Pipeline order (ResizeStep is inserted automatically by process()):
+        1. AutoRotate, SmartCrop, TextEnhance (PRE-resize)
+        2. ResizeStep (auto-inserted to exact device dimensions)
+        3. Contrast, Sharpen, Quantize (POST-resize)
+
+        This ensures the final image is EXACTLY the device resolution.
+
         Returns:
             ImagePipeline configured for Kindle devices.
         """
         pipeline = ImagePipeline()
+        # Pre-resize steps (applied before resizing to device dimensions)
         pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
         pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
         pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
+        # ResizeStep will be auto-inserted here by process() function
+        # Post-resize steps (applied after resizing to device dimensions)
         pipeline.add_step(ContrastStep(factor=1.5))
         pipeline.add_step(SharpenStep(factor=1.2))
         pipeline.add_step(QuantizeStep(palette=Palette16))
@@ -145,9 +181,9 @@ class PipelinePresets:
         Get a preset pipeline by name.
 
         Args:
-            name: Name of the preset (kindle, kobo, tolino, pocketbook, pocketbook_color,
-                  ipad, eink, tablet, print, high_quality, minimal, scanned_manga,
-                  scanned_manga_advanced).
+            name: Name of the preset (kindle, kobo, tolino, pocketbook,
+                  pocketbook_color, ipad, eink, tablet, print, high_quality,
+                  minimal, scanned_manga, scanned_manga_advanced).
 
         Returns:
             ImagePipeline for the specified preset.
@@ -466,11 +502,16 @@ class PipelinePresets:
 
         Features:
         - Auto-rotation correction (up to 5 degrees)
-        - Smart cropping to remove white margins
+        - Smart cropping to remove white margins (BEFORE resize)
         - Text enhancement for better readability
         - High contrast for e-ink displays
         - Moderate sharpening
         - 16-color quantization for file size reduction
+
+        Pipeline order is critical:
+        - Crop/Rotate/TextEnhance happen BEFORE resize
+        - Resize to exact device dimensions (applied by process() function)
+        - Contrast/Sharpen/Quantize happen AFTER resize
 
         This preset is ideal for:
         - Scanned manga pages with rotation/alignment issues
@@ -483,11 +524,11 @@ class PipelinePresets:
         pipeline = ImagePipeline()
         # Step 1: Fix rotation (before cropping to avoid cropping artifacts)
         pipeline.add_step(AutoRotateStep(max_angle=5.0, threshold=0.5))
-        # Step 2: Remove white margins to maximize screen space
+        # Step 2: Remove white margins to maximize screen space (BEFORE resize)
         pipeline.add_step(SmartCropStep(threshold=245, min_margin=10))
         # Step 3: Enhance text for better readability
         pipeline.add_step(TextEnhanceStep(text_sharpen=1.5, edge_enhance=0.3))
-        # Step 4: Apply contrast for e-ink
+        # Step 4: Apply contrast for e-ink (AFTER resize)
         pipeline.add_step(ContrastStep(factor=1.5))
         # Step 5: Sharpen for crisp rendering
         pipeline.add_step(SharpenStep(factor=1.2))

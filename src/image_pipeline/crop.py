@@ -4,6 +4,10 @@ Smart cropping module for automatic margin detection and removal.
 This module provides intelligent cropping functionality to automatically
 detect and remove white margins from manga pages, maximizing screen space
 utilization on e-reader devices.
+
+IMPORTANT: This step should be applied BEFORE resizing to ensure the final
+image matches the target device resolution exactly. If cropping is done after
+resizing, the final dimensions may not match the device screen size.
 """
 
 from PIL import Image, ImageChops
