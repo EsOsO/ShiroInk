@@ -220,3 +220,60 @@ class TestInteractiveWizard:
         with patch.object(wizard.profile_manager, "save") as mock_save:
             wizard._prompt_save_profile()
             mock_save.assert_not_called()
+
+    @patch("wizard.prompts.prompt_yes_no")
+    @patch("wizard.prompts.prompt_input")
+    def test_prompt_save_profile_with_validation(self, mock_input, mock_yes_no):
+        """Test profile saving with name validation."""
+        mock_yes_no.return_value = True
+        # First call returns empty (invalid), second returns valid name
+        mock_input.return_value = "my-kindle"
+
+        wizard = InteractiveWizard()
+        wizard._config = {
+            "device": "kindle_paperwhite",
+            "quality": 7,
+            "workers": 4,
+            "resolution": (1072, 1448),
+            "rtl": False,
+        }
+
+        with patch.object(wizard.profile_manager, "save") as mock_save:
+            wizard._prompt_save_profile()
+            # Verify save was called with correct keyword arguments
+            mock_save.assert_called_once()
+            call_kwargs = mock_save.call_args[1]
+            assert call_kwargs["name"] == "my-kindle"
+            assert call_kwargs["device"] == "kindle_paperwhite"
+            assert call_kwargs["quality"] == 7
+            assert call_kwargs["workers"] == 4
+            assert call_kwargs["resolution"] == (1072, 1448)
+            assert call_kwargs["rtl"] is False
+
+    @patch("wizard.prompts.prompt_yes_no")
+    @patch("wizard.prompts.prompt_input")
+    def test_prompt_save_profile_rejects_empty_name(self, mock_input, mock_yes_no):
+        """Test that empty profile names are rejected."""
+        mock_yes_no.return_value = True
+
+        wizard = InteractiveWizard()
+        wizard._config = {"device": "kindle_paperwhite"}
+
+        # The validation function should reject empty strings
+        # We can test this by checking the validate parameter passed to prompt_input
+        with patch("wizard.prompts.prompt_input") as mock_prompt:
+            mock_prompt.return_value = "valid-name"
+            with patch.object(wizard.profile_manager, "save"):
+                wizard._prompt_save_profile()
+
+            # Check that prompt_input was called with a validation function
+            assert mock_prompt.called
+            # Get the validate function that was passed
+            call_kwargs = mock_prompt.call_args[1]
+            validate_fn = call_kwargs.get("validate")
+
+            # Test the validation function
+            assert validate_fn is not None
+            assert validate_fn("") == "Profile name cannot be empty"
+            assert validate_fn("   ") == "Profile name cannot be empty"
+            assert validate_fn("valid-name") is None
