@@ -59,13 +59,13 @@ def process(
             # Split into two pages and process each
             left_page = image.crop((0, 0, width // 2, height))
             right_page = image.crop((width // 2, 0, width, height))
-            
+
             pages = [right_page, left_page] if rtl else [left_page, right_page]
-            
+
             for i, page in enumerate(pages):
                 # Process through the complete pipeline (includes ResizeStep)
                 processed_img = pipeline_with_resize.process(page)
-                
+
                 # Save with page suffix
                 page_suffix = f"_page_{i+1}"
                 output_path_with_suffix = output_path.with_stem(
@@ -78,43 +78,46 @@ def process(
             save(processed_img, output_path, quality)
 
 
-def _insert_resize_step(pipeline: ImagePipeline, resolution: tuple[int, int]) -> ImagePipeline:
+def _insert_resize_step(
+    pipeline: ImagePipeline, resolution: tuple[int, int]
+) -> ImagePipeline:
     """
     Insert a ResizeStep into the pipeline at the correct position.
-    
+
     The ResizeStep should be placed:
     - AFTER: Crop, Rotate, TextEnhance steps
     - BEFORE: ColorProfile, Contrast, Sharpen, Quantize steps
-    
+
     Args:
         pipeline: The original pipeline.
         resolution: Target resolution for the ResizeStep.
-        
+
     Returns:
         New pipeline with ResizeStep inserted at the correct position.
     """
     # Create new pipeline with steps in correct order
     new_pipeline = ImagePipeline()
     resize_inserted = False
-    
+
     for step in pipeline.steps:
         step_name = step.get_name()
-        
+
         # Insert ResizeStep before post-resize steps
         if not resize_inserted and not any(
-            keyword in step_name for keyword in ['Crop', 'Rotate', 'TextEnhance', 'Resize']
+            keyword in step_name
+            for keyword in ["Crop", "Rotate", "TextEnhance", "Resize"]
         ):
             new_pipeline.add_step(ResizeStep(resolution=resolution))
             resize_inserted = True
-        
+
         # Don't add existing ResizeStep (we'll add our own)
-        if 'Resize' not in step_name:
+        if "Resize" not in step_name:
             new_pipeline.add_step(step)
-    
+
     # If resize wasn't inserted yet (all steps were pre-resize), add it at the end
     if not resize_inserted:
         new_pipeline.add_step(ResizeStep(resolution=resolution))
-    
+
     return new_pipeline
 
 
