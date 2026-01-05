@@ -107,23 +107,30 @@ def process_images(config: ProcessingConfig, reporter: ProgressReporter) -> int:
                 if prompt_yes_no(
                     "Save this configuration as a profile for future use?"
                 ):
+
+                    def validate_profile_name(name: str) -> str | None:
+                        """Validate profile name is not empty."""
+                        if not name.strip():
+                            return "Profile name cannot be empty"
+                        return None
+
                     profile_name = prompt_input(
                         "Profile name (e.g., 'my-device'):",
-                        validate_not_empty=True,
+                        validate=validate_profile_name,
                     )
                     profile_manager = ProfileManager()
-                    profile_config = {
-                        "src_dir": str(config.src_dir),
-                        "dest_dir": str(config.dest_dir),
-                        "device": (
+                    profile_manager.save(
+                        name=profile_name,
+                        device=(
                             config.device_key if hasattr(config, "device_key") else None
                         ),
-                        "resolution": config.resolution,
-                        "quality": config.quality,
-                        "workers": config.workers,
-                        "rtl": config.rtl,
-                    }
-                    profile_manager.save(profile_name, profile_config)
+                        pipeline=None,
+                        resolution=config.resolution,
+                        rtl=config.rtl,
+                        quality=config.quality,
+                        workers=config.workers,
+                        description="",
+                    )
                     print(f"Profile '{profile_name}' saved!")
             except Exception:
                 # Silently ignore profile save errors
