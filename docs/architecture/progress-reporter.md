@@ -1,198 +1,361 @@
-# Miglioramento Punto 2: Separazione delle Responsabilità e Dependency Injection
+# Progress Reporting Architecture
 
-## Obiettivo
-Disaccoppiare la logica di business dall'interfaccia utente (UI) attraverso l'introduzione di un'astrazione per il reporting del progresso, rendendo il codice più testabile e flessibile.
+## Overview
 
-## Modifiche Implementate
+ShiroInk uses an abstract `ProgressReporter` interface to decouple progress tracking from specific UI frameworks. This enables flexible reporting without coupling business logic to console output or other UI dependencies.
 
-### 1. Nuova Interfaccia Astratta: `ProgressReporter` (src/progress_reporter.py)
+## Architecture
 
-Creata un'interfaccia astratta che definisce il contratto per il reporting del progresso:
+### The Problem
+
+Without abstraction:
+- Business logic tightly coupled to Rich library
+- Testing requires complex UI mocking
+- Difficult to add new reporting methods
+- UI concerns mixed with processing logic
+
+### The Solution
+
+Abstract `ProgressReporter` interface enables:
+- Multiple reporting implementations
+- Easy testing without UI
+- Flexible output channels
+- Clear separation of concerns
+
+## ProgressReporter Interface
 
 ```python
 class ProgressReporter(ABC):
-    """Abstract interface for progress reporting and logging."""
+    """Abstract interface for progress reporting."""
     
     @abstractmethod
-    def log(self, message: str, level: str = "info") -> None
+    def log(self, message: str, level: str = "info") -> None:
+        """Log a message."""
+        pass
     
     @abstractmethod
-    def add_task(self, description: str, total: int) -> Any
+    def add_task(self, description: str, total: int) -> Any:
+        """Create a progress task."""
+        pass
     
     @abstractmethod
-    def advance_task(self, task_id: Any, advance: int = 1) -> None
-    
-    # ... altri metodi
+    def advance_task(self, task_id: Any, advance: int = 1) -> None:
+        """Update task progress."""
+        pass
 ```
 
-### 2. Implementazioni Concrete
+## Implementations
 
-#### a) ConsoleProgressReporter
-- Usa Rich per output colorato nella console
-- Identico al comportamento originale dell'applicazione
-- Perfetto per uso interattivo
+### ConsoleProgressReporter
 
-#### b) SilentProgressReporter
-- Non produce alcun output
-- Ideale per:
-  - Unit testing
-  - Ambienti headless/CI/CD
-  - Esecuzioni in background
+Rich-formatted console output with colors and progress bars.
 
-#### c) FileProgressReporter
-- Scrive i log su file
-- Utile per:
-  - Debugging
-  - Auditing
-  - Esecuzioni batch con log persistente
+**Features:**
+- Colored output by log level
+- Progress bars for file processing
+- Real-time status updates
+- Professional formatting
 
-### 3. Dependency Injection
+**Use case:** Interactive command-line use
 
-**Prima (file_processor.py):**
-```python
-def process_images_in_directory(
-    directory: Path,
-    src_dir: Path,
-    dest_dir: Path,
-    resolution: tuple[int, int],
-    progress: Progress,  # Accoppiamento stretto con Rich
-    rtl: bool = False,
-    quality: int = 6,
-    debug: bool = False,
-    dry_run: bool = False,
-    workers: int = 4,
-) -> None:
-    progress.console.log("Processing...")  # Dipendenza diretta da Rich
-```
-
-**Dopo:**
-```python
-def process_images_in_directory(
-    directory: Path,
-    config: ProcessingConfig,
-    reporter: ProgressReporter,  # Astrazione iniettata
-) -> None:
-    reporter.log("Processing...")  # Interfaccia astratta
-```
-
-### 4. Modifiche ai File Esistenti
-
-#### src/main.py
-- Aggiunto parametro `reporter: ProgressReporter` a `main()`
-- Creazione del reporter appropriato (ConsoleProgressReporter) nel punto di ingresso
-- Dependency injection del reporter nelle funzioni di processing
-
-#### src/file_processor.py
-- Sostituito `Progress` con `ProgressReporter` in tutte le funzioni
-- Rimosso accoppiamento con `progress.console.log()`
-- Usato `reporter.log()` con livelli appropriati (info, error, debug)
-
-#### src/config.py
-- Rimossi `create_progress()` e `console` (non più necessari)
-- Mantenuta solo la dataclass `ProcessingConfig`
-
-## Vantaggi Ottenuti
-
-### 1. Testabilità
-**Prima:** Testare richiedeva istanziare oggetti Rich Progress complessi
-**Dopo:** Usare SilentProgressReporter per test puliti e veloci
-
-```python
-def test_process_images(self):
-    config = ProcessingConfig(...)
-    reporter = SilentProgressReporter()  # Nessun output
-    process_images_in_directory(dir, config, reporter)
-    # Test passa senza output e senza dipendenze UI
-```
-
-### 2. Flessibilità
-Facile cambiare il comportamento del reporting senza modificare la business logic:
-- Console output per uso interattivo
-- File logging per batch processing
-- Silent per testing o ambienti headless
-
-### 3. Separazione delle Responsabilità
-- Business logic (file_processor.py) non conosce Rich o console
-- UI concerns isolati nelle implementazioni di ProgressReporter
-- Violazione zero del principio Single Responsibility
-
-### 4. Estensibilità
-Aggiungere nuove implementazioni è banale:
-- HTTPProgressReporter (invio a server remoto)
-- DatabaseProgressReporter (salvataggio in DB)
-- SlackProgressReporter (notifiche Slack)
-
-## Test Eseguiti
-
-1. **Test funzionale con ConsoleProgressReporter**
-   ```bash
-   python src/main.py /tmp/test /tmp/output --dry-run -d
-   ```
-   ✓ Output identico al comportamento originale
-
-2. **Test con SilentProgressReporter**
-   ```python
-   reporter = SilentProgressReporter()
-   main(config, reporter)
-   ```
-   ✓ Nessun output, esecuzione silenziosa
-
-3. **Test con FileProgressReporter**
-   ```python
-   reporter = FileProgressReporter(Path("/tmp/log.txt"))
-   main(config, reporter)
-   ```
-   ✓ Log scritto correttamente su file
-
-4. **Unit tests**
-   ```bash
-   python -m unittest test_example.py
-   ```
-   ✓ Tutti i test passano (4/4)
-
-## Esempio di Utilizzo
-
-### Uso Standard (Console)
 ```python
 from progress_reporter import ConsoleProgressReporter
 
 reporter = ConsoleProgressReporter()
-main(config, reporter)
+reporter.log("Processing started", level="info")
+task_id = reporter.add_task("Processing files", total=100)
+reporter.advance_task(task_id, 10)
 ```
 
-### Testing
+### SilentProgressReporter
+
+No output at all.
+
+**Features:**
+- Zero I/O overhead
+- No console pollution
+- Completely silent
+
+**Use cases:**
+- Unit testing
+- CI/CD pipelines
+- Headless environments
+- Background processing
+
 ```python
 from progress_reporter import SilentProgressReporter
 
 reporter = SilentProgressReporter()
-main(config, reporter)
-assert len(reporter._tasks) == 0  # Verifica che tutti i task siano completati
+main(config, reporter)  # Runs silently
 ```
 
-### Logging su File
+### FileProgressReporter
+
+Logs to a file instead of console.
+
+**Features:**
+- Persistent log file
+- Time-stamped entries
+- Structured logging
+- No console output
+
+**Use cases:**
+- Batch processing
+- Server environments
+- Audit trails
+- Debugging complex issues
+
+```python
+from progress_reporter import FileProgressReporter
+from pathlib import Path
+
+reporter = FileProgressReporter(Path("processing.log"))
+main(config, reporter)
+# Creates: processing.log with all messages
+```
+
+## Dependency Injection
+
+### Pattern
+
+```python
+def main(config: ProcessingConfig, reporter: ProgressReporter):
+    """Main processing function with injected reporter."""
+    reporter.log("Starting processing", level="info")
+    
+    # Business logic doesn't know or care about reporter type
+    pipeline = config.get_pipeline()
+    process_files(config, pipeline, reporter)
+    
+    reporter.log("Completed", level="info")
+```
+
+### Benefits
+
+1. **Testability**: Use SilentProgressReporter in tests
+2. **Flexibility**: Swap implementations without changing code
+3. **Separation**: Business logic independent of UI
+4. **Extensibility**: Easy to add new reporter types
+
+## Creating Custom Reporters
+
+```python
+from progress_reporter import ProgressReporter
+from pathlib import Path
+
+class CustomReporter(ProgressReporter):
+    """Custom reporter implementation."""
+    
+    def __init__(self, config: dict):
+        self.config = config
+    
+    def log(self, message: str, level: str = "info") -> None:
+        # Your logging logic
+        print(f"[{level.upper()}] {message}")
+    
+    def add_task(self, description: str, total: int) -> str:
+        task_id = str(uuid.uuid4())
+        print(f"Task: {description}")
+        return task_id
+    
+    def advance_task(self, task_id: str, advance: int = 1) -> None:
+        # Update progress tracking
+        pass
+
+# Use it
+reporter = CustomReporter({})
+main(config, reporter)
+```
+
+## Usage Examples
+
+### Standard Processing (Console)
+
+```bash
+python src/main.py input/ output/ --pipeline kindle
+```
+
+Output:
+```
+Processing images... ━━━━━━━━━━━━━━━━━━━ 50%
+Processing: image1.jpg... ✓
+Processing: image2.jpg... ✓
+```
+
+### Silent Processing (Testing)
+
+```python
+from progress_reporter import SilentProgressReporter
+
+def test_processing():
+    config = ProcessingConfig(
+        src_dir=Path("test_input"),
+        dest_dir=Path("test_output")
+    )
+    reporter = SilentProgressReporter()
+    
+    # No console output during test
+    main(config, reporter)
+    
+    # Verify results
+    assert Path("test_output/image.jpg").exists()
+```
+
+### File Logging
+
 ```python
 from progress_reporter import FileProgressReporter
 
-reporter = FileProgressReporter(Path("/var/log/shiroink.log"))
+config = ProcessingConfig(
+    src_dir=Path("input"),
+    dest_dir=Path("output")
+)
+reporter = FileProgressReporter(Path("processing.log"))
+
 main(config, reporter)
+
+# Review log
+with open("processing.log") as f:
+    print(f.read())
 ```
 
-## Backward Compatibility
+### Batch Processing
 
-Il comportamento di default rimane identico all'originale:
-- `ConsoleProgressReporter` fornisce lo stesso output Rich colorato
-- L'interfaccia CLI non cambia
-- Gli utenti esistenti non notano differenze
+```bash
+# Run silently with file logging
+python src/main.py input/ output/ > batch.log 2>&1
 
-## Conclusioni
+# Check results
+tail batch.log
+```
 
-Questo refactoring migliora significativamente:
-- **Manutenibilità**: Codice più pulito e separato
-- **Testabilità**: Test unitari senza dipendenze UI
-- **Flessibilità**: Facile cambiare il comportamento del reporting
-- **Estensibilità**: Aggiungere nuove implementazioni è triviale
+## Integration with Error Handling
 
-Il codice è ora conforme ai principi SOLID, in particolare:
-- **S**ingle Responsibility Principle
-- **O**pen/Closed Principle
-- **D**ependency Inversion Principle
+The reporter is used throughout error handling:
+
+```python
+def main(config: ProcessingConfig, reporter: ProgressReporter) -> int:
+    error_tracker = ErrorTracker()
+    
+    try:
+        process_files(config, reporter, error_tracker)
+    except Exception as e:
+        reporter.log(f"Error: {e}", level="error")
+        error_tracker.add_error(e, None, ErrorSeverity.CRITICAL)
+    
+    # Report summary
+    if error_tracker.has_errors():
+        summary = error_tracker.get_summary()
+        reporter.log(
+            f"Completed with {summary['total_errors']} errors",
+            level="error"
+        )
+        return 1
+    
+    reporter.log("Completed successfully", level="info")
+    return 0
+```
+
+## Log Levels
+
+### INFO
+General informational messages.
+
+```python
+reporter.log("Starting processing", level="info")
+```
+
+### WARNING
+Issues that don't stop processing.
+
+```python
+reporter.log("File already exists, skipping", level="warning")
+```
+
+### ERROR
+Recoverable errors.
+
+```python
+reporter.log("Failed to process file, skipping", level="error")
+```
+
+### DEBUG
+Detailed technical information (if debug mode enabled).
+
+```python
+if config.debug:
+    reporter.log("Opening image pipeline", level="debug")
+```
+
+## Performance Considerations
+
+- **ConsoleProgressReporter**: Slight I/O overhead for formatting
+- **SilentProgressReporter**: Zero overhead (ideal for testing)
+- **FileProgressReporter**: Disk I/O but buffered for efficiency
+
+## Testing Strategy
+
+### Unit Tests with SilentReporter
+
+```python
+def test_file_processing():
+    config = ProcessingConfig(...)
+    reporter = SilentProgressReporter()
+    
+    # No output, fast execution
+    result = process_files(config, reporter)
+    
+    assert result is True
+```
+
+### Integration Tests with FileReporter
+
+```python
+def test_batch_processing():
+    log_file = Path("test.log")
+    reporter = FileProgressReporter(log_file)
+    
+    main(config, reporter)
+    
+    # Verify log contents
+    log_contents = log_file.read_text()
+    assert "completed" in log_contents.lower()
+```
+
+## Extension Points
+
+### Adding a New Reporter Type
+
+1. Inherit from `ProgressReporter`
+2. Implement required methods
+3. Use like any other reporter
+
+```python
+class MetricsReporter(ProgressReporter):
+    def __init__(self, metrics_endpoint: str):
+        self.endpoint = metrics_endpoint
+    
+    def log(self, message: str, level: str = "info") -> None:
+        # Send to metrics service
+        requests.post(self.endpoint, json={"message": message, "level": level})
+```
+
+### Adding a New Log Level
+
+Extend log levels by modifying reporter implementations:
+
+```python
+def log(self, message: str, level: str = "info") -> None:
+    if level == "trace":
+        # Ultra-detailed logging
+        self._trace(message)
+    elif level == "debug":
+        # Debug information
+        self._debug(message)
+```
+
+## Related Documentation
+
+- [Pipeline System](pipeline-system.md) - Processing pipeline
+- [Error Handling](error-handling.md) - Error tracking
+- [Configuration](../guides/quickstart.md) - Setup instructions

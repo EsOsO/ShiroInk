@@ -1,225 +1,184 @@
-# Miglioramento Punto 3: Pipeline di Processing Configurabile
+# Image Processing Pipeline System
 
-## Obiettivo
-Implementare una pipeline di processing modulare e configurabile che permetta di:
-- Modificare l'ordine delle operazioni di processing
-- Abilitare/disabilitare singoli step
-- Creare preset ottimizzati per diversi dispositivi
-- Estendere facilmente con nuovi step di processing
+## Overview
 
-## Architettura
+The image processing pipeline is a modular, configurable system for transforming images through a sequence of processing steps. Each step implements the `ProcessingStep` interface, allowing flexible composition and customization.
 
-### Pattern Utilizzati
-- **Strategy Pattern**: Ogni step di processing è una strategia intercambiabile
-- **Chain of Responsibility**: Gli step vengono eseguiti in sequenza
-- **Builder Pattern**: Costruzione fluida della pipeline con method chaining
-- **Factory Pattern**: PipelinePresets per creare configurazioni predefinite
+## Architecture
 
-## Modifiche Implementate
+### Core Concepts
 
-### 1. Interfaccia ProcessingStep (src/image_pipeline/pipeline.py)
+**ProcessingStep (Interface)**
+- Abstract base class for all processing operations
+- Must implement `process()` and `get_name()` methods
+- Encapsulates both configuration and execution
 
+**ImagePipeline (Container)**
+- Manages a sequence of ProcessingStep instances
+- Executes steps in order (Chain of Responsibility pattern)
+- Supports dynamic add/remove operations
+- Provides fluent interface for construction
+
+**Pipeline Presets (Factory)**
+- Pre-configured pipelines for common use cases
+- Optimized for specific device types and quality requirements
+- Easy to extend or customize
+
+## Available Steps
+
+### ResizeStep
+Resizes images to exact device screen dimensions.
+
+**Configuration:**
 ```python
-class ProcessingStep(ABC):
-    """Abstract base class for image processing steps."""
-    
-    @abstractmethod
-    def process(self, image: Image.Image) -> Image.Image:
-        """Process the image."""
-        pass
-    
-    @abstractmethod
-    def get_name(self) -> str:
-        """Get the name of this processing step."""
-        pass
+ResizeStep(width: int, height: int, fit_mode: str = "contain")
 ```
 
-**Caratteristiche:**
-- Interfaccia comune per tutti gli step
-- Configurazione tramite kwargs nel costruttore
-- Rappresentazione string per debugging
+**Use case:** Ensure output matches exact device resolution
 
-### 2. Classe ImagePipeline
+### ContrastStep
+Adjusts image contrast for better readability on e-ink displays.
 
+**Configuration:**
 ```python
-class ImagePipeline:
-    """Configurable image processing pipeline."""
-    
-    def add_step(self, step: ProcessingStep) -> "ImagePipeline"
-    def remove_step(self, step_name: str) -> "ImagePipeline"
-    def clear(self) -> "ImagePipeline"
-    def process(self, image: Image.Image) -> Image.Image
+ContrastStep(factor: float = 1.5)
 ```
 
-**Funzionalità:**
-- Gestione dinamica degli step (add, remove, clear)
-- Method chaining per costruzione fluida
-- Esecuzione sequenziale degli step
-- Informazioni sulla pipeline (get_steps, len, repr)
+**Use case:** Enhance visibility on low-contrast displays
 
-### 3. Refactoring Step Esistenti
+### SharpenStep
+Enhances edge sharpness and detail clarity.
 
-#### ContrastStep
+**Configuration:**
 ```python
-class ContrastStep(ProcessingStep):
-    def __init__(self, factor: float = 1.5):
-        super().__init__(factor=factor)
-        self.factor = factor
+SharpenStep(factor: float = 1.2)
 ```
 
-#### SharpenStep
+**Use case:** Improve text and line clarity
+
+### QuantizeStep
+Reduces color palette to decrease file size.
+
+**Configuration:**
 ```python
-class SharpenStep(ProcessingStep):
-    def __init__(self, factor: float = 1.2):
-        super().__init__(factor=factor)
-        self.factor = factor
+QuantizeStep(palette: bytes = Palette16)
 ```
 
-#### QuantizeStep
-```python
-class QuantizeStep(ProcessingStep):
-    def __init__(self, palette: bytes = Palette16):
-        super().__init__(palette=palette)
-        self.palette = palette
-```
+**Use case:** Optimize for e-ink displays or reduce file size
 
-**Nota:** Le funzioni legacy (contrast, sharpen, quantize) sono mantenute per backward compatibility.
+## Preset Pipelines
 
-### 4. Pipeline Presets (src/image_pipeline/presets.py)
+### kindle (Default)
+Optimized for Amazon Kindle e-ink readers.
 
-#### Preset Disponibili
+**Steps:**
+- ResizeStep (to device resolution)
+- ContrastStep (factor: 1.5)
+- SharpenStep (factor: 1.2)
+- QuantizeStep (16 colors)
 
-**Kindle** (default)
-- Contrast (factor=1.5) → High contrast per display e-ink
-- Sharpen (factor=1.2) → Moderato sharpening
-- Quantize (16 colors) → Riduzione dimensione file
+**Best for:** E-ink readers, file size optimization
 
-**Tablet**
-- Contrast (factor=1.3) → Moderato contrasto
-- Sharpen (factor=1.1) → Leggero sharpening
-- No Quantize → Preserva i colori
+### tablet
+Optimized for LCD/tablet displays.
 
-**Print**
-- Sharpen (factor=1.05) → Solo leggero sharpening
-- Minimal processing per stampa
+**Steps:**
+- ResizeStep (to device resolution)
+- ContrastStep (factor: 1.3)
+- SharpenStep (factor: 1.1)
 
-**High Quality**
-- Contrast (factor=1.2) → Leggero contrasto
-- Sharpen (factor=1.4) → Enhanced sharpening
-- No Quantize → Qualità massima
+**Best for:** Color LCD devices, web viewing
 
-**Minimal**
-- Pipeline vuota → Nessun processing
+### high_quality
+Maximum quality for archival storage.
 
-**Custom**
-```python
-PipelinePresets.custom(
-    contrast=1.8,      # Optional
-    sharpen=1.5,       # Optional
-    quantize=True      # Optional
-)
-```
+**Steps:**
+- ResizeStep (to device resolution)
+- ContrastStep (factor: 1.2)
+- SharpenStep (factor: 1.4)
 
-### 5. Integrazione con ProcessingConfig
+**Best for:** Archive storage, future-proofing
+
+### minimal
+No processing (pass-through).
+
+**Steps:** None
+
+**Best for:** Quick conversions, preserving original quality
+
+### custom
+Build a custom pipeline programmatically.
 
 ```python
-@dataclass
-class ProcessingConfig:
-    # ... altri campi ...
-    pipeline_preset: str = "kindle"
-    custom_pipeline: ImagePipeline | None = None
-    
-    def get_pipeline(self) -> ImagePipeline:
-        """Get the pipeline based on configuration."""
-        if self.custom_pipeline is not None:
-            return self.custom_pipeline
-        else:
-            return PipelinePresets.get_preset(self.pipeline_preset)
+pipeline = ImagePipeline()
+pipeline.add_step(ContrastStep(factor=1.8))
+pipeline.add_step(SharpenStep(factor=1.5))
 ```
 
-### 6. Supporto CLI
+## Usage Examples
+
+### Using Presets via CLI
 
 ```bash
-python src/main.py src dest --pipeline kindle      # Default
-python src/main.py src dest --pipeline tablet
-python src/main.py src dest --pipeline print
-python src/main.py src dest --pipeline high_quality
-python src/main.py src dest --pipeline minimal
+# Default (kindle preset)
+python src/main.py input/ output/
+
+# Tablet optimization
+python src/main.py input/ output/ --pipeline tablet
+
+# High quality archive
+python src/main.py input/ output/ --pipeline high_quality
+
+# No processing
+python src/main.py input/ output/ --pipeline minimal
 ```
 
-```
--p {kindle,tablet,print,high_quality,minimal}, --pipeline {kindle,tablet,print,high_quality,minimal}
-    Processing pipeline preset to use (default: kindle)
-```
+### Programmatic Usage
 
-## Esempi di Utilizzo
-
-### Uso CLI Standard
-```bash
-# Kindle preset (default)
-python src/main.py manga_folder output_folder
-
-# Tablet preset
-python src/main.py manga_folder output_folder --pipeline tablet
-
-# Minimal processing
-python src/main.py manga_folder output_folder --pipeline minimal
-```
-
-### Uso Programmatico - Preset
 ```python
 from image_pipeline.presets import PipelinePresets
 from image_pipeline import process
 
-# Usa preset
+# Using a preset
 pipeline = PipelinePresets.kindle()
-process(image_path, output_path, resolution, pipeline=pipeline)
-```
+process(input_path, output_path, resolution=(1072, 1448), pipeline=pipeline)
 
-### Uso Programmatico - Custom
-```python
-from image_pipeline.pipeline import ImagePipeline
-from image_pipeline.contrast import ContrastStep
-from image_pipeline.sharpen import SharpenStep
-
-# Costruisci pipeline custom
+# Using custom pipeline
 pipeline = ImagePipeline()
-pipeline.add_step(ContrastStep(factor=2.0))
-pipeline.add_step(SharpenStep(factor=1.8))
+pipeline.add_step(ContrastStep(factor=1.8))
+pipeline.add_step(SharpenStep(factor=1.5))
 
-process(image_path, output_path, resolution, pipeline=pipeline)
-```
+process(input_path, output_path, resolution=(1072, 1448), pipeline=pipeline)
 
-### Method Chaining
-```python
+# Method chaining
 pipeline = (ImagePipeline()
-           .add_step(ContrastStep(factor=1.5))
-           .add_step(SharpenStep(factor=1.2))
-           .add_step(QuantizeStep()))
+    .add_step(ContrastStep(1.5))
+    .add_step(SharpenStep(1.2)))
 ```
 
-### Modifica Dinamica
+### Dynamic Modification
+
 ```python
-# Parti da un preset
+# Start with preset
 pipeline = PipelinePresets.kindle()
 
-# Rimuovi quantization per preservare colori
-pipeline.remove_step("Quantize")
+# Modify it
+pipeline.remove_step("Quantize")  # Preserve colors
+pipeline.add_step(CustomStep())   # Add custom processing
 
-# Aggiungi uno step custom
-pipeline.add_step(CustomBlurStep(radius=2))
+process(input_path, output_path, resolution=res, pipeline=pipeline)
 ```
 
-## Estendibilità
+## Creating Custom Steps
 
-### Creare un Nuovo Processing Step
+To add a new processing step:
 
 ```python
 from image_pipeline.pipeline import ProcessingStep
 from PIL import Image, ImageFilter
 
 class BlurStep(ProcessingStep):
-    """Custom blur processing step."""
+    """Apply Gaussian blur to image."""
     
     def __init__(self, radius: float = 2.0):
         super().__init__(radius=radius)
@@ -231,155 +190,99 @@ class BlurStep(ProcessingStep):
     def get_name(self) -> str:
         return "Blur"
 
-# Uso
+# Use it
 pipeline = ImagePipeline()
 pipeline.add_step(BlurStep(radius=3.0))
 ```
 
-### Creare un Nuovo Preset
+## Creating Custom Presets
 
 ```python
+from image_pipeline.presets import PipelinePresets
+from image_pipeline.pipeline import ImagePipeline
+
+# Add to PipelinePresets class
 @staticmethod
 def manga_optimized() -> ImagePipeline:
-    """Pipeline ottimizzata per manga."""
+    """Pipeline optimized for manga."""
     pipeline = ImagePipeline()
     pipeline.add_step(ContrastStep(factor=1.8))
     pipeline.add_step(SharpenStep(factor=1.5))
     pipeline.add_step(QuantizeStep())
     return pipeline
+
+# Use it
+pipeline = PipelinePresets.manga_optimized()
 ```
+
+## Design Patterns
+
+### Strategy Pattern
+Each ProcessingStep is a strategy that can be swapped or replaced.
+
+### Chain of Responsibility
+Pipeline executes steps sequentially, each transforming the image for the next.
+
+### Factory Pattern
+PipelinePresets creates pre-configured pipelines.
+
+### Builder Pattern
+Fluent interface (`add_step()`, `remove_step()`) for constructing pipelines.
 
 ## Testing
 
-### Test Unitari (test_pipeline.py)
+### Unit Tests
+
 ```bash
-python -m unittest test_pipeline.py -v
+# Run pipeline tests
+python -m pytest tests/unit/test_pipeline.py -v
+
+# Run device preset tests
+python -m pytest tests/unit/test_devices.py -v
 ```
 
-**Coverage:**
-- 16 test passati
-- Test per ogni step individuale
-- Test per pipeline con multiple configurazioni
-- Test per tutti i preset
-- Test per modifica dinamica della pipeline
+### Functional Tests
 
-**Risultati:**
-```
-Ran 16 tests in 0.005s
-OK
-```
-
-### Test Funzionali
 ```bash
-# Test con diversi preset
-python src/main.py test_dir output --dry-run --pipeline kindle
-python src/main.py test_dir output --dry-run --pipeline tablet
-python src/main.py test_dir output --dry-run --pipeline minimal
+# Test different presets
+python src/main.py test_images/ output/ --pipeline kindle
+python src/main.py test_images/ output/ --pipeline tablet
+python src/main.py test_images/ output/ --pipeline high_quality
 ```
 
-## Vantaggi Ottenuti
+## Configuration
 
-### 1. Flessibilità
-- **Prima:** Pipeline hardcoded (contrast → sharpen → quantize)
-- **Dopo:** Pipeline completamente configurabile via CLI o codice
+Pipeline preset can be specified via CLI or configuration:
 
-### 2. Estendibilità
-- Aggiungere nuovi step richiede solo:
-  1. Creare classe che estende ProcessingStep
-  2. Implementare process() e get_name()
-- Zero modifiche al core del sistema
-
-### 3. Testabilità
-- Ogni step testabile isolatamente
-- Pipeline testabile con mock steps
-- 16 unit test che validano funzionalità
-
-### 4. Riusabilità
-- Preset predefiniti per casi d'uso comuni
-- Facile creare nuovi preset
-- Pipeline condivisibili tra progetti
-
-### 5. Performance
-- Possibilità di disabilitare step costosi
-- Pipeline minimal per processing veloce
-- Ottimizzazioni device-specific
-
-## Confronto Prima/Dopo
-
-### Prima: Hardcoded Pipeline
 ```python
-def process(image_path, output_path, ...):
-    img = contrast(img)      # Sempre applicato
-    img = sharpen(img)       # Sempre applicato
-    img = quantize(img)      # Sempre applicato
+from config import ProcessingConfig
+
+config = ProcessingConfig(
+    src_dir=Path("input"),
+    dest_dir=Path("output"),
+    pipeline_preset="tablet"  # or custom instance
+)
 ```
 
-**Problemi:**
-- Impossibile modificare ordine
-- Impossibile disabilitare step
-- Impossibile aggiungere step custom
-- Un solo caso d'uso (Kindle)
+## Benefits
 
-### Dopo: Configurable Pipeline
+1. **Modularity**: Each step is independent and testable
+2. **Flexibility**: Easy to add, remove, or reorder steps
+3. **Extensibility**: Create custom steps without modifying core code
+4. **Performance**: Disable expensive steps when not needed
+5. **Reusability**: Share pipelines across projects
+
+## Migration Guide
+
+### Before (Hardcoded Pipeline)
 ```python
-def process(image_path, output_path, ..., pipeline=None):
-    if pipeline is None:
-        pipeline = PipelinePresets.kindle()
-    
-    processed_img = pipeline.process(img)  # Configurabile!
+img = contrast(img)
+img = sharpen(img)
+img = quantize(img)
 ```
 
-**Vantaggi:**
-- Ordine modificabile
-- Step abilitabili/disabilitabili
-- Estensibile con step custom
-- Multiple configurazioni (5 preset + custom)
-
-## Backward Compatibility
-
-**100% mantenuta:**
-- Comportamento default identico (Kindle preset)
-- Funzioni legacy (contrast, sharpen, quantize) ancora disponibili
-- API process() retrocompatibile (pipeline parameter opzionale)
-
-## Metriche
-
-- **Nuove classi:** 4 (ProcessingStep, ImagePipeline, PipelinePresets + 3 Step classes)
-- **Preset predefiniti:** 5 (kindle, tablet, print, high_quality, minimal)
-- **Linee di codice:** ~400 (pipeline.py + presets.py + refactoring)
-- **Test coverage:** 16 unit test, 100% successo
-- **Flessibilità:** Da 1 configurazione fissa a infinite configurazioni
-
-## Casi d'Uso Reali
-
-### 1. Webcomic per Mobile
-```bash
-python src/main.py webcomic/ output/ --pipeline tablet -r 1080x1920
+### After (Flexible Pipeline)
+```python
+pipeline = PipelinePresets.kindle()
+img = pipeline.process(img)
 ```
-
-### 2. Manga per E-Ink
-```bash
-python src/main.py manga/ output/ --pipeline kindle
-```
-
-### 3. Archivio Alta Qualità
-```bash
-python src/main.py original/ archive/ --pipeline high_quality
-```
-
-### 4. Conversione Veloce (No Processing)
-```bash
-python src/main.py source/ dest/ --pipeline minimal
-```
-
-## Conclusioni
-
-Il refactoring della pipeline di processing rappresenta un miglioramento sostanziale:
-
-1. **Architettura**: Da monolitica a modulare
-2. **Configurabilità**: Da zero a completa
-3. **Estendibilità**: Facile aggiungere nuovi step
-4. **Testabilità**: Ogni componente testabile isolatamente
-5. **Usabilità**: Preset pronti all'uso + personalizzazione avanzata
-
-Il sistema è ora pronto per supportare qualsiasi caso d'uso di processing immagini mantenendo semplicità per gli utenti base e potenza per gli utenti avanzati.

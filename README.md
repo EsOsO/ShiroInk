@@ -364,10 +364,25 @@ ShiroInk/
 
 ## Documentation
 
-- [REFACTORING_SUMMARY.md](REFACTORING_SUMMARY.md) - Complete overview of improvements
-- [REFACTORING_PUNTO1.md](REFACTORING_PUNTO1.md) - ProcessingConfig details (Italian)
-- [REFACTORING_PUNTO2.md](REFACTORING_PUNTO2.md) - ProgressReporter details (Italian)
-- [REFACTORING_PUNTO3.md](REFACTORING_PUNTO3.md) - Pipeline details (Italian)
+For complete documentation, see the [docs](docs) directory:
+
+- **[Architecture](docs/architecture/)** - System design and patterns
+  - [Overview](docs/architecture/overview.md) - Core components
+  - [Pipeline System](docs/architecture/pipeline-system.md) - Processing pipeline
+  - [Error Handling](docs/architecture/error-handling.md) - Error management
+  - [Progress Reporting](docs/architecture/progress-reporter.md) - Progress tracking
+
+- **[User Guides](docs/guides/)** - How to use ShiroInk
+  - [Quick Start](docs/guides/quickstart.md) - Get started in 5 minutes
+  - [Installation](docs/guides/installation.md) - Setup instructions
+  - [Usage](docs/guides/usage.md) - Usage examples
+  - [Device Presets](docs/guides/device-presets.md) - Device specifications
+  - [Docker](docs/guides/docker.md) - Docker deployment
+
+- **[Contributing](docs/contributing/)** - Development guidelines
+  - [Development](docs/contributing/development.md) - Setup for developers
+  - [Testing Guide](docs/contributing/testing-guide.md) - Running tests
+  - [Conventional Commits](docs/contributing/conventional-commits.md) - Commit standards
 
 ## License
 

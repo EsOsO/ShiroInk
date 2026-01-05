@@ -1,54 +1,261 @@
 # Usage Guide
 
-Complete guide to using ShiroInk.
+ShiroInk processes images through a configurable pipeline optimized for e-readers, tablets, and other devices.
 
-## Basic Usage
+## Basic Command
 
 ```bash
 shiroink <input_directory> <output_directory> [options]
 ```
 
-## Options
+## Pipeline Presets
 
-### Pipeline Selection
+Choose an optimization profile based on your target device:
 
-```bash
--p, --pipeline {kindle,tablet,print,high_quality,minimal}
-```
-
-Choose a processing preset:
-
-- **kindle**: Optimized for e-readers (default)
-- **tablet**: For iPad/Android tablets
-- **print**: High quality for printing
-- **high_quality**: Maximum quality
-- **minimal**: Light processing
-
-### Resolution
+### kindle (Default)
+Optimized for Amazon Kindle e-ink readers.
 
 ```bash
--r, --resolution RESOLUTION
+shiroink input/ output/ --pipeline kindle
 ```
 
-Set custom resolution (e.g., `800x600`, `1920x1080`, or just `800` for square)
+**Best for:**
+- E-Ink readers (Kindle, Kobo, PocketBook)
+- File size optimization
+- High contrast environments
 
-### Quality
+### tablet
+Optimized for color LCD displays (iPad, Android tablets).
 
 ```bash
--q, --quality QUALITY
+shiroink input/ output/ --pipeline tablet
 ```
 
-Quality level from 1-9 (higher = better quality but larger files)
+**Best for:**
+- iPad and Android tablets
+- Color preservation
+- Modern LCD screens
 
-### Other Options
+### high_quality
+Maximum quality for archival storage.
 
 ```bash
---rtl               # Right-to-left mode for manga
---dry-run           # Test without processing
--d, --debug         # Enable debug output
--w, --workers NUM   # Number of parallel workers (default: 4)
+shiroink input/ output/ --pipeline high_quality
 ```
 
-## Examples
+**Best for:**
+- Future-proofing content
+- Archive storage
+- Printing
+- Premium viewing
 
-See [Quick Start](quickstart.md) and [Docker Guide](docker.md) for more examples.
+### minimal
+No processing (fast pass-through).
+
+```bash
+shiroink input/ output/ --pipeline minimal
+```
+
+**Best for:**
+- Quick format conversion
+- Preserving original quality
+- Testing
+
+## Resolution Settings
+
+Set output dimensions for your target device.
+
+### Default Resolution
+Uses device-specific dimensions (automatic).
+
+```bash
+shiroink input/ output/
+```
+
+### Custom Resolution
+Specify exact width and height:
+
+```bash
+# Portrait: 1072x1448 (Kindle Paperwhite)
+shiroink input/ output/ -r 1072x1448
+
+# Landscape: 1448x1072
+shiroink input/ output/ -r 1448x1072
+
+# Square: 1024x1024
+shiroink input/ output/ -r 1024x1024
+
+# Shorthand (square): -r 1024
+shiroink input/ output/ -r 1024
+```
+
+## Quality Settings
+
+Control file size vs. image quality (1-9).
+
+```bash
+# Lower quality, smaller files (good for e-ink)
+shiroink input/ output/ -q 3
+
+# Default quality (balanced)
+shiroink input/ output/ -q 6
+
+# High quality (larger files)
+shiroink input/ output/ -q 9
+```
+
+## Processing Options
+
+### Right-to-Left Mode
+For manga and RTL content:
+
+```bash
+shiroink input/ output/ --rtl
+```
+
+### Debug Output
+Enable detailed logging:
+
+```bash
+shiroink input/ output/ --debug
+```
+
+Shows:
+- Processing steps
+- File-by-file progress
+- Error details
+- Processing time
+
+### Dry Run
+Test without saving files:
+
+```bash
+shiroink input/ output/ --dry-run
+```
+
+Useful for:
+- Testing pipeline configuration
+- Estimating processing time
+- Debugging issues
+
+### Parallel Workers
+Control processing speed:
+
+```bash
+# Use 2 parallel workers (slower, less memory)
+shiroink input/ output/ -w 2
+
+# Use 8 parallel workers (faster, more memory)
+shiroink input/ output/ -w 8
+
+# Default: 4 workers
+shiroink input/ output/
+```
+
+## Practical Examples
+
+### Kindle E-Book Processing
+
+```bash
+shiroink ebook_scans/ kindle_output/ \
+  --pipeline kindle \
+  -r 1072x1448 \
+  -q 6
+```
+
+### Tablet Viewing
+
+```bash
+shiroink comics/ tablet_output/ \
+  --pipeline tablet \
+  -r 1920x1440 \
+  --workers 8
+```
+
+### Archive Storage
+
+```bash
+shiroink originals/ archive/ \
+  --pipeline high_quality \
+  -q 9
+```
+
+### Manga Processing
+
+```bash
+shiroink manga/ output/ \
+  --rtl \
+  --pipeline kindle \
+  -r 1072x1448
+```
+
+### Quick Format Conversion
+
+```bash
+# Fast, no processing
+shiroink images/ output/ --pipeline minimal
+```
+
+### Batch Processing with Logging
+
+```bash
+shiroink input/ output/ \
+  --pipeline kindle \
+  --debug \
+  --workers 8 > processing.log 2>&1
+```
+
+## Supported Formats
+
+**Input:**
+- JPEG, PNG, WebP, GIF, BMP, TIFF
+
+**Output:**
+- JPEG (default)
+- PNG (preserves quality)
+
+## Error Handling
+
+By default, ShiroInk continues processing even if some files fail:
+
+```bash
+# Continue on errors (default)
+shiroink input/ output/
+# Exit code: 0 (success), 1 (errors), 2 (critical)
+
+# Stop on first error
+shiroink input/ output/ --continue-on-error false
+```
+
+## Performance Tips
+
+1. **Use Reasonable Worker Count**: 4-8 workers for most systems
+2. **Match Resolution to Device**: Exact device dimensions prevent unnecessary scaling
+3. **Use Minimal Pipeline**: For simple format conversion
+4. **Dry Run First**: Test configuration before full batch
+
+## Troubleshooting
+
+### Out of Memory
+Reduce worker count:
+```bash
+shiroink input/ output/ -w 2
+```
+
+### Slow Processing
+Increase worker count or use minimal pipeline:
+```bash
+shiroink input/ output/ --pipeline minimal -w 8
+```
+
+### Quality Issues
+Increase quality setting:
+```bash
+shiroink input/ output/ -q 9
+```
+
+## More Information
+
+- [Quick Start](quickstart.md) - 5-minute setup
+- [Device Presets](device-presets.md) - Device specifications
+- [Architecture](../architecture/) - How ShiroInk works
