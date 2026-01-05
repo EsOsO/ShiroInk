@@ -53,7 +53,7 @@ def test_config(tmp_path):
     dest_dir = tmp_path / "dest"
     src_dir.mkdir()
     dest_dir.mkdir()
-    
+
     return ProcessingConfig(
         src_dir=src_dir,
         dest_dir=dest_dir,
@@ -68,10 +68,10 @@ def sample_images(tmp_path):
     """Create sample image files for integration tests."""
     src_dir = tmp_path / "images"
     src_dir.mkdir()
-    
+
     # Create a few test images
     for i in range(3):
         img = Image.new("RGB", (200, 300), color=(i * 80, i * 80, i * 80))
         img.save(src_dir / f"test_image_{i}.png")
-    
+
     return src_dir

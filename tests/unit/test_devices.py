@@ -17,7 +17,7 @@ class TestDeviceSpecRetrieval:
     def test_get_all_devices_returns_dict(self):
         """All devices should be returned as a dictionary."""
         devices = DeviceSpecs.get_all_devices()
-        
+
         assert isinstance(devices, dict)
         assert len(devices) > 0
 
@@ -25,7 +25,7 @@ class TestDeviceSpecRetrieval:
         """All major brands should have device specifications."""
         devices = DeviceSpecs.get_all_devices()
         device_keys = list(devices.keys())
-        
+
         assert any(k.startswith("kindle") for k in device_keys)
         assert any(k.startswith("kobo") for k in device_keys)
         assert any(k.startswith("tolino") for k in device_keys)
@@ -35,7 +35,7 @@ class TestDeviceSpecRetrieval:
     def test_list_devices_returns_list(self):
         """List devices should return a list of device keys."""
         devices = DeviceSpecs.list_devices()
-        
+
         assert isinstance(devices, list)
         assert len(devices) > 0
         assert "kindle_paperwhite_11" in devices
@@ -125,7 +125,7 @@ class TestSpecificDevices:
     def test_kindle_paperwhite_11_spec(self):
         """Test Kindle Paperwhite 11th Gen specifications."""
         device = DeviceSpecs.get_device("kindle_paperwhite_11")
-        
+
         assert device.resolution == (1236, 1648)
         assert device.display_type == DisplayType.EINK
         assert device.ppi == 300
@@ -138,7 +138,7 @@ class TestSpecificDevices:
     def test_pocketbook_inkpad_color_3_spec(self):
         """Test PocketBook InkPad Color 3 specifications."""
         device = DeviceSpecs.get_device("pocketbook_inkpad_color_3")
-        
+
         assert device.resolution == (1404, 1872)
         assert device.display_type == DisplayType.EINK
         assert device.color_support is True
@@ -150,7 +150,7 @@ class TestSpecificDevices:
     def test_ipad_pro_11_spec(self):
         """Test iPad Pro 11\" specifications."""
         device = DeviceSpecs.get_device("ipad_pro_11")
-        
+
         assert device.resolution == (1668, 2388)
         assert device.display_type == DisplayType.RETINA
         assert device.screen_size_inches == 11.0
@@ -167,30 +167,30 @@ class TestDeviceFiltering:
     def test_get_devices_by_brand_kindle(self):
         """Filter devices by Kindle brand."""
         devices = DeviceSpecs.get_devices_by_brand("kindle")
-        
+
         assert isinstance(devices, dict)
         assert len(devices) > 0
-        
+
         for key in devices.keys():
             assert key.startswith("kindle")
 
     def test_get_devices_by_brand_kobo(self):
         """Filter devices by Kobo brand."""
         devices = DeviceSpecs.get_devices_by_brand("kobo")
-        
+
         assert isinstance(devices, dict)
         assert len(devices) > 0
-        
+
         for key in devices.keys():
             assert key.startswith("kobo")
 
     def test_get_devices_by_brand_ipad(self):
         """Filter devices by iPad brand."""
         devices = DeviceSpecs.get_devices_by_brand("ipad")
-        
+
         assert isinstance(devices, dict)
         assert len(devices) > 0
-        
+
         for key in devices.keys():
             assert key.startswith("ipad")
 
@@ -210,7 +210,7 @@ class TestDisplayType:
         kindle = DeviceSpecs.get_device("kindle_paperwhite_11")
         kobo = DeviceSpecs.get_device("kobo_libra_2")
         tolino = DeviceSpecs.get_device("tolino_vision_6")
-        
+
         assert kindle.display_type == DisplayType.EINK
         assert kobo.display_type == DisplayType.EINK
         assert tolino.display_type == DisplayType.EINK
@@ -218,7 +218,7 @@ class TestDisplayType:
     def test_retina_devices_have_correct_type(self):
         """iPad devices should have RETINA display type."""
         ipad = DeviceSpecs.get_device("ipad_pro_11")
-        
+
         assert ipad.display_type == DisplayType.RETINA
 
 
@@ -236,7 +236,7 @@ class TestColorGamut:
         """B&W devices should have no color gamut."""
         kindle = DeviceSpecs.get_device("kindle_paperwhite_11")
         kobo = DeviceSpecs.get_device("kobo_libra_2")
-        
+
         assert kindle.color_gamut in (None, ColorGamut.NONE)
         assert kobo.color_gamut in (None, ColorGamut.NONE)
 
@@ -244,7 +244,7 @@ class TestColorGamut:
         """Color devices should have a valid color gamut."""
         pocketbook_color = DeviceSpecs.get_device("pocketbook_inkpad_color_3")
         ipad_pro = DeviceSpecs.get_device("ipad_pro_11")
-        
+
         assert pocketbook_color.color_gamut == ColorGamut.SRGB
         assert ipad_pro.color_gamut == ColorGamut.DCI_P3
 
@@ -256,6 +256,6 @@ class TestDeviceRepresentation:
         """Device repr should contain key information."""
         device = DeviceSpecs.get_device("kindle_paperwhite_11")
         repr_str = repr(device)
-        
+
         assert "1236x1648" in repr_str
         assert "e-ink" in repr_str

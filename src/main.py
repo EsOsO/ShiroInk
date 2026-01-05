@@ -6,7 +6,7 @@ from progress_reporter import ProgressReporter, ConsoleProgressReporter
 from error_handler import ErrorTracker, ErrorSeverity
 
 
-def main(config: ProcessingConfig, reporter: ProgressReporter) -> int:
+def process_images(config: ProcessingConfig, reporter: ProgressReporter) -> int:
     """
     Main processing function that handles directories and CBZ files.
 
@@ -95,11 +95,133 @@ def main(config: ProcessingConfig, reporter: ProgressReporter) -> int:
         reporter.log(
             "\nProcessing completed successfully with no errors!", level="info"
         )
+
+        # Suggest saving as profile
+        if not args.profile:
+            from profiles.manager import ProfileManager
+
+            try:
+                from wizard.prompts import prompt_yes_no, prompt_input
+
+                print()
+                if prompt_yes_no(
+                    "Save this configuration as a profile for future use?"
+                ):
+                    profile_name = prompt_input(
+                        "Profile name (e.g., 'my-device'):",
+                        validate_not_empty=True,
+                    )
+                    profile_manager = ProfileManager()
+                    profile_config = {
+                        "src_dir": str(config.src_dir),
+                        "dest_dir": str(config.dest_dir),
+                        "device": (
+                            config.device_key if hasattr(config, "device_key") else None
+                        ),
+                        "resolution": config.resolution,
+                        "quality": config.quality,
+                        "workers": config.workers,
+                        "rtl": config.rtl,
+                    }
+                    profile_manager.save(profile_name, profile_config)
+                    print(f"Profile '{profile_name}' saved!")
+            except Exception:
+                # Silently ignore profile save errors
+                pass
+
         return 0
 
 
-if __name__ == "__main__":
+def main() -> int:
+    """Entry point for the shiroink CLI command."""
+    import sys
+
     args = parse_arguments()
+
+    # Handle --help with Rich formatting
+    if "-h" in sys.argv or "--help" in sys.argv:
+        from cli import _print_rich_help
+
+        _print_rich_help()
+        return 0
+
+    # Handle --wizard flag
+    if args.wizard:
+        from interactive_wizard import InteractiveWizard
+
+        wizard = InteractiveWizard()
+        wizard_config = wizard.get_config_for_processing()
+
+        if wizard_config is None:
+            print("Configuration cancelled.")
+            return 0
+
+        # Use wizard configuration
+        args.src_dir = wizard_config["src_dir"]
+        args.dest_dir = wizard_config["dest_dir"]
+        args.resolution = wizard_config.get("resolution")
+        args.device = wizard_config.get("device")
+        args.quality = wizard_config.get("quality", 6)
+        args.workers = wizard_config.get("workers", 4)
+        args.rtl = wizard_config.get("rtl", False)
+
+    # Handle --list-profiles flag
+    if args.list_profiles:
+        from profiles.manager import ProfileManager
+
+        profile_manager = ProfileManager()
+        profiles = profile_manager.list_profiles()
+
+        if not profiles:
+            print("No saved profiles found.")
+            print("Use --wizard to create a new profile.")
+            return 0
+
+        print("\nSaved Profiles:")
+        print("=" * 60)
+        for profile in profiles:
+            created = profile.get("created", "Unknown")
+            last_used = profile.get("last_used", "Never")
+            print(f"  {profile['name']:<30} Created: {created}, Last used: {last_used}")
+        print("=" * 60)
+        print(f"\nUsage: shiroink input/ output/ --profile PROFILE_NAME\n")
+        return 0
+
+    # Handle --profile flag (load existing profile)
+    if args.profile and not args.wizard:
+        from profiles.manager import ProfileManager
+
+        profile_manager = ProfileManager()
+
+        try:
+            profile_config = profile_manager.load(args.profile)
+
+            # Merge profile config with CLI args (CLI args take precedence)
+            if not args.src_dir:
+                args.src_dir = Path(profile_config.get("src_dir", ""))
+            if not args.dest_dir:
+                args.dest_dir = Path(profile_config.get("dest_dir", ""))
+
+            # Use profile values for optional params if not specified
+            if args.resolution is None and "resolution" in profile_config:
+                args.resolution = tuple(profile_config["resolution"])
+            if args.device is None and "device" in profile_config:
+                args.device = profile_config["device"]
+            if args.quality == 6 and "quality" in profile_config:
+                args.quality = profile_config["quality"]
+            if args.workers == 4 and "workers" in profile_config:
+                args.workers = profile_config["workers"]
+            if not args.rtl and "rtl" in profile_config:
+                args.rtl = profile_config["rtl"]
+
+            print(f"Loaded profile: {args.profile}")
+        except FileNotFoundError:
+            print(f"Error: Profile '{args.profile}' not found.")
+            print("Use --list-profiles to see available profiles.")
+            return 1
+        except Exception as e:
+            print(f"Error loading profile: {e}")
+            return 1
 
     # Handle --list-devices flag
     if args.list_devices:
@@ -152,13 +274,15 @@ if __name__ == "__main__":
         print("\nUsage: --device <device_key>")
         print("Example: --device kindle_paperwhite_11")
         print("\n")
-        exit(0)
+        return 0
 
     # Validate required arguments
     if not args.src_dir or not args.dest_dir:
-        print("Error: src_dir and dest_dir are required (unless using --list-devices)")
+        print(
+            "Error: src_dir and dest_dir are required (unless using --list-devices or --wizard)"
+        )
         print("Run with -h for help")
-        exit(1)
+        return 1
 
     # Validate that --device and --resolution are not used together
     if args.device and args.resolution is not None:
@@ -167,7 +291,7 @@ if __name__ == "__main__":
             "The --device preset automatically sets the optimal resolution for that device"
         )
         print("Use either --device <preset> OR --resolution <width>x<height>, not both")
-        exit(1)
+        return 1
 
     # Determine resolution and pipeline based on device or manual settings
     resolution = args.resolution
@@ -206,7 +330,7 @@ if __name__ == "__main__":
         except KeyError as e:
             print(f"Error: {e}")
             print("Use --list-devices to see available device presets")
-            exit(1)
+            return 1
     elif args.resolution is None:
         # No --device and no --resolution specified, use default
         resolution = (1404, 1872)
@@ -229,5 +353,8 @@ if __name__ == "__main__":
     # Create the appropriate reporter
     reporter = ConsoleProgressReporter()
 
-    exit_code = main(config, reporter)
-    exit(exit_code)
+    return process_images(config, reporter)
+
+
+if __name__ == "__main__":
+    exit(main())

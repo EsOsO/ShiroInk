@@ -22,18 +22,21 @@ from src.image_pipeline.presets import PipelinePresets
 class TestDevicePresetWorkflow:
     """Test complete workflow using device presets."""
 
-    @pytest.mark.parametrize("device_key", [
-        "kindle_paperwhite_11",
-        "pocketbook_inkpad_color_3",
-        "ipad_pro_11",
-    ])
+    @pytest.mark.parametrize(
+        "device_key",
+        [
+            "kindle_paperwhite_11",
+            "pocketbook_inkpad_color_3",
+            "ipad_pro_11",
+        ],
+    )
     def test_device_pipeline_end_to_end(self, device_key, test_color_image):
         """Test complete pipeline for different device types."""
         device = DeviceSpecs.get_device(device_key)
         pipeline = PipelinePresets.from_device_spec(device)
-        
+
         result = pipeline.process(test_color_image)
-        
+
         assert isinstance(result, Image.Image)
         assert result.size == test_color_image.size
 
@@ -41,9 +44,9 @@ class TestDevicePresetWorkflow:
         """B&W device pipeline should produce grayscale output."""
         device = DeviceSpecs.get_device("kindle_paperwhite_11")
         pipeline = PipelinePresets.from_device_spec(device)
-        
+
         result = pipeline.process(test_color_image)
-        
+
         # Should be grayscale after ColorProfileStep
         assert result.mode in ("L", "P")  # L for grayscale, P for palette
 
@@ -51,9 +54,9 @@ class TestDevicePresetWorkflow:
         """Color device pipeline should preserve RGB mode."""
         device = DeviceSpecs.get_device("ipad_pro_11")
         pipeline = PipelinePresets.from_device_spec(device)
-        
+
         result = pipeline.process(test_color_image)
-        
+
         assert result.mode in ("RGB", "P")
 
 
@@ -64,7 +67,7 @@ class TestFileProcessing:
         """Test processing directory with silent reporter."""
         dest_dir = tmp_path / "output"
         dest_dir.mkdir()
-        
+
         config = ProcessingConfig(
             src_dir=sample_images,
             dest_dir=dest_dir,
@@ -72,30 +75,25 @@ class TestFileProcessing:
         )
         reporter = SilentProgressReporter()
         error_tracker = ErrorTracker()
-        
+
         # Should not raise exceptions
-        process_images_in_directory(
-            sample_images,
-            config,
-            reporter,
-            error_tracker
-        )
+        process_images_in_directory(sample_images, config, reporter, error_tracker)
 
     def test_error_tracking(self, tmp_path):
         """Test error tracking during processing."""
         from src.error_handler import ErrorSeverity
-        
+
         error_tracker = ErrorTracker()
-        
+
         # Simulate adding errors
         test_error = ValueError("Test error")
         error_tracker.add_error(
             error=test_error,
             path=Path("test.jpg"),
             step="TestStep",
-            severity=ErrorSeverity.ERROR
+            severity=ErrorSeverity.ERROR,
         )
-        
+
         assert error_tracker.has_errors()
         summary = error_tracker.get_summary()
         assert summary["total_errors"] == 1
@@ -110,13 +108,13 @@ class TestConfigurationValidation:
         dest = tmp_path / "dest"
         src.mkdir()
         dest.mkdir()
-        
+
         config = ProcessingConfig(
             src_dir=src,
             dest_dir=dest,
             resolution=(1000, 1000),
         )
-        
+
         assert config.src_dir == src
         assert config.dest_dir == dest
         assert config.resolution == (1000, 1000)
@@ -127,7 +125,7 @@ class TestConfigurationValidation:
         dest = tmp_path / "dest"
         src.mkdir()
         dest.mkdir()
-        
+
         with pytest.raises(ValueError):
             ProcessingConfig(
                 src_dir=src,
@@ -141,15 +139,15 @@ class TestConfigurationValidation:
         dest = tmp_path / "dest"
         src.mkdir()
         dest.mkdir()
-        
+
         device = DeviceSpecs.get_device("kindle_paperwhite_11")
         custom_pipeline = PipelinePresets.from_device_spec(device)
-        
+
         config = ProcessingConfig(
             src_dir=src,
             dest_dir=dest,
             custom_pipeline=custom_pipeline,
         )
-        
+
         pipeline = config.get_pipeline()
         assert pipeline == custom_pipeline
