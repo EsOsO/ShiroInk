@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0](https://github.com/EsOsO/ShiroInk/compare/v2.4.3...v3.0.0) (2026-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Major code organization and device management refactoring
+
+### Features
+
+* add __main__.py entry point and first-run wizard detection ([043ad75](https://github.com/EsOsO/ShiroInk/commit/043ad75ac349fc0bcef51d95319bf0838caaaac1))
+* implement complete device list in wizard option 5 ([1491e31](https://github.com/EsOsO/ShiroInk/commit/1491e3108bbe5ca624e18e1116573985ae02d28e))
+* implement Phase 1 usability enhancements - wizard, profiles, and validation ([3b5cbf5](https://github.com/EsOsO/ShiroInk/commit/3b5cbf58b23ce38f7492ac6d40a3c466640d4961))
+
+
+### Bug Fixes
+
+* correct profile saving in main.py - use proper validation and API calls ([9f66ddb](https://github.com/EsOsO/ShiroInk/commit/9f66ddb907e00c5ed1db2b76b3342f76800a6188))
+* correct profile saving in wizard - use proper validation and API calls ([23d5563](https://github.com/EsOsO/ShiroInk/commit/23d55638c915e5ae9cca67cff17720bcac4aa2b9))
+* correct wizard step execute() method signatures ([a329221](https://github.com/EsOsO/ShiroInk/commit/a329221be96649bfd977b564f960de0e25ebddaf))
+* handle ProfileSchema object correctly when loading profiles ([b70dcbb](https://github.com/EsOsO/ShiroInk/commit/b70dcbbb1c2f4c3c6712f855e0ff6c55607250fc))
+* resolve args scope issue and improve profile loading logic ([849a314](https://github.com/EsOsO/ShiroInk/commit/849a314381a76d9406d6df38cb4d819cdeb6d156))
+
+
+### Documentation
+
+* add comprehensive guides for wizard and profile systems ([60e8860](https://github.com/EsOsO/ShiroInk/commit/60e8860e2f55a2ceddb86f41cb7085c5eeeb2dd1))
+* add USABILITY_IMPLEMENTATION_CHECKLIST.md - Phase 1-3 task tracking ([38e7d6c](https://github.com/EsOsO/ShiroInk/commit/38e7d6c65c780f6e3e9ad2c895b35fda1748174c))
+* add USABILITY_PLAN.md - formalize CLI usability improvements (Phase 1-3) ([72fe8a9](https://github.com/EsOsO/ShiroInk/commit/72fe8a99e8232065afdbc55fd34d9904e8d083da))
+
+
+### Code Refactoring
+
+* Major code organization and device management refactoring ([410a2d1](https://github.com/EsOsO/ShiroInk/commit/410a2d137b29bec54724096e81b2edabdb9c2fa0))
+
 ## [2.4.3](https://github.com/EsOsO/ShiroInk/compare/v2.4.2...v2.4.3) (2026-01-05)
 
 
