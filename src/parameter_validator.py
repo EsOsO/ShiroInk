@@ -7,7 +7,7 @@ offering helpful suggestions when invalid parameters are provided.
 
 import os
 from pathlib import Path
-from typing import Any, Optional, Tuple
+from typing import Any, Optional
 
 
 class ParameterValidator:
@@ -18,44 +18,20 @@ class ParameterValidator:
     helpful suggestions when validation fails.
     """
 
-    # Known device manufacturers
-    KNOWN_DEVICES = {
-        "kindle": [
-            "kindle_basic",
-            "kindle_paperwhite",
-            "kindle_paperwhite_11",
-            "kindle_oasis_3",
-            "kindle_scribe",
-            "kindle_colorsoft_se",
-        ],
-        "kobo": [
-            "kobo_clara",
-            "kobo_clara_2e",
-            "kobo_clara_colour",
-            "kobo_elipsa",
-            "kobo_libra_2",
-            "kobo_libra_h2o",
-        ],
-        "tolino": [
-            "tolino_shine_3",
-            "tolino_vision_6",
-        ],
-        "pocketbook": [
-            "pocketbook_touch",
-            "pocketbook_color",
-            "pocketbook_inkpad_color",
-        ],
-        "ipad": [
-            "ipad_mini",
-            "ipad_pro_11",
-            "ipad_pro_12_9",
-        ],
-    }
+    @staticmethod
+    def _get_all_devices() -> list[str]:
+        """Get all available device keys from DeviceSpecs."""
+        try:
+            from image_pipeline.devices import DeviceSpecs
+
+            return DeviceSpecs.list_devices()
+        except ImportError:
+            return []
 
     @classmethod
     def validate_resolution(
-        cls, resolution: Tuple[int, int]
-    ) -> Tuple[bool, Optional[str]]:
+        cls, resolution: tuple[int, int]
+    ) -> tuple[bool, Optional[str]]:
         """
         Validate image resolution.
 
@@ -82,7 +58,7 @@ class ParameterValidator:
         return True, None
 
     @classmethod
-    def validate_quality(cls, quality: int) -> Tuple[bool, Optional[str]]:
+    def validate_quality(cls, quality: int) -> tuple[bool, Optional[str]]:
         """
         Validate quality level.
 
@@ -101,7 +77,7 @@ class ParameterValidator:
         return True, None
 
     @classmethod
-    def validate_workers(cls, workers: int) -> Tuple[bool, Optional[str]]:
+    def validate_workers(cls, workers: int) -> tuple[bool, Optional[str]]:
         """
         Validate number of worker threads.
 
@@ -123,7 +99,7 @@ class ParameterValidator:
         return True, None
 
     @classmethod
-    def validate_path(cls, path: Path) -> Tuple[bool, Optional[str]]:
+    def validate_path(cls, path: Path) -> tuple[bool, Optional[str]]:
         """
         Validate file system path.
 
@@ -150,7 +126,7 @@ class ParameterValidator:
         return True, None
 
     @classmethod
-    def validate_device(cls, device_key: str) -> Tuple[bool, Optional[str]]:
+    def validate_device(cls, device_key: str) -> tuple[bool, Optional[str]]:
         """
         Validate device key.
 
@@ -163,26 +139,25 @@ class ParameterValidator:
         if not isinstance(device_key, str):
             return False, "Device key must be a string"
 
-        # Check all known devices
-        all_devices = []
-        for devices_list in cls.KNOWN_DEVICES.values():
-            all_devices.extend(devices_list)
+        all_devices = cls._get_all_devices()
 
         if device_key in all_devices:
             return True, None
 
-        # Try to find similar device
-        similar = cls._find_similar_device(device_key)
+        similar = cls._find_similar_device(device_key, all_devices)
         if similar:
             return False, f"Unknown device. Did you mean '{similar}'?"
 
         return (
             False,
-            f"Unknown device '{device_key}'. Use --list-devices to see available devices.",
+            f"Unknown device '{device_key}'. "
+            f"Use --list-devices to see available devices.",
         )
 
     @classmethod
-    def _find_similar_device(cls, device_key: str) -> Optional[str]:
+    def _find_similar_device(
+        cls, device_key: str, all_devices: list[str]
+    ) -> Optional[str]:
         """
         Find device similar to the provided key.
 
@@ -190,22 +165,17 @@ class ParameterValidator:
 
         Args:
             device_key: Device key to find match for.
+            all_devices: List of all valid device keys.
 
         Returns:
             Similar device key or None.
         """
         device_lower = device_key.lower()
 
-        all_devices = []
-        for devices_list in cls.KNOWN_DEVICES.values():
-            all_devices.extend(devices_list)
-
-        # Direct substring match
         for device in all_devices:
             if device_lower in device or device in device_lower:
                 return device
 
-        # First word match
         device_prefix = device_lower.split("_")[0]
         for device in all_devices:
             if device.startswith(device_prefix):
@@ -214,7 +184,7 @@ class ParameterValidator:
         return None
 
     @classmethod
-    def suggest_quality_level(cls, use_case: str) -> Tuple[int, str]:
+    def suggest_quality_level(cls, use_case: str) -> tuple[int, str]:
         """
         Suggest quality level based on use case.
 
@@ -246,14 +216,12 @@ class ParameterValidator:
         import multiprocessing
 
         cores = multiprocessing.cpu_count()
-
-        # Suggest slightly below CPU count to prevent system overload
         suggested = max(1, cores - 1)
 
         return suggested
 
     @classmethod
-    def validate_configuration(cls, config: dict[str, Any]) -> Tuple[bool, list[str]]:
+    def validate_configuration(cls, config: dict[str, Any]) -> tuple[bool, list[str]]:
         """
         Validate complete configuration dictionary.
 
@@ -265,7 +233,6 @@ class ParameterValidator:
         """
         errors = []
 
-        # Validate each required field
         required_fields = ["src_dir", "dest_dir"]
         for field in required_fields:
             if field not in config:
@@ -273,7 +240,6 @@ class ParameterValidator:
             elif not config[field]:
                 errors.append(f"Empty value for required field: {field}")
 
-        # Validate optional fields if present
         if "resolution" in config and config["resolution"]:
             is_valid, error = cls.validate_resolution(config["resolution"])
             if not is_valid:

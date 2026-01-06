@@ -29,13 +29,13 @@ class TextEnhanceStep(ProcessingStep):
         Initialize text enhancement step.
 
         Args:
-            text_sharpen: Sharpening factor for text regions (1.0 = no change, >1.0 = sharper).
-                         Applied globally but particularly benefits small text.
-                         Default: 1.5 (moderate sharpening).
+            text_sharpen: Sharpening factor for text regions (1.0 = no change,
+                          >1.0 = sharper). Applied globally but particularly
+                          benefits small text. Default: 1.5 (moderate).
             edge_enhance: Blend factor for edge enhancement (0.0-1.0).
-                         0.0 = no enhancement, 1.0 = full enhancement.
-                         Lower values preserve artwork better.
-                         Default: 0.3 (subtle enhancement).
+                          0.0 = no enhancement, 1.0 = full enhancement.
+                          Lower values preserve artwork better.
+                          Default: 0.3 (subtle enhancement).
             enabled: Whether text enhancement is enabled.
                     Default: True.
         """

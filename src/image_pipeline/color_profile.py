@@ -8,7 +8,7 @@ with support for ICC profiles when available (hybrid approach).
 import io
 from PIL import Image
 from .pipeline import ProcessingStep
-from .devices import ColorGamut
+from .enums import ColorGamut
 
 
 class ColorProfileStep(ProcessingStep):

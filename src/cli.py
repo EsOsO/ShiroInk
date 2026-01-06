@@ -107,8 +107,10 @@ def parse_arguments():
         "--resolution",
         type=parse_resolution,
         default=None,
-        help="Resolution to resize the images (e.g., 800x600, '800 600', '800,600' or '800'). "
-        "Defaults to 1404x1872 if neither --device nor --resolution is specified.",
+        help="Resolution to resize the images (e.g., 800x600, '800 600', "
+        "'800,600' or '800'). "
+        "Defaults to 1404x1872 if neither --device nor --resolution "
+        "is specified.",
     )
     parser.add_argument(
         "--rtl", action="store_true", help="Switch the order of two-page images"
@@ -155,8 +157,10 @@ def parse_arguments():
         "--device",
         type=str,
         default=None,
-        help="Specific device preset (e.g., kindle_paperwhite, kobo_libra_2, ipad_pro_11). "
-        "Automatically sets resolution and pipeline. Use --list-devices to see available devices.",
+        help="Specific device preset "
+        "(e.g., kindle_paperwhite, kobo_libra_2, ipad_pro_11). "
+        "Automatically sets resolution and pipeline. "
+        "Use --list-devices to see available devices.",
     )
     parser.add_argument(
         "--list-devices",

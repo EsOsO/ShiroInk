@@ -2,6 +2,22 @@
 
 ShiroInk can be installed and run in multiple ways depending on your preference.
 
+## pip Installation (Recommended for CLI Users)
+
+```bash
+# Install from PyPI
+pip install shiroink
+
+# Verify installation
+shiroink --version
+```
+
+### Upgrade
+
+```bash
+pip install --upgrade shiroink
+```
+
 ## Docker (Recommended)
 
 The easiest way to use ShiroInk is via Docker:
@@ -30,12 +46,16 @@ Docker will automatically pull the correct image for your architecture.
 - Python 3.11 or higher
 - pip package manager
 
-### Install Dependencies
+### Install from Source
 
 ```bash
 # Clone the repository
 git clone https://github.com/EsOsO/ShiroInk.git
 cd ShiroInk
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -44,7 +64,11 @@ pip install -r requirements.txt
 ### Verify Installation
 
 ```bash
-python src/main.py --version
+# Using pip installation
+shiroink --version
+
+# Using source
+python -m shiroink --version
 ```
 
 ## Docker Compose
@@ -77,8 +101,18 @@ docker-compose run --rm shiroink
 - **RAM**: 2GB
 - **Storage**: SSD for faster processing
 
+## First Run
+
+On first run, ShiroInk will detect that you're new and offer to run the interactive wizard:
+
+```bash
+shiroink
+# "Welcome to ShiroInk! Would you like to run the interactive setup wizard? [Y/n]"
+```
+
 ## Next Steps
 
 - [Quick Start Guide](quickstart.md) - Get started in 5 minutes
+- [Interactive Wizard Guide](wizard.md) - Learn about the setup wizard
 - [Usage Guide](usage.md) - Detailed usage instructions
 - [Docker Guide](docker.md) - Advanced Docker usage

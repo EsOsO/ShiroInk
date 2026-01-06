@@ -49,6 +49,7 @@ class InteractiveWizard:
             ReviewStep(),
             ConfirmationStep(),
         ]
+        self._profile_saved: bool = False
 
     def run(self) -> Optional[dict[str, Any]]:
         """
@@ -96,9 +97,11 @@ class InteractiveWizard:
 
             elif action == "save":
                 # User wants to save profile before proceeding
-                self._prompt_save_profile()
-                # After saving, ask again if they want to proceed
-                continue
+                from wizard.prompts import print_info
+
+                print_info("Saving configuration as a profile...")
+                self._save_profile()
+                return self._config
 
             elif action == "modify":
                 # User wants to modify - show menu
@@ -146,14 +149,22 @@ class InteractiveWizard:
     def _prompt_save_profile(self) -> None:
         """
         Prompt user if they want to save this configuration as a profile.
+        Used when user selects option 1 (proceed) - asks if they want to save.
         """
-        from wizard.prompts import prompt_yes_no, print_success
+        from wizard.prompts import prompt_yes_no
 
         print()
         if not prompt_yes_no("Save this configuration as a profile?"):
             return
 
-        from wizard.prompts import prompt_input
+        self._save_profile()
+
+    def _save_profile(self) -> None:
+        """
+        Save the profile directly without asking.
+        Used when user selects option 4 (save and proceed).
+        """
+        from wizard.prompts import prompt_input, print_success
 
         def validate_profile_name(name: str) -> str | None:
             """Validate profile name is not empty."""
@@ -165,18 +176,46 @@ class InteractiveWizard:
             "Profile name (e.g., 'my-kindle'):", validate=validate_profile_name
         )
 
+        # Get values from config
+        device_key = self._config.get("device")
+        rtl = self._config.get("rtl", False)
+        quality = self._config.get("quality", 6)
+        workers = self._config.get("workers", 4)
+
+        # Determine pipeline and resolution from device
+        pipeline = None
+        resolution = None
+
+        if device_key:
+            try:
+                from image_pipeline.devices import DeviceSpecs
+
+                device_spec = DeviceSpecs.get_device(device_key)
+                pipeline = device_spec.recommended_pipeline
+                resolution = device_spec.resolution
+            except Exception:
+                from wizard.prompts import print_warning
+
+                print_warning(
+                    f"Device '{device_key}' not found, saving without device preset"
+                )
+        else:
+            # No device selected, get from config or use defaults
+            pipeline = self._config.get("pipeline")
+            resolution = self._config.get("resolution")
+
         try:
-            # Extract profile parameters from config
             self.profile_manager.save(
                 name=profile_name,
-                device=self._config.get("device"),
-                pipeline=self._config.get("pipeline"),
-                resolution=self._config.get("resolution"),
-                rtl=self._config.get("rtl", False),
-                quality=self._config.get("quality", 6),
-                workers=self._config.get("workers", 4),
+                device=device_key,
+                pipeline=pipeline,
+                resolution=resolution,
+                rtl=rtl,
+                quality=quality,
+                workers=workers,
                 description="",
             )
+            self._profile_saved = True
             print_success(f"Profile '{profile_name}' saved successfully!")
         except Exception as e:
             from wizard.prompts import print_warning
@@ -205,4 +244,5 @@ class InteractiveWizard:
             "rtl": config.get("rtl", False),
             "quality": config.get("quality", 6),
             "workers": config.get("workers", 4),
+            "saved_profile": self._profile_saved,
         }

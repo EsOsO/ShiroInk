@@ -96,8 +96,8 @@ def process_images(config: ProcessingConfig, reporter: ProgressReporter) -> int:
             "\nProcessing completed successfully with no errors!", level="info"
         )
 
-        # Suggest saving as profile (unless one was already loaded)
-        if not config.loaded_profile:
+        # Suggest saving as profile (unless one was already loaded or saved by wizard)
+        if not config.loaded_profile and not config.wizard_saved_profile:
             from profiles.manager import ProfileManager
 
             try:
@@ -144,6 +144,8 @@ def main() -> int:
     import sys
 
     args = parse_arguments()
+
+    wizard_saved_profile = False
 
     # Handle --help with Rich formatting
     if "-h" in sys.argv or "--help" in sys.argv:
@@ -193,27 +195,14 @@ def main() -> int:
         args.quality = wizard_config.get("quality", 6)
         args.workers = wizard_config.get("workers", 4)
         args.rtl = wizard_config.get("rtl", False)
+        wizard_saved_profile = wizard_config.get("saved_profile", False)
 
     # Handle --list-profiles flag
     if args.list_profiles:
         from profiles.manager import ProfileManager
 
         profile_manager = ProfileManager()
-        profiles = profile_manager.list_profiles()
-
-        if not profiles:
-            print("No saved profiles found.")
-            print("Use --wizard to create a new profile.")
-            return 0
-
-        print("\nSaved Profiles:")
-        print("=" * 60)
-        for profile in profiles:
-            created = profile.get("created", "Unknown")
-            last_used = profile.get("last_used", "Never")
-            print(f"  {profile['name']:<30} Created: {created}, Last used: {last_used}")
-        print("=" * 60)
-        print(f"\nUsage: shiroink input/ output/ --profile PROFILE_NAME\n")
+        print(profile_manager.format_profiles_for_display())
         return 0
 
     # Handle --profile flag (load existing profile)
@@ -223,24 +212,7 @@ def main() -> int:
         profile_manager = ProfileManager()
 
         try:
-            profile_schema = profile_manager.load(args.profile)
-            profile_config = profile_schema.to_dict()
-
-            # Load device first (has priority over resolution)
-            if args.device is None and profile_config.get("device"):
-                args.device = profile_config["device"]
-            # Only load resolution if device is not set
-            # (device presets set their own optimal resolution)
-            elif args.resolution is None and profile_config.get("resolution"):
-                args.resolution = tuple(profile_config["resolution"])
-
-            if args.quality == 6 and profile_config.get("quality"):
-                args.quality = profile_config["quality"]
-            if args.workers == 4 and profile_config.get("workers"):
-                args.workers = profile_config["workers"]
-            if not args.rtl and profile_config.get("rtl"):
-                args.rtl = profile_config["rtl"]
-
+            profile_manager.apply_to_args(args, args.profile)
             print(f"Loaded profile: {args.profile}")
         except FileNotFoundError:
             print(f"Error: Profile '{args.profile}' not found.")
@@ -254,53 +226,7 @@ def main() -> int:
     if args.list_devices:
         from image_pipeline.devices import DeviceSpecs
 
-        print("\nAvailable device presets:\n")
-        print("=" * 140)
-
-        devices = DeviceSpecs.get_all_devices()
-
-        # Group by brand
-        brands = {
-            "Kindle": [],
-            "Kobo": [],
-            "Tolino": [],
-            "PocketBook": [],
-            "iPad": [],
-        }
-
-        for key, spec in sorted(devices.items()):
-            if key.startswith("kindle"):
-                brands["Kindle"].append((key, spec))
-            elif key.startswith("kobo"):
-                brands["Kobo"].append((key, spec))
-            elif key.startswith("tolino"):
-                brands["Tolino"].append((key, spec))
-            elif key.startswith("pocketbook"):
-                brands["PocketBook"].append((key, spec))
-            elif key.startswith("ipad"):
-                brands["iPad"].append((key, spec))
-
-        # Print header
-        print(
-            f"{'Device':<32} {'Resolution':<12} {'Size':<7} {'Display':<8} {'Color':<8} {'Gamut':<10} {'Bits':<5} {'Pipeline':<20}"
-        )
-        print("-" * 140)
-
-        for brand, device_list in brands.items():
-            if device_list:
-                for key, spec in device_list:
-                    color_str = "Color" if spec.color_support else "B&W"
-                    gamut_str = spec.color_gamut.value if spec.color_gamut else "-"
-                    print(
-                        f"{key:<32} {spec.resolution[0]:4d}x{spec.resolution[1]:<7d} "
-                        f'{spec.screen_size_inches:>5.1f}" {spec.display_type.value:<8} '
-                        f"{color_str:<8} {gamut_str:<10} {spec.bit_depth:<5} {spec.recommended_pipeline:<20}"
-                    )
-
-        print("\n" + "=" * 140)
-        print("\nUsage: --device <device_key>")
-        print("Example: --device kindle_paperwhite_11")
-        print("\n")
+        print(DeviceSpecs.format_devices_for_display())
         return 0
 
     # Validate required arguments
@@ -337,22 +263,7 @@ def main() -> int:
             custom_pipeline = PipelinePresets.from_device_spec(device_spec)
 
             # Display comprehensive device information
-            print(f"\n{'='*60}")
-            print(f"Using device preset: {device_spec.name}")
-            print(f"{'='*60}")
-            print(f"Resolution:       {resolution[0]}x{resolution[1]}")
-            print(f'Screen size:      {device_spec.screen_size_inches}"')
-            print(f"Display type:     {device_spec.display_type.value}")
-            print(
-                f"Color support:    {'Color' if device_spec.color_support else 'B&W only'}"
-            )
-            if device_spec.color_gamut:
-                print(f"Color gamut:      {device_spec.color_gamut.value}")
-            print(
-                f"Bit depth:        {device_spec.bit_depth}-bit ({device_spec.max_colors if device_spec.max_colors else 'grayscale'} colors)"
-            )
-            print(f"Recommended:      {device_spec.recommended_pipeline} pipeline")
-            print(f"{'='*60}\n")
+            print(DeviceSpecs.format_device_info(device_spec))
 
         except KeyError as e:
             print(f"Error: {e}")
@@ -376,6 +287,7 @@ def main() -> int:
         pipeline_preset=pipeline_preset,
         custom_pipeline=custom_pipeline,
         loaded_profile=args.profile if hasattr(args, "profile") else None,
+        wizard_saved_profile=wizard_saved_profile,
     )
 
     # Create the appropriate reporter

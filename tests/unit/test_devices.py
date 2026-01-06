@@ -259,3 +259,50 @@ class TestDeviceRepresentation:
 
         assert "1236x1648" in repr_str
         assert "e-ink" in repr_str
+
+
+class TestDeviceDisplay:
+    """Test device display formatting."""
+
+    def test_format_devices_for_display(self):
+        """format_devices_for_display should return formatted string."""
+        output = DeviceSpecs.format_devices_for_display()
+
+        assert isinstance(output, str)
+        assert "Available device presets" in output
+        assert "kindle_paperwhite_11" in output
+        assert "ipad_pro_11" in output
+        assert "--device" in output
+        assert "Example: --device kindle_paperwhite_11" in output
+
+    def test_format_devices_contains_headers(self):
+        """Display output should contain table headers."""
+        output = DeviceSpecs.format_devices_for_display()
+
+        assert "Device" in output
+        assert "Resolution" in output
+        assert "Display" in output
+        assert "Color" in output
+
+    def test_format_device_info(self):
+        """format_device_info should return formatted device details."""
+        device = DeviceSpecs.get_device("kindle_paperwhite_11")
+        output = DeviceSpecs.format_device_info(device)
+
+        assert isinstance(output, str)
+        assert "Kindle Paperwhite 11th Gen" in output
+        assert "1236x1648" in output
+        assert '6.8"' in output
+        assert "e-ink" in output
+        assert "B&W only" in output
+        assert "4-bit" in output
+        assert "kindle pipeline" in output
+
+    def test_format_device_info_color_device(self):
+        """format_device_info should show color info for color devices."""
+        device = DeviceSpecs.get_device("pocketbook_inkpad_color_3")
+        output = DeviceSpecs.format_device_info(device)
+
+        assert "Color" in output
+        assert "sRGB" in output
+        assert "12-bit" in output

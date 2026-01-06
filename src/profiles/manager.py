@@ -8,7 +8,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from .schema import ProfileSchema
 
@@ -278,3 +278,74 @@ class ProfileManager:
             return profile_path.exists()
         except ValueError:
             return False
+
+    def format_profiles_for_display(self) -> str:
+        """
+        Format all profiles as a formatted string for CLI display.
+
+        Returns:
+            Formatted string with profile list
+        """
+        profiles = self.list_profiles()
+
+        if not profiles:
+            return (
+                "\nNo saved profiles found.\n" "Use --wizard to create a new profile.\n"
+            )
+
+        lines = [
+            "\nSaved Profiles:",
+            "=" * 60,
+        ]
+
+        for profile in profiles:
+            created = profile.get("created", "Unknown")
+            last_used = profile.get("last_used", "Never")
+            lines.append(
+                f"  {profile['name']:<30} Created: {created}, Last used: {last_used}"
+            )
+
+        lines.extend(
+            [
+                "=" * 60,
+                "\nUsage: shiroink input/ output/ --profile PROFILE_NAME\n",
+            ]
+        )
+
+        return "\n".join(lines)
+
+    def apply_to_args(
+        self,
+        args: Any,
+        profile_name: str,
+    ) -> None:
+        """
+        Apply profile settings to an args object.
+
+        Args:
+            args: Object with device, resolution, quality, workers, rtl attributes
+            profile_name: Name of the profile to load and apply
+
+        Raises:
+            FileNotFoundError: If profile doesn't exist
+            ValueError: If profile loading fails
+        """
+        profile_schema = self.load(profile_name)
+        profile_config = profile_schema.to_dict()
+
+        # Apply device first (has priority over resolution)
+        if getattr(args, "device", None) is None and profile_config.get("device"):
+            args.device = profile_config["device"]
+        # Only load resolution if device is not set
+        # (device presets set their own optimal resolution)
+        elif getattr(args, "resolution", None) is None and profile_config.get(
+            "resolution"
+        ):
+            args.resolution = tuple(profile_config["resolution"])
+
+        if getattr(args, "quality", None) == 6 and profile_config.get("quality"):
+            args.quality = profile_config["quality"]
+        if getattr(args, "workers", None) == 4 and profile_config.get("workers"):
+            args.workers = profile_config["workers"]
+        if not getattr(args, "rtl", None) and profile_config.get("rtl"):
+            args.rtl = profile_config["rtl"]

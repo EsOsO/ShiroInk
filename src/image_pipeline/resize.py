@@ -5,8 +5,8 @@ def resize(
     image: Image.Image, resolution: tuple[int, int], rtl: bool = False
 ) -> list[Image.Image]:
     """
-    Resize the image to the given resolution. If the image is detected as a 2-page manga,
-    split it into two single-page images and resize both.
+    Resize the image to the given resolution. If the image is detected as
+    a 2-page manga, split it into two single-page images and resize both.
 
     Args:
         image: The image to be resized.
@@ -26,10 +26,16 @@ def resize(
 
         # Resize both images
         left_page_resized = ImageOps.pad(
-            left_page, resolution, method=Image.Resampling.LANCZOS, color="white"
+            left_page,
+            resolution,
+            method=Image.Resampling.LANCZOS,
+            color="white",
         )
         right_page_resized = ImageOps.pad(
-            right_page, resolution, method=Image.Resampling.LANCZOS, color="white"
+            right_page,
+            resolution,
+            method=Image.Resampling.LANCZOS,
+            color="white",
         )
 
         if rtl:

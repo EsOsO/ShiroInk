@@ -11,13 +11,13 @@ Tests cover:
 import pytest
 from PIL import Image
 
-from src.image_pipeline.pipeline import ImagePipeline
-from src.image_pipeline.presets import PipelinePresets
-from src.image_pipeline.contrast import ContrastStep
-from src.image_pipeline.sharpen import SharpenStep
-from src.image_pipeline.quantize import QuantizeStep
-from src.image_pipeline.color_profile import ColorProfileStep
-from src.image_pipeline.devices import DeviceSpecs, ColorGamut
+from image_pipeline.pipeline import ImagePipeline
+from image_pipeline.presets import PipelinePresets
+from image_pipeline.contrast import ContrastStep
+from image_pipeline.sharpen import SharpenStep
+from image_pipeline.quantize import QuantizeStep
+from image_pipeline.color_profile import ColorProfileStep
+from image_pipeline.devices import DeviceSpecs, ColorGamut
 
 
 def has_step(steps, step_prefix):

@@ -8,6 +8,51 @@ ShiroInk processes images through a configurable pipeline optimized for e-reader
 shiroink <input_directory> <output_directory> [options]
 ```
 
+## Interactive Wizard
+
+For first-time users or when you need help configuring:
+
+```bash
+shiroink --wizard
+```
+
+The wizard will guide you through:
+- Device selection (with recommendations)
+- Directory configuration
+- Quality and performance settings
+- Saving as a profile for future use
+
+## Profiles
+
+Save and reuse your configurations:
+
+### Save a Profile
+
+```bash
+# After running successfully, save your configuration
+shiroink input/ output/ --device kindle_paperwhite_11
+# "Save this configuration as a profile for future use? [Y/n]"
+
+# Or save explicitly during processing
+shiroink input/ output/ --device kindle_paperwhite_11 --save-profile my-kindle
+```
+
+### Use a Profile
+
+```bash
+shiroink input/ output/ --profile my-kindle
+```
+
+### Manage Profiles
+
+```bash
+# List all saved profiles
+shiroink --list-profiles
+
+# Delete a profile
+shiroink --delete-profile old-profile
+```
+
 ## Pipeline Presets
 
 Choose an optimization profile based on your target device:
@@ -60,6 +105,20 @@ shiroink input/ output/ --pipeline minimal
 - Quick format conversion
 - Preserving original quality
 - Testing
+
+## Device Presets
+
+ShiroInk includes optimized presets for specific devices:
+
+```bash
+# List all available devices
+shiroink --list-devices
+
+# Use a specific device (auto-configures resolution and pipeline)
+shiroink input/ output/ --device kindle_paperwhite_11
+shiroink input/ output/ --device kobo_libra_2
+shiroink input/ output/ --device ipad_pro_11
+```
 
 ## Resolution Settings
 
@@ -189,6 +248,12 @@ shiroink manga/ output/ \
   -r 1072x1448
 ```
 
+### Using a Saved Profile
+
+```bash
+shiroink manga/ output/ --profile my-kindle-reader
+```
+
 ### Quick Format Conversion
 
 ```bash
@@ -233,6 +298,7 @@ shiroink input/ output/ --continue-on-error false
 2. **Match Resolution to Device**: Exact device dimensions prevent unnecessary scaling
 3. **Use Minimal Pipeline**: For simple format conversion
 4. **Dry Run First**: Test configuration before full batch
+5. **Save Profiles**: Reuse your best settings across sessions
 
 ## Troubleshooting
 
@@ -257,5 +323,7 @@ shiroink input/ output/ -q 9
 ## More Information
 
 - [Quick Start](quickstart.md) - 5-minute setup
+- [Interactive Wizard Guide](wizard.md) - Learn about the setup wizard
+- [Profile Management](profiles.md) - Learn about saving and using profiles
 - [Device Presets](device-presets.md) - Device specifications
 - [Architecture](../architecture/) - How ShiroInk works

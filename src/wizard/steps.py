@@ -1,5 +1,5 @@
 """
-Wizard steps implementation for interactive setup.
+Wizard steps implementation for interactive setup using Rich.
 """
 
 from pathlib import Path
@@ -10,21 +10,18 @@ from .prompts import (
     print_info,
     print_section,
     print_success,
-    print_warning,
+    print_device_card,
     prompt_choice,
-    prompt_input,
     prompt_integer,
+    prompt_path,
 )
 
 
 def _(key: str) -> str:
     """Placeholder for translation strings."""
-    # For now, return the key itself
-    # Will be replaced with proper localization
     return key
 
 
-# English translations (Phase 2: will integrate with localization system)
 TEXTS = {
     "device_selection_header": "Device Selection",
     "device_selection_prompt": "Choose your target device:",
@@ -52,13 +49,12 @@ class WizardStep:
 class DeviceSelectionStep(WizardStep):
     """Device selection step."""
 
-    # Device database (will be enhanced in future)
     DEVICES = [
         (1, 'Kindle Paperwhite 11" [DEFAULT]'),
         (2, "Kobo Libra 2"),
         (3, 'iPad Pro 12.9"'),
         (4, "Custom Device..."),
-        (5, "Don't know / List all devices"),
+        (5, "List all devices"),
     ]
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
@@ -75,15 +71,17 @@ class DeviceSelectionStep(WizardStep):
             1: "kindle_paperwhite_11",
             2: "kobo_libra_2",
             3: "ipad_pro_129",
-            4: None,  # Custom
-            5: None,  # List
+            4: None,
+            5: None,
         }
 
         selected_device = device_map.get(choice)
 
-        # If user chose "List all devices", show complete list
         if choice == 5:
             selected_device = self._show_all_devices()
+
+        if selected_device:
+            print_success(f"Selected device: {selected_device}")
 
         return {"device": selected_device}
 
@@ -91,60 +89,29 @@ class DeviceSelectionStep(WizardStep):
         """Show all available devices and let user choose."""
         from image_pipeline.devices import DeviceSpecs
 
-        print()
         print_section("Available Devices")
 
         all_devices = DeviceSpecs.get_all_devices()
 
-        # Group devices by manufacturer
-        groups = {
-            "Kindle": [],
-            "Kobo": [],
-            "Tolino": [],
-            "PocketBook": [],
-            "iPad": [],
-        }
+        device_list = sorted(all_devices.items())
+        choices = [
+            (i + 1, f"{spec.name} ({key})") for i, (key, spec) in enumerate(device_list)
+        ]
+        choices.append((len(choices) + 1, "Back to quick selection"))
 
-        for key, spec in sorted(all_devices.items()):
-            if key.startswith("kindle"):
-                groups["Kindle"].append((key, spec.name))
-            elif key.startswith("kobo"):
-                groups["Kobo"].append((key, spec.name))
-            elif key.startswith("tolino"):
-                groups["Tolino"].append((key, spec.name))
-            elif key.startswith("pocketbook"):
-                groups["PocketBook"].append((key, spec.name))
-            elif key.startswith("ipad"):
-                groups["iPad"].append((key, spec.name))
-
-        # Display grouped devices
-        device_list = []
-        idx = 1
-        for group_name, devices in groups.items():
-            if devices:
-                print(f"\n{group_name}:")
-                for device_key, device_name in devices:
-                    print(f"  {idx}) {device_name} ({device_key})")
-                    device_list.append(device_key)
-                    idx += 1
-
-        print(f"\n  {idx}) Back to quick selection")
-        device_list.append(None)
-
-        print()
-        choice = prompt_integer(
-            "Select device number:",
+        choice = prompt_choice(
+            "Select a device:",
+            choices,
             default=1,
-            min_val=1,
-            max_val=len(device_list),
         )
 
-        selected_key = device_list[choice - 1]
-        if selected_key:
-            print_success(f"Selected: {all_devices[selected_key].name}")
-        else:
-            print_info("Returning to quick selection...")
+        if choice == len(choices):
+            return None
 
+        selected_key, _ = device_list[choice - 1]
+        from .prompts import print_device_card
+
+        print_device_card(selected_key, all_devices[selected_key])
         return selected_key
 
 
@@ -156,8 +123,8 @@ class FormatSelectionStep(WizardStep):
         print_section("Format Selection")
 
         formats = [
-            (1, "Left-to-Right (Western comics)"),
-            (2, "Right-to-Left (Japanese manga)"),
+            (1, "Right-to-Left (Japanese manga)"),
+            (2, "Left-to-Right (Western comics)"),
         ]
 
         choice = prompt_choice(
@@ -166,7 +133,7 @@ class FormatSelectionStep(WizardStep):
             default=1,
         )
 
-        return {"rtl": choice == 2}
+        return {"rtl": choice == 1}
 
 
 class PathsSelectionStep(WizardStep):
@@ -174,36 +141,19 @@ class PathsSelectionStep(WizardStep):
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute paths selection step."""
-        print_section("Select directories")
+        print_section("Select Directories")
 
-        # Source path
-        while True:
-            src = prompt_input(
-                "Source directory (contains images to process):",
-                default=str(Path.home() / "manga"),
-            )
+        src_path = prompt_path(
+            "Source directory (contains images to process):",
+            default=str(Path.home() / "manga"),
+            must_exist=True,
+        )
 
-            src_path = Path(src).expanduser()
-            if src_path.exists() and src_path.is_dir():
-                print_success(f"Source: {src_path}")
-                break
-            else:
-                print_warning(f"Directory not found: {src_path}")
-
-        # Destination path
-        while True:
-            dest = prompt_input(
-                "Destination directory (where to save processed files):",
-                default=str(Path.home() / "manga_processed"),
-            )
-
-            dest_path = Path(dest).expanduser()
-            # Dest doesn't need to exist, but parent should
-            if dest_path.parent.exists():
-                print_success(f"Destination: {dest_path}")
-                break
-            else:
-                print_warning(f"Parent directory not found: {dest_path.parent}")
+        dest_path = prompt_path(
+            "Destination directory (where to save processed files):",
+            default=str(Path.home() / "manga_processed"),
+            must_exist=False,
+        )
 
         return {
             "src_dir": src_path,
@@ -218,8 +168,10 @@ class QualitySelectionStep(WizardStep):
         """Execute quality selection step."""
         print_section("Quality Selection")
 
+        print_info("Quality 1 = Fast (smaller files), 9 = Best (larger files)")
+
         quality = prompt_integer(
-            "Quality level (1=fast, 9=best, default: 6):",
+            "Quality level (default: 6):",
             default=6,
             min_val=1,
             max_val=9,
@@ -232,8 +184,8 @@ class PerformanceSelectionStep(WizardStep):
     """Performance (workers) selection step."""
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
-        """Execute performance selection step."""
-        print_section("Performance Configuration")
+        """Execute performance step."""
+        print_section("Performance")
 
         import os
 
@@ -255,15 +207,10 @@ class ReviewStep(WizardStep):
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute review step."""
-        print_header("Configuration Review")
+        from .prompts import print_config_review
 
-        print_section("Configuration Review")
-        print(f"  {'Device:':<20} {config.get('device', 'Default')}")
-        print(f"  {'Format:':<20} {'RTL' if config.get('rtl') else 'LTR'}")
-        print(f"  {'Source:':<20} {config.get('src_dir')}")
-        print(f"  {'Destination:':<20} {config.get('dest_dir')}")
-        print(f"  {'Quality:':<20} {config.get('quality')} / 9")
-        print(f"  {'Workers:':<20} {config.get('workers')}")
+        print_header("Configuration Review")
+        print_config_review(config)
 
         return {}
 
@@ -273,17 +220,15 @@ class ConfirmationStep(WizardStep):
 
     def execute(self, config: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Execute confirmation step."""
-        print()
-
         choices = [
-            (1, "[y] Yes, start processing"),
-            (2, "[n] No, abort"),
-            (3, "[m] Modify configuration"),
-            (4, "[s] Save as profile before proceeding"),
+            (1, "Proceed with processing"),
+            (2, "Abort"),
+            (3, "Modify configuration"),
+            (4, "Save as profile"),
         ]
 
         choice = prompt_choice(
-            "Proceed with processing?",
+            "Ready to proceed?",
             choices,
             default=1,
         )

@@ -6,12 +6,11 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from config import ProcessingConfig
 from progress_reporter import ProgressReporter
-from error_handler import ErrorTracker, ErrorSeverity, safe_execute
+from error_handler import ErrorTracker, ErrorSeverity
 from exceptions import (
     CBZExtractionError,
     CBZCreationError,
     ImageProcessingError,
-    FileReadError,
 )
 
 IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"]
@@ -51,24 +50,23 @@ def __create_cbz_archive(
                         cbz.write(file_path, file_path.relative_to(directory))
                         reporter.advance_task(task_id)
                     reporter.remove_task(task_id)
-            # Remove the directory after creating the CBZ archive
             shutil.rmtree(directory)
             if config.debug:
                 reporter.log(f"Removed directory: {directory}")
 
     try:
         _create_archive()
-    except Exception as e:
-        error = CBZCreationError(f"Failed to create CBZ archive", path=cbz_path)
+    except Exception as exc:
+        error = CBZCreationError("Failed to create CBZ archive", path=cbz_path)
         error_tracker.add_error(
             error=error,
             path=cbz_path,
             severity=ErrorSeverity.ERROR,
             step="cbz_creation",
         )
-        reporter.log(f"Error creating CBZ archive {cbz_path}: {e}", level="error")
+        reporter.log(f"Error creating CBZ archive {cbz_path}: {exc}", level="error")
         if not config.continue_on_error:
-            raise error from e
+            raise error from exc
 
 
 def extract_and_process_cbz(
@@ -111,17 +109,17 @@ def extract_and_process_cbz(
                     )
                     shutil.rmtree(extract_path)
 
-    except Exception as e:
-        error = CBZExtractionError(f"Failed to extract CBZ file", path=cbz_path)
+    except Exception as exc:
+        error = CBZExtractionError("Failed to extract CBZ file", path=cbz_path)
         error_tracker.add_error(
             error=error,
             path=cbz_path,
             severity=ErrorSeverity.ERROR,
             step="cbz_extraction",
         )
-        reporter.log(f"Error extracting CBZ file {cbz_path}: {e}", level="error")
+        reporter.log(f"Error extracting CBZ file {cbz_path}: {exc}", level="error")
         if not config.continue_on_error:
-            raise error from e
+            raise error from exc
 
 
 def __process_file(
@@ -131,7 +129,8 @@ def __process_file(
     error_tracker: ErrorTracker,
 ) -> None:
     """
-    Process the image file using the manga_image_pipeline and copy to destination directory.
+    Process the image file using the manga_image_pipeline
+    and copy to destination directory.
 
     Args:
         reporter: ProgressReporter for logging and progress tracking.
@@ -150,7 +149,6 @@ def __process_file(
             dest_path.parent.mkdir(parents=True, exist_ok=True)
             pipeline = config.get_pipeline()
 
-            # Retry logic for processing
             for attempt in range(config.max_retries + 1):
                 try:
                     process(
@@ -161,24 +159,25 @@ def __process_file(
                         config.quality,
                         pipeline,
                     )
-                    break  # Success, exit retry loop
-                except Exception as e:
+                    break
+                except Exception:
                     if attempt < config.max_retries:
                         if config.debug:
                             reporter.log(
-                                f"Retry {attempt + 1}/{config.max_retries} for {file_path}",
+                                f"Retry {attempt + 1}/{config.max_retries} "
+                                f"for {file_path}",
                                 level="warning",
                             )
                         continue
                     else:
-                        raise  # Max retries reached, propagate exception
+                        raise
 
-    except Exception as e:
+    except Exception as exc:
         error = ImageProcessingError(
-            f"Failed to process image",
+            "Failed to process image",
             path=file_path,
             step="image_processing",
-            original_error=e,
+            original_error=exc,
         )
         error_tracker.add_error(
             error=error,
@@ -186,9 +185,9 @@ def __process_file(
             severity=ErrorSeverity.ERROR,
             step="image_processing",
         )
-        reporter.log(f"Error processing file {file_path}: {e}", level="error")
+        reporter.log(f"Error processing file {file_path}: {exc}", level="error")
         if not config.continue_on_error:
-            raise error from e
+            raise error from exc
 
 
 def process_images_in_directory(
@@ -198,7 +197,8 @@ def process_images_in_directory(
     error_tracker: ErrorTracker,
 ) -> None:
     """
-    Process all image files recursively in the given directory and copy to destination directory.
+    Process all image files recursively in the given directory
+    and copy to destination directory.
 
     Args:
         directory: Path to the directory containing images.
@@ -239,7 +239,6 @@ def process_images_in_directory(
                     try:
                         future.result()
                     except Exception as e:
-                        # Error already tracked in __process_file
                         if not config.continue_on_error:
                             reporter.log(f"Error processing file: {e}", level="error")
                     finally:

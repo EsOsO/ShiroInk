@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from enum import Enum
 
-from exceptions import ShiroInkError, RetryableError
+from exceptions import RetryableError
 
 
 T = TypeVar("T")
@@ -35,7 +35,10 @@ class ErrorRecord:
 
     def __str__(self) -> str:
         """String representation of the error."""
-        msg = f"[{self.severity.value.upper()}] {type(self.error).__name__}: {str(self.error)}"
+        msg = (
+            f"[{self.severity.value.upper()}] "
+            f"{type(self.error).__name__}: {str(self.error)}"
+        )
         if self.step:
             msg = f"{msg} (step: {self.step})"
         if self.path:

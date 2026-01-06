@@ -59,7 +59,10 @@ class ImageProcessingError(ShiroInkError):
         if self.path:
             msg = f"{msg}: {self.path}"
         if self.original_error:
-            msg = f"{msg} - {type(self.original_error).__name__}: {str(self.original_error)}"
+            msg = (
+                f"{msg} - {type(self.original_error).__name__}: "
+                f"{str(self.original_error)}"
+            )
         return msg
 
 
@@ -104,7 +107,10 @@ class FileReadError(ShiroInkError):
         """Format the error message."""
         msg = f"{self.message}: {self.path}"
         if self.original_error:
-            msg = f"{msg} - {type(self.original_error).__name__}: {str(self.original_error)}"
+            msg = (
+                f"{msg} - {type(self.original_error).__name__}: "
+                f"{str(self.original_error)}"
+            )
         return msg
 
 
@@ -131,7 +137,10 @@ class FileWriteError(ShiroInkError):
         """Format the error message."""
         msg = f"{self.message}: {self.path}"
         if self.original_error:
-            msg = f"{msg} - {type(self.original_error).__name__}: {str(self.original_error)}"
+            msg = (
+                f"{msg} - {type(self.original_error).__name__}: "
+                f"{str(self.original_error)}"
+            )
         return msg
 
 

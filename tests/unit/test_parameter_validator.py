@@ -86,7 +86,8 @@ class TestParameterValidator:
 
     def test_find_similar_device(self):
         """Test finding similar device."""
-        similar = ParameterValidator._find_similar_device("kindle_paper")
+        all_devices = ParameterValidator._get_all_devices()
+        similar = ParameterValidator._find_similar_device("kindle_paper", all_devices)
         assert similar is not None
         assert "kindle" in similar
 

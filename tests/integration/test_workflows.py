@@ -11,12 +11,12 @@ import pytest
 from pathlib import Path
 from PIL import Image
 
-from src.config import ProcessingConfig
-from src.progress_reporter import SilentProgressReporter
-from src.error_handler import ErrorTracker
-from src.file_processor import process_images_in_directory
-from src.image_pipeline.devices import DeviceSpecs
-from src.image_pipeline.presets import PipelinePresets
+from config import ProcessingConfig
+from progress_reporter import SilentProgressReporter
+from error_handler import ErrorTracker
+from file_processor import process_images_in_directory
+from image_pipeline.devices import DeviceSpecs
+from image_pipeline.presets import PipelinePresets
 
 
 class TestDevicePresetWorkflow:
@@ -81,7 +81,7 @@ class TestFileProcessing:
 
     def test_error_tracking(self, tmp_path):
         """Test error tracking during processing."""
-        from src.error_handler import ErrorSeverity
+        from error_handler import ErrorSeverity
 
         error_tracker = ErrorTracker()
 

@@ -5,7 +5,7 @@ This module provides utilities for displaying user-friendly error messages
 with optional detailed information for debugging.
 """
 
-from typing import Optional, Dict, Any
+from typing import Optional, Any
 
 
 class ErrorFormatter:

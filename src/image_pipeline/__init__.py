@@ -11,7 +11,8 @@ from .text_enhance import TextEnhanceStep, AdaptiveTextEnhanceStep
 from .save import save
 from .pipeline import ProcessingStep, ImagePipeline
 from .presets import PipelinePresets
-from .devices import DeviceSpecs, DeviceSpec, DisplayType, ColorGamut
+from .devices import DeviceSpecs, DeviceSpec
+from .enums import DisplayType, ColorGamut
 from PIL import Image
 
 

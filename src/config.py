@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from image_pipeline.pipeline import ImagePipeline
-    from error_handler import ErrorTracker
 
 
 @dataclass
@@ -19,11 +18,12 @@ class ProcessingConfig:
     debug: bool = False
     dry_run: bool = False
     workers: int = 4
-    pipeline_preset: str = "kindle"  # Name of the preset pipeline to use
+    pipeline_preset: str = "kindle"
     custom_pipeline: "ImagePipeline | None" = field(default=None, repr=False)
-    continue_on_error: bool = True  # Continue processing even if some files fail
-    max_retries: int = 3  # Maximum retries for I/O operations
-    loaded_profile: str | None = None  # Name of loaded profile (if any)
+    continue_on_error: bool = True
+    max_retries: int = 3
+    loaded_profile: str | None = None
+    wizard_saved_profile: bool = False
 
     def __post_init__(self):
         """Validate configuration parameters."""

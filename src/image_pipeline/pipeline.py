@@ -3,7 +3,7 @@ Processing pipeline abstraction for configurable image processing.
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import List
 from PIL import Image
 
 

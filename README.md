@@ -4,21 +4,36 @@ ShiroInk is a powerful tool for processing manga images optimized for various e-
 
 ## Features
 
-- **Flexible Image Processing**: 5 predefined pipelines + custom configurations
-- **Device Optimization**: Presets for Kindle, tablets, print, and more
+- **Flexible Image Processing**: 11 predefined pipelines + custom configurations
+- **Device Optimization**: Presets for Kindle, tablets, print, and more (60+ devices)
+- **Interactive Wizard**: Guided setup for first-time users
+- **Configuration Profiles**: Save and reuse your settings
 - **Batch Processing**: Multi-threaded processing of directories and CBZ files
 - **Right-to-Left Support**: Full RTL manga support
 - **Configurable**: Extensive CLI options for fine-tuning
-- **Testable**: 20+ unit tests ensuring reliability
+- **Testable**: 760+ unit tests ensuring reliability
 
-## What's New (v2.0)
+## What's New (v2.4)
 
-### Major Improvements
-1. **Simplified Configuration**: Single config object instead of 10+ parameters
-2. **Dependency Injection**: Pluggable progress reporters (console, file, silent)
-3. **Configurable Pipeline**: Choose from 5 presets or create custom processing pipelines
+### Phase 1 Usability Improvements
+1. **Interactive Setup Wizard**: Guided configuration for first-time users
+2. **Configuration Profiles**: Save and reuse your settings
+3. **Better Error Messages**: Actionable suggestions for common errors
+4. **Enhanced Help**: Rich-formatted, categorized help output
+5. **First-Run Detection**: Automatically offers wizard on first use
 
-See [REFACTORING_SUMMARY.md](REFACTORING_SUMMARY.md) for detailed information.
+## Quick Start
+
+### Interactive Setup (Recommended)
+```bash
+shiroink --wizard
+```
+
+### Install and Run
+```bash
+pip install shiroink
+shiroink input/ output/ --device kindle_paperwhite_11
+```
 
 ## Requirements
 
@@ -28,22 +43,24 @@ See [REFACTORING_SUMMARY.md](REFACTORING_SUMMARY.md) for detailed information.
 
 ## Installation
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/esoso/shiroink.git
-    cd shiroink
-    ```
+### pip (Recommended)
+```bash
+pip install shiroink
+```
 
-2. Create a virtual environment:
-    ```sh
-    python -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-    ```
+### From Source
+```bash
+git clone https://github.com/esoso/shiroink.git
+cd shiroink
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-3. Install the required packages:
-    ```sh
-    pip install -r requirements.txt
-    ```
+### Verify
+```bash
+shiroink --version
+```
 
 ## Usage
 
@@ -73,6 +90,10 @@ python src/main.py <src_dir> <dest_dir> [options]
   - Examples: `kindle_paperwhite_11`, `kobo_libra_2`, `ipad_pro_11`
   - Use `--list-devices` to see all available devices
 - `--list-devices`: List all available device presets and exit
+- `--wizard`: Start interactive configuration wizard
+- `--profile NAME`: Load configuration from saved profile
+- `--list-profiles`: List all saved profiles and exit
+- `--save-profile NAME`: Save current configuration as a profile
 
 ### Pipeline Presets
 
@@ -190,7 +211,29 @@ python src/main.py manga/ output/ --pipeline minimal
 - Fast processing
 - No image enhancements
 
-### Device Presets
+### Profiles
+
+Save and reuse your configurations:
+
+```sh
+# After running, save your configuration
+shiroink manga/ output/ --device kindle_paperwhite_11
+# "Save this configuration as a profile for future use? [Y/n]"
+
+# Use a saved profile
+shiroink manga/ output/ --profile my-kindle
+
+# List all profiles
+shiroink --list-profiles
+```
+
+### Interactive Wizard
+
+First-time users can run the guided setup:
+
+```sh
+shiroink --wizard
+```
 
 For convenience, you can use the `--device` flag to automatically configure resolution and pipeline for specific devices:
 
