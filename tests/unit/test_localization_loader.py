@@ -92,8 +92,10 @@ class TestLocalizationManager:
         """Test preferences file path."""
         manager = LocalizationManager()
         prefs_file = manager._get_prefs_file()
-        assert str(prefs_file).endswith(".config/shiroink/prefs.json")
-        assert prefs_file.parent == Path.home() / ".config" / "shiroink"
+        assert prefs_file.name == "prefs.json"
+        assert prefs_file.parent.name == "shiroink"
+        assert prefs_file.parent.parent.name == ".config"
+        assert prefs_file.parent.parent.parent == Path.home()
 
     @patch("localization.loader.Path.home")
     def test_save_language_creates_directory(self, mock_home):
