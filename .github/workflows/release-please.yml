@@ -24,15 +24,6 @@ jobs:
           release-type: python
           # Version is now managed in pyproject.toml via PEP 621
 
-  trigger-docker-build:
-    needs: release-please
-    if: ${{ needs.release-please.outputs.release_created }}
-    uses: ./.github/workflows/build-and-push-image.yml
-    with:
-      tag_name: ${{ needs.release-please.outputs.tag_name }}
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
-      security-events: write
+  # NOTE: Docker build is now triggered by release-gatekeeper.yml workflow
+  # This ensures tests pass before building and publishing the container
+  # See: .github/workflows/release-gatekeeper.yml
