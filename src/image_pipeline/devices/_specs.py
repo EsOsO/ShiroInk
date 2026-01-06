@@ -12,9 +12,15 @@ Devices are organized by brand in the `brands` subdirectory:
 - brands/apple.py - Apple iPads
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 from image_pipeline.enums import DisplayType, ColorGamut
 from typing import Optional
+
+if TYPE_CHECKING:
+    from image_pipeline.pipeline import ImagePipeline
 
 try:
     from image_pipeline.devices.brands.kindle import DEVICES as KINDLE_DEVICES
