@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1](https://github.com/EsOsO/ShiroInk/compare/v3.0.0...v3.0.1) (2026-01-07)
+
+
+### Bug Fixes
+
+* make test_get_prefs_file_path platform-agnostic ([a9a7756](https://github.com/EsOsO/ShiroInk/commit/a9a7756d84facf908e0d94a625295c063562c2c3))
+* resolve F821 undefined name flake8 error in _specs.py ([19622e2](https://github.com/EsOsO/ShiroInk/commit/19622e23612f9ace5533ec19fcef4219c5079c43))
+* skip __main__ spec test under pytest environment ([b26e232](https://github.com/EsOsO/ShiroInk/commit/b26e232f8809ee43006f0ec463f87c5119329d0c))
+
 ## [3.0.0](https://github.com/EsOsO/ShiroInk/compare/v2.4.3...v3.0.0) (2026-01-06)
 
 
