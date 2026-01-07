@@ -1,0 +1,83 @@
+name: Release Gatekeeper
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '.github/CONVENTIONAL_COMMITS.md'
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: 'Force release without version bump'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  check-tests:
+    name: Verify Tests Passed
+    runs-on: ubuntu-latest
+
+    outputs:
+      all_passed: ${{ steps.verify.result }}
+
+    steps:
+      - name: Wait for tests to complete
+        uses: actions/github-script@v7
+        id: verify
+        with:
+          result-encoding: string
+          script: |
+            const { owner, repo } = context.repo;
+            const runs = await github.rest.actions.listWorkflowRunsForRepo({
+              owner,
+              repo,
+              workflow_id: 'test.yml',
+              status: 'completed',
+              per_page: 1
+            });
+
+            if (runs.data.workflow_runs.length === 0) {
+              throw new Error('No completed test runs found');
+            }
+
+            const latestRun = runs.data.workflow_runs[0];
+            console.log(`Latest test run: ${latestRun.name} - ${latestRun.conclusion}`);
+
+            if (latestRun.conclusion !== 'success') {
+              core.setFailed(`Latest test run did not pass. Conclusion: ${latestRun.conclusion}`);
+            }
+
+            return latestRun.conclusion === 'success';
+
+  create-release:
+    name: Create Release
+    needs: check-tests
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+
+    steps:
+      - name: Run Release Please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: python
+
+  trigger-docker-build:
+    name: Trigger Docker Build
+    needs: [check-tests, create-release]
+    if: ${{ needs.create-release.outputs.release_created }}
+    uses: ./.github/workflows/build-and-push-image.yml
+    with:
+      tag_name: ${{ needs.create-release.outputs.tag_name }}
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+      security-events: write
